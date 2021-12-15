@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="gb2312"?>
+<!DOCTYPE errors SYSTEM "error.dtd">
+<errors>
+	<error id="NONE" value="0" prompt="none"/>
+	<error id="ERROR" value="-1" prompt="error"/>
+	<!--通用业务信息-->
+	<error id="INVALID_SESSION" value="1" prompt="invalid session"/>
+	<error id="INSTRUMENT_NOT_FOUND" value="2" prompt="can not find instrument"/>
+	<error id="INVESTOR_NOT_FOUND" value="3" prompt="can not find investor"/>
+	<!--交易系统 -->
+	<error id="ORDER_SYS_ID_NOT_FOUND" value="4" prompt="can not find ordersysid"/>
+	<error id="BAD_ORDER_FIELD" value="5" prompt="bad order field"/>
+	<error id="BAD_ORDER_ACTION_FIELD" value="6" prompt="bad orderaction field"/>
+	<error id="BAD_INSTRUMENT_STATUS_FIELD" value="11" prompt="bad instrumentstatus field"/>
+	<error id="DUPLICATE_ORDER" value="12" prompt="duplicate order"/>
+	<error id="USER_INVESTOR_NOT_RELATED" value="15" prompt="investor is not related to the user"/>
+	<error id="ORDER_NOT_FOUND" value="24" prompt="can not find the order"/>
+	<error id="ORDER_HAD_ALL_TRADED" value="28" prompt="the order already all traded"/>
+	<error id="ORDER_HAD_CANCELED" value="29" prompt="the order already canceld"/>
+	<error id="NOT_ENOUGH_CLIENT_POSITION_TO_CLOSE" value="31" prompt="not enough client position to close"/>
+	<error id="CLIENT_POSITION_LIMIT_EXCEED" value="32" prompt="client position limit exceed"/>
+	<error id="NOT_ENOUGH_PARTICIPANT_POSITION_TO_CLOSE" value="33" prompt="not enough participant position to close"/>
+	<error id="PARTICIPANT_POSITION_LIMIT_EXCEED" value="34" prompt="participant position limit exceed"/>
+	<error id="CAN_NOT_FIND_ACCOUNT" value="35" prompt="can not find the investor account"/>
+	<error id="INSUFFICIENT_MONEY" value="36" prompt="insufficient money"/>
+	<error id="INVALID_VOLUME" value="37" prompt="invalid volume"/>
+	<error id="INSUITABLE_DATASYNC_STATUS" value="38" prompt="insuitable datasync status"/>
+	<error id="INVALID_DATASYNC_STATUS_WHILE_INITING" value="44" prompt="invalid datasync status while initing"/>	
+	<error id="EXCHANGE_DATA_NOT_SYNCHRONIZED" value="46" prompt="exchange data not synchonized"/>
+	<error id="PRICE_NOT_ON_TICK" value="48" prompt="price not on tick"/>
+	<error id="PRICE_OUT_OF_UPPER_BOUND" value="49" prompt="price out of upper bound"/>
+	<error id="PRICE_OUT_OF_LOWER_BOUND" value="50" prompt="price out of lower bound"/>
+	<error id="NO_TRADING_RIGHT" value="51" prompt="no trading right"/>
+	<error id="CLOSE_ONLY" value="52" prompt="only close"/>
+	<error id="SESSION_NOT_FOUND" value="54" prompt="session can not find"/>
+	<error id="NOT_LOGIN_YET" value="55" prompt="not loging yet"/>	
+	<error id="ONLY_TRADE_MANAGER_CAN_DO_THIS" value="56" prompt="only trade manager can do this"/>
+	<error id="CAN_NOT_OPERATE_FOR_OTHER_PARTICIPANT" value="57" prompt="can not operate for other participant"/>
+	<error id="USER_MISMATCH" value="58" prompt="user mismatch"/>
+	<error id="USER_RELOGIN" value="59" prompt="user relogin"/>
+	<error id="INVALID_USER_OR_PASSWORD" value="60" prompt="invalid user or userpassword"/>	
+	<error id="USER_NOT_ACTIVE" value="62" prompt="user is not active"/>
+	<error id="USER_NOT_BELONG_TO_THIS_PARTICIPANT" value="64" prompt="user is not belong to this participant"/>
+	<error id="INVALID_LOGIN_IPADDRESS" value="65" prompt="invalid login ipaddress"/>
+	<error id="USER_NOT_LOGIN" value="66" prompt="user is not login"/>
+	<error id="NOT_LOGINED_BY_THIS_USER" value="67" prompt="not logined by this user"/>
+	<error id="NOT_LOGINED_BY_THIS_PARTICIPANT" value="68" prompt="not logined by this participant"/>
+	<error id="ORDER_HAD_SUSPENDED" value="76" prompt="order has suspended"/>
+	<error id="ORDER_HAD_ACTIVED" value="77" prompt="order has actived"/>
+	<error id="GTD_ORDER_DATE_MISSED" value="78" prompt="gtd order date missed"/>
+	<error id="UNSUPPORT_ORDER_TYPE" value="79" prompt="un support order type"/>
+	<error id="USER_NO_PERMISSION" value="80" prompt="user no permission"/>
+	<error id="TARGET_USER_NOT_LOGIN" value="81" prompt="target user not login"/>
+	<error id="USER_NOT_FOUND" value="88" prompt="user not find"/>
+	<error id="UNKOWN_ADMIN_ORDER" value="104" prompt="unkown admin order"/>
+	<error id="DUPLICATE_SESSION" value="106" prompt="duplicate session"/>
+	<error id="NO_FUNCTION_RIGHT" value="107" prompt="no function right"/>	
+	<error id="INSUFFICIENT_CREDIT" value="111" prompt="insufficient credit"/>
+	<error id="CREDIT_LIMIT_ALREADY_INITED" value="112" prompt="credit limit already inited"/>
+	<error id="CREDIT_LIMIT_NOT_INITED" value="113" prompt="credit limit not inited"/>	
+	<error id="DUPLICATE_INSTRUMENT" value="116" prompt="duplicate instrument"/>
+	<error id="NOT_SUPPORT_GROSS" value="117" prompt="can not support the investor of gross position type"/>
+	
+	<!--做市商及市价单-->
+	<error id="INVALID_PRICE" value="141" prompt="order price is invalid"/>
+	<error id="NOT_SUPPORT_ANYPRICE" value="142" prompt="not support anyprice"/>
+	<error id="ORDER_HAD_CANCELED_OR_ALLTRADED" value="143" prompt="order has canceled or all traded"/>
+	<error id="TRADER_HAD_NO_AVAILBLE_INVESTORS" value="144" prompt="trader has no available investor"/>
+	<error id="PARTICIPANTID_NOTNULL" value="145" prompt="participant can not null"/>
+	<error id="CLIENTID_NOTNULL" value="146" prompt="clientid can not null"/>
+	<error id="CLIENTID_NOTACTIVE" value="147" prompt="clientid is not active"/>
+	<error id="CLIENTID_ONlY_OFFSET" value="148" prompt="client is only offset"/>
+	<error id="CLIENTID_CANNOT_TRADE" value="149" prompt="client can not trade"/>
+	<error id="CLIENTID_CANNOT_OPEN" value="150" prompt="client can not open"/>
+	<error id="DUPLICATE_RTN_ORDER" value="152" prompt="duplicate rtn order"/>
+	<error id="DUPLICATE_RTN_TRADE" value="153" prompt="duplicate rtn trade"/>	
+	<error id="CAN_NOT_FIND_POSITION" value="154" prompt="can not find position"/>
+	<error id="UPDATE_POSITION" value="155" prompt="update position error"/>
+	<error id="FLOWCONTROL_TOOLARGE_UNFINISHED_ORDERS" value="162" prompt="exchange flowcontrol:api queue has too many unfinished orders"/>
+	<error id="FLOWCONTROL_TOOQUICK_ORDERSPEED_FORORDER" value="163" prompt="exchange flowcontrol:api order frequence has reached the exchange limit"/>	
+	
+	
+	<!--qdp报单字段错误-->
+	<error id="FIELDERROR_USERID" value="8001" prompt="orderfield check,userid error"/>
+	<error id="FIELDERROR_DIRECTION" value="8002" prompt="orderfield check,direction error"/>
+	<error id="FIELDERROR_EXCHANGEID" value="8003" prompt="orderfield check,exchangeid error"/>
+	<error id="FIELDERROR_HEDGEFLAG" value="8004" prompt="orderfield check,hedgeflag error"/>
+	<error id="FIELDERROR_INSTRUMENTID" value="8005" prompt="orderfield check,instrumentid error"/>
+	<error id="FIELDERROR_LIMITPRICE" value="8006" prompt="orderfield check,limitprice error"/>
+	<error id="FIELDERROR_VOLUME" value="8007" prompt="orderfield check,volume error"/>
+	<error id="FIELDERROR_OFFSETFLAG" value="8008" prompt="orderfield check,offsetflag error"/>
+	<error id="FIELDERROR_USERORDERLOCALID" value="8009" prompt="orderfield check,userorderlocalid error"/>
+	<error id="FIELDERROR_ORDERPRICETYPE" value="8010" prompt="orderfield check,orderpricetype error"/>
+	<error id="FIELDERROR_STOPPRICE" value="8011" prompt="orderfield check,stopprice error"/>
+	<error id="FIELDERROR_BROKERID" value="8012" prompt="orderfield check,brokerid error"/>
+	<error id="FIELDERROR_INVESTORID" value="8013" prompt="orderfield check,investorid error"/>
+	<error id="FIELDERROR_TIMECONDITION" value="8014" prompt="orderfield check,timecondition error"/>
+	<error id="FIELDERROR_GTDDATE" value="8015" prompt="orderfield check,gtddate error"/>
+	<error id="FIELDERROR_VOLUMECONDITION" value="8016" prompt="orderfield check,volumecondition error"/>
+	<error id="FIELDERROR_MINVOLUME" value="8017" prompt="orderfield check,minivolume error"/>
+	<error id="FIELDERROR_FORCECLOSEREASON" value="8018" prompt="orderfield check,forececlosereason error"/>
+	<error id="FIELDERROR_ISAUTOSUSPEND" value="8019" prompt="orderfield check,isautosuspend error"/>
+	<error id="FIELDERROR_BUSINESSUNIT" value="8020" prompt="orderfield check,businiessunit error"/>
+	<error id="FIELDERROR_USERCUSTOM" value="8021" prompt="orderfield check,usercustom error"/>
+	<error id="FIELDERROR_ORDERSYSID" value="8022" prompt="orderactionfield check,ordersysid error"/>
+	<error id="FIELDERROR_ACTIONFLAG" value="8023" prompt="orderactionfield check,actionflag error,only support delete"/>
+	<error id="BAD_TRADE_FIELD" value="8024" prompt="tradefield error"/>
+	<error id="BAD_INVESTORACCOUNT_FIELD" value="8025" prompt="bad investoraccount field"/>
+	<error id="BAD_CLIENTPOSITION_FIELD" value="8026" prompt="bad clientposition field"/>
+	<error id="NO_AVAIL_EXCHANGE_SEAT" value="8027" prompt="no available exchange seat"/>
+	<error id="ORDER_EXCEED_COMPLIANCESETTING" value="8028" prompt="order exceed compliance setting"/>
+	<error id="ORDER_VOLUME_EXCEED_COMPLIANCESETTING" value="8029" prompt="order volume exceed compliance setting"/>
+	<error id="ORDERACTION_EXCEED_COMPLIANCESETTING" value="8030" prompt="orderaction exceed compliance setting"/>
+	<error id="ORDERACTION_VOLUME_EXCEED_COMPLIANCESETTING" value="8031" prompt="orderaction volume exceed compliance setting"/>
+	<error id="ORDERFAILED_EXCEED_COMPLIANCESETTING" value="8032" prompt="orderfailed exceed compliance setting"/>
+	
+	<!--查询的参数错误-->
+	<error id="QUERY_INVESTORACCOUNT_INVESTORID_ISNULL" value="8100" prompt="when query investor accoount,investorid is null"/>
+	<error id="QUERY_USERINVESTOR_USERID_ISNULL" value="8101" prompt="when query userinvestor, userid is null"/>
+	<error id="CANNOT_WITHDRAW_OTHERINVESTOR_ORDER" value="8102" prompt="can not withdraw the order of other investor"/>
+	<error id="USER_NORIGHT_WITHDRAW_THISORDER" value="8103" prompt="user has no right to withdraw this order"/>
+	<error id="BROKERID_CANNOT_BE_BLANK" value="8104" prompt="brokerid can not be blank"/>
+	<error id="USERID_CANNOT_BE_BLANK" value="8105" prompt="userid can not be blank"/>
+	<error id="USERID_CANNOT_BE_FOUND" value="8106" prompt="userid has no brokerid to belong"/>
+	<error id="NEWPASSWD_CANNOT_BENULL" value="8107" prompt="new password can not be null"/>
+	<error id="NEWPASSWD_TOOSHORT" value="8108" prompt="new password is too short,less than three character"/>
+	<error id="NEWPASSWD_TOOLONG" value="8109" prompt="new password is too long,more than fifteen character"/>
+	<error id="NEWPASSWD_CONTAIN_SPACE" value="8110" prompt="new password can not contain space character"/>
+	<error id="BROKERID_DIFFWITH_LOGIN" value="8111" prompt="brokerid diff with login"/>
+	<error id="ORDER_BROKERID_CANNOTBENULL" value="8112" prompt="when order,brokerid can not be null"/>
+	<error id="QUERY_INVESTORPOSITION_EXCHANGEID_ISNULL" value="8117" prompt="when query investor position,exchangeid can not be null"/>
+	<error id="QUERY_INVESTORPOSITION_INVESTORID_ISNULL" value="8118" prompt="when query investor position,investorid can not be null"/>
+	<error id="QUERY_INVESTORPOSITION_INSTRUMENTID_ISNULL" value="8119" prompt="when query investor position,instrumentid can not be null"/>
+	<error id="CURRENT_SEAT_NOT_AVAILABLE" value="8121" prompt="current seat not available"/>
+	<error id="QUERY_USERID_INVESTORID_INVALID" value="8122" prompt="investorid is not related to the userid"/>
+	<error id="BAD_USERSESSION_FIELD" value="8123" prompt="bad usersession field"/>
+	<error id="QUERY_INVESTORID_ISNULL" value="8124" prompt="investorid can not be null when the clientid is null"/>
+	<error id="QUERY_CLIENTID_INVALID" value="8125" prompt="users are only query themself clientid"/>
+	<error id="ORDERACTION_LOCALID_SYSID_BOTHBLANK" value="8126" prompt="when orderaction,the orderaction localid and ordersysid are bothe blank"/>
+	<error id="BAD_INSTRUMENT_FIELD" value="8127" prompt="bad instrument field"/>
+	<error id="BAD_EXCHANGE_FIELD" value="8128" prompt="bad exchange field"/>
+	<error id="TRADINGID_NOT_EXIST" value="8129" prompt="clienttradingid not exist"/>
+	<error id="ORDER_LOST_ONTHEWAY" value="8130" prompt="order lost on the way"/>
+	<error id="ORDER_HEDGEFLAG_NOTVALID" value="8131" prompt="order hedgeflag is invalid"/>
+	<error id="BROKERID_MISMATCH" value="8132" prompt="brokerid is mismatch"/>
+	<error id="ORDERACTION_INVESTORID_CANNOTBEBLANK" value="8133" prompt="when orderaction, investorid can not be blank"/>
+	<error id="EXCHANGEID_CANNOTBEBLANK" value="8134" prompt="exchangeid can not be blank"/>
+	<error id="PART_CLIENT_NOTRELATED_INTHISEXCHANGE" value="8135" prompt="the clientid is not related to the participant in the exchange"/>
+	<error id="NO_CLIENT_MARGIN_FEE_DATA" value="8136" prompt="can not fid the margin/fee data of the client"/>
+	<error id="USERID_INVESTORID_BOTHBLANK" value="8137" prompt="bothe userid and investorid are blank"/>
+	<error id="INVESTORID_CANNOT_BE_BLANK" value="8218" prompt="investorid can not be blank"/>
+	<error id="ACCOUNT_CANNOT_BE_BLANK" value="8225" prompt="account can not be blank"/>
+	<error id="BAD_ACCOUNT_DEPOSIT_FIELD" value="8226" prompt="bad account deposit field"/>
+	<error id="DUPLICATE_DEPOSIT_FIELD" value="8227" prompt="duplicate deposit field"/>
+	<error id="DEPOSIT_AMOUNT_NOT_ENOUGH" value="8232" prompt="deposit amount not enough"/>
+	<error id="CAN_NOT_FIND_INSTRUMENT_MARKET_DATA" value="8233" prompt="can not find the market data of the instrument"/>
+</errors>

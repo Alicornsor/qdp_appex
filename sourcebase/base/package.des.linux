@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="gb2312"?>
+
+<packageDefine name="base" version="1" type="cpp" includedir="." platform="all">
+	<parameter/>
+	<depend>
+		<package name="platform" version="1"/>
+	</depend>
+	<cppfile>
+		<file name="CBaseObject.cpp"/>
+		<file name="BaseFunction.cpp"/>
+		<file name="DesignError.cpp"/>
+		<file name="RuntimeError.cpp"/>
+		<file name="CLogger.cpp"/>
+		<file name="CProbeLogger.cpp"/>
+		<file name="monitorIndex.cpp"/>
+		<file name="printinfo.cpp"/>
+	</cppfile>
+	<headfile>
+		<file name="CBaseObject.h"/>
+		<file name="BaseFunction.h"/>
+		<file name="DesignError.h"/>
+		<file name="RuntimeError.h"/>
+		<file name="CLogger.h"/>
+		<file name="CProbeLogger.h"/>
+		<file name="monitorIndex.h"/>
+		<file name="public.h"/>
+		<file name="printinfo.h"/>
+	</headfile>
+	<command/>
+</packageDefine>

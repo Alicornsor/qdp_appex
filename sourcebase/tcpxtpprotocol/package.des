@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="gb2312"?>
+
+<packageDefine name="tcpxtpprotocol" version="1" type="cpp" includedir="." platform="all">
+	<parameter/>
+	<depend />
+	<cppfile>
+		<file name="TcpXtpProtocol.cpp"/>
+		<file name="TcpXtpSession.cpp"/>
+		<file name="TcpXtpSessionFactory.cpp"/>
+		<file name="TcpXtpGateway.cpp"/>		
+		</cppfile>
+	<headfile>
+		<file name="TcpXtpProtocol.h"/>
+		<file name="TcpXtpSession.h"/>
+		<file name="TcpXtpGateway.h"/>		
+		<file name="TcpXtpSessionFactory.h"/>
+		</headfile>
+	<command/>
+</packageDefine>

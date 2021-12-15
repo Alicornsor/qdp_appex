@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="gb2312"?>
+<!DOCTYPE project SYSTEM "C:\wsh\project.dtd">
+<project target="slogparser" targettype="exe" hasdebug="yes" hasmap="no" hasprofile="no" multithread="yes" warninglevel="2" libs="" cppflags="" ldflags="" arflags="">
+	<package name="platform" dir="../../sourcebase/platform"/>
+	<package name="base" dir="../../sourcebase/base"/>
+	<package name="utility" dir="../../sourcebase/utility"/>
+	<package name="probelogger" dir="../../sourcebase/probelogger"/>
+	<package name="datastruct" dir="../../sourcebase/datastruct"/>
+	<package name="event" dir="../../sourcebase/event"/>
+	<package name="network" dir="../../sourcebase/network"/>
+	<package name="tcpnetwork" dir="../../sourcebase/tcpnetwork"/>
+	<package name="udpnetwork" dir="../../sourcebase/udpnetwork"/>
+	<package name="protocol" dir="../../sourcebase/protocol"/>
+	<package name="channelprotocol" dir="../../sourcebase/channelprotocol"/>
+	<package name="compressprotocol" dir="../../sourcebase/compressprotocol"/>
+	<package name="ftdprotocol" dir="../../sourcebase/ftdprotocol"/>
+	<package name="ftdrprotocol" dir="../../sourcebase/ftdrprotocol"/>
+	<package name="xmpprotocol" dir="../../sourcebase/xmpprotocol"/>
+	<package name="customDataType" dir="../../sourcebase/customDataType">
+		<parameter name="UFDatatypeEnv" value="../../datamodel/commonEnv/UFDataType.xml"/>
+	</package>
+	<package name="ftdfield" dir="../../sourcebase/ftdfield">
+		<parameter name="FTDEnv" value="../../datamodel/envGenerated/FTD.xml"/>
+	</package>
+	<package name="version" dir="../../sourcebase/version"/>
+	<package name="slogparser" dir="."/>
+</project>

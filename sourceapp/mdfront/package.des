@@ -1,0 +1,33 @@
+<packageDefine name="mdfront" version="1" type="cpp" includedir="." platform="all">
+	<parameter/>
+	<depend>
+		<package name="platform" version="1"/>
+		<package name="base" version="1"/>
+		<package name="probelogger" version="1"/>
+		<package name="utility" version="1"/>
+		<package name="datastruct" version="1"/>
+		<package name="network" version="1"/>
+		<package name="tcpnetwork" version="1"/>
+		<package name="protocol" version="1"/>
+		<package name="channelprotocol" version="1"/>
+		<package name="scpprotocol" version="1"/>
+		<package name="xmpprotocol" version="1"/>
+		<package name="mdftdprotocol" version="1"/>
+		<package name="ftdfield" version="1"/>
+		<package name="event" version="1"/>
+		<package name="customDataType" version="1"/>
+		<package name="UFCopy" version="1"/>
+		<package name="version" version="1"/>	
+	</depend>
+	<cppfile>
+		<file name="MarketDataFlowManager.cpp"/>
+		<file name="MDFront.cpp"/>
+		<file name="MarketDataHandler.cpp"/>
+	</cppfile>
+	<headfile>
+		<file name="MDFront.h"/>
+		<file name="MarketDataFlowManager.h"/>	
+		<file name="MarketDataHandler.h"/>
+	</headfile>
+	<command/>
+</packageDefine>

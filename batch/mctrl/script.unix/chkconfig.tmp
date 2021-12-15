@@ -1,0 +1,44 @@
+#################################################
+##    begin to run batch                      ###
+#################################################
+ 1 fmsys01 sqfm-knl1 
+		<Service name="usftd" item="1" address="tcp://127.0.0.1:17001"/>
+		<Service name="usquery" item="1" address="tcp://127.0.0.1:17002"/>
+		<Service name="ustinit" address="tcp://127.0.0.1:17003"/>
+		<Service name="usmemchange" item="1" address="tcp://127.0.0.1:17004"/>
+		<Service name="exchangeftd" item="1" address="tcp://172.27.16.36:19696"/>
+		<Topic name="msudp" address="udp://10.51.225.255:17000"/>
+ 2 fmsys02 sqfm-knl1 
+		<Service name="usftd" item="1" address="tcp://127.0.0.1:17006"/>
+		<Service name="usquery" item="1" address="tcp://127.0.0.1:17007"/>
+		<Service name="ustinit" address="tcp://127.0.0.1:17008"/>
+		<Service name="usmemchange" item="1" address="tcp://127.0.0.1:17009"/>
+		<Service name="exchangeftd" item="1" address="tcp://172.27.16.36:19696"/>
+		<Topic name="msudp" address="udp://10.51.225.255:17000"/>
+ 3 fmsys03 sqfm-knl1 
+		<Service name="usftd" item="1" address="tcp://127.0.0.1:17011"/>
+		<Service name="usquery" item="1" address="tcp://127.0.0.1:17012"/>
+		<Service name="ustinit" address="tcp://127.0.0.1:17013"/>
+		<Service name="usmemchange" item="1" address="tcp://127.0.0.1:17014"/>
+		<Service name="exchangeftd" item="1" address="tcp://172.27.16.36:19696"/>
+		<Topic name="msudp" address="udp://10.51.225.255:17000"/>
+#################################################
+##    begin to run batch                      ###
+#################################################
+ 1 fmsys01 sqfm-knl1 
+SysNumber=201
+SysNumber=201
+ 2 fmsys02 sqfm-knl1 
+SysNumber=202
+SysNumber=202
+ 3 fmsys03 sqfm-knl1 
+SysNumber=203
+SysNumber=203
+#################################################
+##    begin to run batch                      ###
+#################################################
+ 1 mscffex sqfm-knl1 
+		<Service name="msfront" item="1" address="000706::100:098383@tcp://172.27.16.42:19999"/>
+		<Service name="msftd" address="tcp://127.0.0.1:17101"/>
+		<Service name="mstinit" address="tcp://127.0.0.1:17102"/>
+		<Topic name="msudp" address="udp://10.51.225.255:17000"/>

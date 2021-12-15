@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="gb2312"?>
+<packageDefine name="qdpmdlink" version="1" type="cpp" includedir="." platform="all">
+	<parameter/>
+	<depend>
+	</depend>
+	<cppfile>		
+		<file name="QdpMDLink.cpp"/>
+	</cppfile>
+	<headfile>		
+		<file name="QdpMDLink.h"/>
+		<file name="QdFtdcMdApi.h"/>
+		<file name="QdFtdcUserApiDataType.h"/>
+		<file name="QdFtdcUserApiStruct.h"/>	
+	</headfile>
+	<libfile>		
+		<file name="qdmdapi"/>
+	</libfile>
+	<command/>
+</packageDefine>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="gb2312"?>
+<project target="qfixfront" targettype="exe" hasdebug="yes" hasmap="no" hasprofile="no" multithread="yes" warninglevel="2"  workdir="bin" cppflags="" libs="-lssl" ldflags="" arflags="">
+	<package name="platform" dir="../../sourcebase/platform"/>
+	<package name="base" dir="../../sourcebase/base"/>
+	<package name="utility" dir="../../sourcebase/utility"/>
+	<package name="datastruct" dir="../../sourcebase/datastruct"/>
+	<package name="event" dir="../../sourcebase/event"/>
+	<package name="network" dir="../../sourcebase/network"/>
+	<package name="tcpnetwork" dir="../../sourcebase/tcpnetwork"/>
+	<package name="udpnetwork" dir="../../sourcebase/udpnetwork"/>
+	<package name="protocol" dir="../../sourcebase/protocol"/>
+	<package name="channelprotocol" dir="../../sourcebase/channelprotocol"/>
+	<package name="scpprotocol" dir="../../sourcebase/scpprotocol"/>
+	<package name="xmpprotocol" dir="../../sourcebase/xmpprotocol"/>
+	<package name="compressprotocol" dir="../../sourcebase/compressprotocol"/>
+	<package name="xtpprotocol" dir="../../sourcebase/xtpprotocol"/>
+	<package name="fib" dir="../../sourcebase/fib"/>
+	<package name="customDataType" dir="../../sourcebase/customDataType">
+		<parameter name="UFDatatypeEnv" value="../../datamodel/commonEnv/UFDataType.xml"/>
+	</package>
+	<package name="error" dir="../../sourcebase/error">
+		<parameter name="errorEnv" value="../../datamodel/commonEnv/error.xml"/>
+	</package>	
+	<package name="xtpfield" dir="../../sourcebase/xtpfield">
+		<parameter name="XTPEnv" value="../../datamodel/envGenerated/XTP.xml"/>
+	</package>
+	<package name="ftdfield" dir="../../sourcebase/ftdfield">
+		<parameter name="FTDEnv" value="../../datamodel/envGenerated/FTD.xml"/>
+	</package>
+	<package name="UFCopy" dir="../../sourcebase/UFCopy">
+		<parameter name="UFEntityEnv" value="../../datamodel/commonEnv/UFEntity.xml"/>
+		<parameter name="MDBEnv" value="../../datamodel/envGenerated/MDB.xml"/>
+		<parameter name="XTPEnv" value="../../datamodel/envGenerated/XTP.xml"/>
+		<parameter name="FTDEnv" value="../../datamodel/envGenerated/FTD.xml"/>
+	</package>
+	<package name="xml" dir="../../sourcebase/xml"/>
+	<package name="probelogger" dir="../../sourcebase/probelogger"/>
+	<package name="version" dir="../../sourcebase/version"/>	
+	<package name="tcpxtpprotocol" dir="../../sourcebase/tcpxtpprotocol"/>
+	<package name="tcpxtplink" dir="../../sourcebase/tcpxtplink"/>
+	<package name="fix42" dir="../../sourcebase/fixlib/quickfix/fix42"/>
+	<package name="fixheader" dir="../../sourcebase/fixlib/quickfix"/>
+	<package name="quickfixdir" dir="../../sourcebase/fixlib"/>
+	<package name="fixprotocol" dir="../../sourcebase/fixprotocol"/>
+	<package name="qfixfront" dir="../../sourceapp/qfixfront"/>
+</project>

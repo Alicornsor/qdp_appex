@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="gb2312"?>
+
+<packageDefine name="shmwork" version="1" type="cpp" includedir="." platform="all">
+	<parameter/>
+	<depend>
+		<package name="platform" version="1"/>
+		<package name="base" version="1"/>
+		<package name="probelogger" version="1"/>
+		<package name="utility" version="1"/>
+		<package name="datastruct" version="1"/>
+		<package name="network" version="1"/>
+		<package name="event" version="1"/>
+		<package name="UFCopy" version="1"/>
+	</depend>
+	<cppfile>
+		<file name="ShmClient.cpp"/>
+		<file name="ShmServer.cpp"/>
+		<file name="ShmCommon.cpp"/>
+		<file name="QdpShmServer.cpp"/>
+		<file name="QdpShmClient.cpp"/>
+	</cppfile>
+	<headfile>
+		<file name="ShmClient.h"/>
+		<file name="ShmServer.h"/>
+		<file name="ShmCommon.h"/>
+		<file name="QdpShmServer.h"/>
+		<file name="QdpShmClient.h"/>
+	</headfile>
+	<command/>
+</packageDefine>

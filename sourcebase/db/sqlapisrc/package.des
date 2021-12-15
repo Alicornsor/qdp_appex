@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="gb2312"?>
+<packageDefine name="sqlapi" version="1" type="cpp" includedir="." platform="all">
+	<parameter/>
+	<depend>
+	</depend>
+	<cppfile>
+		<file name="SQLAPI.cpp"/>
+		<file name="ISAClient.cpp"/>
+		<file name="samisc.cpp"/>
+		<file name="odbcClient.cpp"/>
+		<file name="odbcAPI_linux.cpp"/>
+	</cppfile>
+	<headfile>
+		<file name="osdep.h"/>
+		<file name="ISAClient.h"/>
+		<file name="SQLAPI.h"/>
+		<file name="saerrmsg.h"/>
+		<file name="samisc.h"/>
+		<file name="odbcClient.h"/>
+		<file name="odbcAPI.h"/>
+	</headfile>
+	<command/>
+</packageDefine>

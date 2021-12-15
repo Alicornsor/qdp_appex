@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="gb2312"?>
+
+<packageDefine name="xtpprotocol" version="1" type="cpp" includedir="." platform="all">
+	<parameter/>
+	<depend>
+		<package name="platform" version="1"/>
+		<package name="base" version="1"/>
+		<package name="probelogger" version="1"/>
+		<package name="utility" version="1"/>
+		<package name="datastruct" version="1"/>
+		<package name="network" version="1"/>
+		<package name="protocol" version="1"/>
+		<package name="event" version="1"/>
+		<package name="xmpprotocol" version="1"/>
+		<package name="channelprotocol" version="1"/>
+		<package name="scpprotocol" version="1"/>
+	</depend>
+	<cppfile>
+		<file name="XTPPackage.cpp"/>
+		<file name="XTPSession.cpp"/>
+		<file name="XTPProtocol.cpp"/>
+		<file name="XTPPubEndPoint.cpp"/>
+		<file name="XTPSubEndPoint.cpp"/>
+		<file name="PublishPort.cpp"/>
+		<file name="XTPPubSession.cpp"/>
+	</cppfile>
+	<headfile>
+		<file name="XTPPackage.h"/>
+		<file name="XTPSession.h"/>
+		<file name="XTPProtocol.h"/>
+		<file name="XTPPubEndPoint.h"/>
+		<file name="XTPSubEndPoint.h"/>
+		<file name="PublishPort.h"/>
+		<file name="XTPPubSession.h"/>
+		<file name="Subscriber.h"/>
+		<file name="FlowSubscriber.h"/>
+	</headfile>
+	<command/>
+</packageDefine>

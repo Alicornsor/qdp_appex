@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="gb2312"?>
+
+<packageDefine name="utility" version="1" type="cpp" includedir="." platform="all">
+	<parameter/>
+	<depend>
+		<package name="platform" version="1"/>
+		<package name="base" version="1"/>
+	</depend>
+	<cppfile>
+		<file name="CTimeMeter.cpp"/>
+		<file name="utility.cpp"/>
+		<file name="Config.cpp"/>
+		<file name="CConfig.cpp"/>
+		<file name="profile.cpp"/>
+		<file name="SGEJson.cpp"/>
+	</cppfile>
+	<headfile>
+		<file name="CTimeMeter.h"/>
+		<file name="utility.h"/>
+		<file name="Config.h"/>
+		<file name="CConfig.h"/>
+		<file name="profile.h"/>
+		<file name="SGEJson.h"/>
+	</headfile>
+	<command/>
+</packageDefine>

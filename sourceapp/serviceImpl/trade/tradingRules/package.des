@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="gb2312"?>
+
+<packageDefine name="tradingRules" version="1" type="cpp" includedir="." platform="all">
+	<parameter>
+	</parameter>
+	<depend>
+	</depend>
+	<cppfile>
+		<file name="RuleHandleBase.cpp"/>	
+		<file name="HandleOrder.cpp"/>
+		<file name="HandleOrderAction.cpp"/>
+		<file name="HandleTrade.cpp"/>
+		<file name="HandleNotify.cpp"/>
+		<file name="MoneyPosition.cpp"/>
+		<file name="BaseCheck.cpp"/>
+		<file name="HandleFutureOrder.cpp"/>
+		<file name="FutureMoneyPosition.cpp"/>
+		<file name="HandleFutureTrade.cpp"/>
+	</cppfile>
+	<headfile>
+		<file name="RuleHandleBase.h"/>
+		<file name="HandleOrder.h"/>
+		<file name="HandleOrderAction.h"/>
+		<file name="HandleTrade.h"/>
+		<file name="HandleNotify.h"/>		
+		<file name="MoneyPosition.h"/>	
+		<file name="BaseCheck.h"/>
+		<file name="HandleFutureOrder.h"/>
+		<file name="FutureMoneyPosition.h"/>
+		<file name="HandleFutureTrade.h"/>
+	</headfile>
+	<command>
+	</command>
+</packageDefine>

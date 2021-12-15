@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="gb2312"?>
+
+<packageDefine name="probelogger" version="1" type="cpp" includedir="." platform="all">
+	<parameter/>
+	<depend>
+		<package name="platform" version="1"/>
+		<package name="base" version="1"/>
+		<package name="datastruct" version="1"/>
+	</depend>
+	<cppfile>
+		<file name="CSyslogService.cpp"/>
+		<file name="CFilelogService.cpp"/>
+	</cppfile>
+	<headfile>
+		<file name="CSyslogService.h"/>
+		<file name="CFilelogService.h"/>
+	</headfile>
+	<command/>
+</packageDefine>

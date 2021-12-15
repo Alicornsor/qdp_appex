@@ -1,0 +1,1432 @@
+<?xml version="1.0" encoding="gb2312"?>
+<system author="XUZH" version="1.0">
+	<tables writeTable="yes" readTable="no" comment="" desc="" foreignStrick="no" isAsc="yes" indexName="noIndex" searchUnique="yes" checkDefault="no" checkParameter="yes" hasTable="yes" manager="root" isPK="no" stableIndex="no" runLevel="0" priority="2">
+		<table name="DataSyncStatus" usage="数据同步状态表" manager="none">
+			<fields ref="DataSyncStatus"/>
+			<foreigns/>
+			<index>
+				<defineIndex name="TradingdayIndex" stableIndex="yes">
+					<indexKey name="TradingDay"/>
+				</defineIndex>
+			</index>
+			<search>
+				<defineSearch name="ByTradingday" indexName="TradingdayIndex" searchUnique="yes">
+					<parameter>
+						<paraDefine name="TradingDay" desc="交易日"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+			</search>
+		</table>
+		<table name="SystemStatus" usage="QDP状态表" readTable="yes">
+			<fields ref="SystemStatus"/>
+			<foreigns/>
+			<index>
+				<defineIndex name="TradingDay" stableIndex="yes">
+					<indexKey name="TradingDay"/>
+				</defineIndex>
+			</index>
+			<search>			
+				<defineSearch name="ByTradingDay" IndexName="TradingDay" isPK="yes">
+					<parameter>
+						<paraDefine name="TradingDay" desc="交易日"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+			</search>			
+		</table>
+		<table name="OrderAction" usage="报单操作" hasTable="yes">
+			<fields ref="OrderAction"/>
+			<foreigns>
+				<foreign name="Order" key="ExchangeID,OrderSysID" factory="Order" method="ByExchangeIDAndOrderSysID" comment="对应的报单"/>
+				<foreign name="PreOrder" key="APIID,OrderLocalID" factory="PreOrder" method="ByAPIIDAndOrderLocalID" comment="对应的报单"/>
+			</foreigns>
+			<index/>
+			<search/>
+		</table>	
+		<table name="Order" usage="委托表" manager="none" readTable="yes">
+			<fields ref="Order"/>
+			<hashkeys>
+				<hashkey name="ExchangeIDOrderSysID" stableHashKey="yes">
+					<hashitem name="ExchangeID"/>
+					<hashitem name="OrderSysID"/>
+				</hashkey>
+				<hashkey name="FrontIDSessionIDUserOrderLocalID" stableHashKey="yes">
+					<hashitem name="FrontID"/>
+					<hashitem name="SessionID"/>
+					<hashitem name="UserOrderLocalID"/>
+				</hashkey>
+			</hashkeys>
+			<foreigns>
+				<foreign name="InvestorPosition" key="BrokerID,ExchangeID,InvestorID,InstrumentID,Direction,HedgeFlag" factory="InvestorPosition" method="ByBrkIDExIDInvIDInsDirHed" comment="对应的合约持仓信息"/>
+				<foreign name="IndexPreOrder" key="BrokerID,ExchangeID,InvestorID,InstrumentID,HedgeFlag" factory="IndexPreOrder" method="ByALLFlds" comment="对应的索引委托信息"/>
+			</foreigns>
+			<index>
+			</index>
+			<hashindex>
+			  <defineHashIndex name="ExchangeIDOrderSysIDHashIndex" hashKey="ExchangeIDOrderSysID" hashKeySize="2097152" stableIndex="yes"/>
+			  <defineHashIndex name="FrontIDSessionIDUserOrderLocalIDHashIndex" hashKey="FrontIDSessionIDUserOrderLocalID" hashKeySize="2097152" stableIndex="yes"/>
+			</hashindex>
+			<search>
+				<defineSearch name="ByExchangeIDAndOrderSysID" hashIndexName="ExchangeIDOrderSysIDHashIndex" isPK="yes">
+					<parameter>
+						<paraDefine name="ExchangeID" desc="交易所代码"/>
+						<paraDefine name="OrderSysID" desc="资金帐号"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+				<defineSearch name="ByFrontIDSessionIDAndUserOrderLocalID" hashIndexName="FrontIDSessionIDUserOrderLocalIDHashIndex" searchUnique="yes">
+					<parameter>
+						<paraDefine name="FrontID" desc="前置编号"/>
+						<paraDefine name="SessionID" desc="会话编号"/>
+						<paraDefine name="UserOrderLocalID" desc="用户本地报单编号"/>
+					</parameter>
+					<default/>
+				</defineSearch>					
+				<defineSearch name="AllByUserID" searchUnique="no" runLevel="1">
+					<parameter>
+						<paraDefine name="UserID" desc="交易用户代码"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+				<defineSearch name="AllByInvestorID" searchUnique="no" runLevel="1">
+					<parameter>
+						<paraDefine name="InvestorID" desc="投资者编号"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+				<defineSearch name="AllByExchIDInvIDUserID" searchUnique="no" runLevel="1">
+					<parameter>
+						<paraDefine name="ExchangeID" desc="交易所代码"/>
+						<paraDefine name="InvestorID" desc="投资者编号"/>
+						<paraDefine name="UserID" desc="交易用户代码"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+				<defineSearch name="AllByExchIDInstruIDUserID" searchUnique="no" runLevel="1">
+					<parameter>
+						<paraDefine name="ExchangeID" desc="交易所代码"/>
+						<paraDefine name="InstrumentID" desc="合约号" checkParameter="no"/>
+						<paraDefine name="UserID" desc="交易用户代码"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+				<defineSearch name="All" searchUnique="no" runLevel="1">
+					<parameter>
+					</parameter>
+					<default/>
+				</defineSearch>
+			</search>
+		</table>	
+		<table name="Trade" usage="成交表" manager="none" readTable="yes">
+			<fields ref="Trade"/>
+			<hashkeys>
+			</hashkeys>
+			<foreigns/>
+			<index>
+				<defineIndex name="ExchangeIDTradeIDIndex" stableIndex="yes" runLevel="1">>
+					<indexKey name="ExchangeID"/>	
+					<indexKey name="TradeID"/>						
+				</defineIndex>		
+				<defineIndex name="ExchangeIDTradeIDOrderSysIDIndex" stableIndex="yes">
+					<indexKey name="ExchangeID"/>	
+					<indexKey name="TradeID"/>			
+					<indexKey name="OrderSysID"/>			
+				</defineIndex>				
+			</index>
+			<hashindex>
+			</hashindex>
+			<search>
+				<defineSearch name="ByExchangeIDTradeIDOrderSysID" indexName="ExchangeIDTradeIDOrderSysIDIndex" isPK="yes">
+					<parameter>
+						<paraDefine name="ExchangeID" desc="交易所编号"/>
+						<paraDefine name="TradeID" desc="成交编号"/>
+						<paraDefine name="OrderSysID" desc="系统报单号"/>
+					</parameter>
+					<default>
+						<defaultDefine name="ParticipantID" value='""'/>
+						<defaultDefine name="ClientID" value='""'/>
+						<defaultDefine name="InstrumentID" value='""'/>
+					</default>
+				</defineSearch>
+				<defineSearch name="ByExchangeIDAndTradeID" indexName="ExchangeIDTradeIDIndex" searchUnique="no" runLevel="1">
+					<parameter>
+						<paraDefine name="ExchangeID" desc="交易所代码"/>
+						<paraDefine name="TradeID" desc="成交编号"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+				<defineSearch name="AllByExchIDInvIDUserID" searchUnique="no" runLevel="1">
+					<parameter>
+						<paraDefine name="ExchangeID" desc="交易所代码"/>
+						<paraDefine name="InvestorID" desc="投资者编号"/>
+						<paraDefine name="UserID" desc="交易用户代码"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+				<defineSearch name="AllByInvestorID"  searchUnique="no" runLevel="1">
+					<parameter>
+						<paraDefine name="InvestorID" desc="投资者编号"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+				<defineSearch name="AllByExchIDInstruIDUserID"  searchUnique="no" runLevel="1">
+					<parameter>
+						<paraDefine name="ExchangeID" desc="交易所代码"/>
+						<paraDefine name="InstrumentID" desc="合约号" checkParameter="no"/>
+						<paraDefine name="UserID" desc="交易用户代码"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+				<defineSearch name="All" searchUnique="no" runLevel="1">
+					<parameter>
+					</parameter>
+					<default/>
+				</defineSearch>
+			</search>
+		</table>
+		<table name="PreOrder" usage="预委托表" manager="none" readTable="yes">
+			<fields ref="PreOrder"/>
+			<hashkeys>
+				<hashkey name="UserIDAndUserOrderLocalID" stableHashKey="yes">
+					<hashitem name="UserOrderLocalID"/>
+					<hashitem name="FrontID"/>
+					<hashitem name="SessionID"/>
+				</hashkey>		
+				<hashkey name="APIIDAndOrderLocalID" stableHashKey="yes">
+					<hashitem name="APIID"/>
+					<hashitem name="OrderLocalID"/>
+				</hashkey>					
+			</hashkeys>
+			<foreigns>
+				<foreign name="InvestorPosition" key="BrokerID,ExchangeID,InvestorID,InstrumentID,Direction,HedgeFlag" factory="InvestorPosition" method="ByBrkIDExIDInvIDInsDirHed" comment="对应的合约持仓信息"/>
+				<foreign name="IndexPreOrder" key="BrokerID,ExchangeID,InvestorID,InstrumentID,HedgeFlag" factory="IndexPreOrder" method="ByALLFlds" comment="对应的索引委托信息"/>
+			</foreigns>
+			<index>
+				<defineIndex name="APIIDIndex" stableIndex="yes" runLevel="1">
+					<indexKey name="APIID"/>
+				</defineIndex>				
+			</index>
+			<hashindex>
+			  <defineHashIndex name="UserIDAndUserOrderLocalIDHashIndex" hashKey="UserIDAndUserOrderLocalID" hashKeySize="16384" stableIndex="yes"/>
+			  <defineHashIndex name="APIIDAndOrderLocalIDHashIndex" hashKey="APIIDAndOrderLocalID" hashKeySize="16384" stableIndex="yes"/>			  
+			</hashindex>
+			<search>
+				<defineSearch name="ByAPIIDAndOrderLocalID" hashIndexName="APIIDAndOrderLocalIDHashIndex" isPK="yes">
+					<parameter>
+						<paraDefine name="APIID" desc="席位号"/>
+						<paraDefine name="OrderLocalID" desc="本地报单编号"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+				<defineSearch name="ByUserIDAndUserOrderLocalID" hashIndexName="UserIDAndUserOrderLocalIDHashIndex" searchUnique="yes">
+					<parameter>
+						<paraDefine name="UserOrderLocalID" desc="用户本地报单编号"/>
+						<paraDefine name="FrontID" desc="前置号"/>
+						<paraDefine name="SessionID" desc="会话号"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+				<defineSearch name="ByAPIID" indexName="APIIDIndex" searchUnique="no" runLevel="1">
+					<parameter>
+						<paraDefine name="APIID" desc="通道号"/>
+					</parameter>
+					<default/>
+				</defineSearch>				
+			</search>
+		</table>	
+		<table name="IndexPreOrder" usage="索引预委托表" manager="none" readTable="yes">
+			<fields ref="IndexPreOrder"/>
+			<hashkeys>
+				<hashkey name="ALLFlds" stableHashKey="yes">
+					<hashitem name="BrokerID"/>
+					<hashitem name="ExchangeID"/>
+					<hashitem name="InvestorID"/>
+					<hashitem name="InstrumentID"/>
+					<hashitem name="HedgeFlag"/>				
+				</hashkey>			
+			</hashkeys>
+			<foreigns>				
+				<foreign name="VarietyPositionLimit" key="BrokerID,InvestorID,ExchangeID,InstrumentID" factory="InvestorPositionLimit" method="ByBrkIDVstIDExIDIstID" comment="对应的ByBrkIDVstIDExIDIstID品种持仓限额"/>
+				<foreign name="InvestorAccount" key="BrokerID,InvestorID" factory="InvestorAccount" method="ByBrokerIDInvestorID" comment="对应的帐户"/>
+				<foreign name="ClientTradingID" key="BrokerID,ExchangeID,InvestorID,HedgeFlag" factory="ClientTradingID" method="ByBrkIDExIDInvIDHdgFlg" comment="对应的交易编码"/>
+				<foreign name="MaxLocalID" key="FrontID,SessionID" factory="MaxLocalID" method="ByFrontIDSessionID" comment="对应的UserSession信息"/>				
+			</foreigns>	
+ 			<index>
+				<defineIndex name="InvestorIDIndex" stableIndex="yes">
+					<indexKey name="InvestorID"/>					
+				</defineIndex>				
+			</index>
+			<hashindex>
+			  <defineHashIndex name="ALLFldsHashIndex" hashKey="ALLFlds" hashKeySize="32768" stableIndex="yes"/>			
+			</hashindex>
+			<search>
+				<defineSearch name="ByALLFlds" hashIndexName="ALLFldsHashIndex" searchUnique="yes" isPK="yes">
+					<parameter>
+						<paraDefine name="BrokerID" desc="经纪公司编号"/>
+						<paraDefine name="ExchangeID" desc="交易所代码"/>
+						<paraDefine name="InvestorID" desc="投资者编号"/>
+						<paraDefine name="InstrumentID" desc="合约编号"/>
+						<paraDefine name="HedgeFlag" desc="投机套保标志"/>									
+					</parameter>
+					<default/>
+				</defineSearch>
+				<defineSearch name="ALLByInvestorID" indexName="InvestorIDIndex" searchUnique="no" >
+					<parameter>
+						<paraDefine name="InvestorID" desc="投资者编号"/>
+					</parameter>
+					<default/>
+				</defineSearch>				
+			</search>
+		</table>				
+		<table name="InvestorPosition" usage="持仓表" readTable="yes">
+			<fields ref="InvestorPosition"/>
+			<hashkeys>
+			</hashkeys>
+			<foreigns/>
+			<index>
+				<defineIndex name="BrkIDExIDInvIDInsIDDirHedIndex" stableIndex="yes">
+					<indexKey name="BrokerID"/>	
+					<indexKey name="ExchangeID"/>	
+					<indexKey name="InvestorID"/>	
+					<indexKey name="InstrumentID"/>	
+					<indexKey name="Direction"/>		
+					<indexKey name="HedgeFlag"/>			
+				</defineIndex>
+				<defineIndex name="ExIDAndInstrumentIDIndex" stableIndex="yes">
+					<indexKey name="ExchangeID"/>
+					<indexKey name="InstrumentID"/>
+				</defineIndex>	
+				<defineIndex name="InvestorIDIndex" stableIndex="yes" runLevel="1">
+				  <indexKey name="InvestorID"/>
+				</defineIndex>
+			</index>
+			<hashindex>
+			</hashindex>
+			<search>
+				<defineSearch name="ByBrkIDExIDInvIDInsDirHed" indexName="BrkIDExIDInvIDInsIDDirHedIndex" isPK="yes">
+					<parameter>
+						<paraDefine name="BrokerID" desc="经纪公司代码"/>
+						<paraDefine name="ExchangeID" desc="交易所代码"/>
+						<paraDefine name="InvestorID" desc="投资者编号"/>
+						<paraDefine name="InstrumentID" desc="合约编号"/>
+						<paraDefine name="Direction" desc="多空方向"/>
+						<paraDefine name="HedgeFlag" desc="投机套保标志"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+				<defineSearch name="AllByExIDAndInstrumentID" indexName="ExIDAndInstrumentIDIndex" searchUnique="no">
+					<parameter>
+						<paraDefine name="ExchangeID" desc="交易所代码"/>
+						<paraDefine name="InstrumentID" desc="合约编号"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+				<defineSearch name="ByInvestorID" indexName="InvestorIDIndex" searchUnique="no" runLevel="1">
+					<parameter>
+						<paraDefine name="InvestorID" desc="投资者号"/>
+					</parameter>
+					<default>
+						<defaultDefine name="InvestorID" value='""'/>
+					</default>
+				</defineSearch>
+				<defineSearch name="AllByBrokerID" searchUnique="no" runLevel="1">
+					<parameter>
+						<paraDefine name="BrokerID" desc="经纪公司代码" />
+					</parameter>
+					<default/>
+				</defineSearch>
+				<defineSearch name="AllByInstrumentID" searchUnique="no" runLevel="1">
+					<parameter>
+						<paraDefine name="InstrumentID" desc="合约代码" />
+					</parameter>
+					<default/>
+				</defineSearch>
+				<defineSearch name="AllByExchangeID" searchUnique="no" runLevel="1">
+					<parameter>
+						<paraDefine name="ExchangeID" desc="交易所编号"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+				<defineSearch name="AllByInvestorIDAndInstrumentID" searchUnique="no" runLevel="1">
+					<parameter>
+						<paraDefine name="InvestorID" desc="客户号"/>
+						<paraDefine name="InstrumentID" desc="合约代码" />
+					</parameter>
+					<default/>
+				</defineSearch>
+				<defineSearch name="All" searchUnique="no" runLevel="1">
+					<parameter>
+					</parameter>
+					<default/>
+				</defineSearch>
+			</search>
+		</table>		
+		<table name="InvestorAccount" usage="账户实时资金表" readTable="yes">
+			<fields ref="InvestorAccount"/>
+			<hashkeys>
+			</hashkeys>
+			<foreigns/>
+			<index>
+				<defineIndex name="BrokerIDAccountIDIndex" stableIndex="yes">
+					<indexKey name="BrokerID"/>		
+					<indexKey name="AccountID"/>					
+				</defineIndex>
+				<defineIndex name="BrokerIDInvestorIDIndex" stableIndex="yes">
+					<indexKey name="BrokerID"/>					
+				  <indexKey name="InvestorID"/>					
+				</defineIndex>
+			</index>
+			<hashindex>
+			</hashindex>
+			<search>
+				<defineSearch name="ByBrokerIDAccountID" indexName="BrokerIDAccountIDIndex" isPK="yes">
+					<parameter>
+						<paraDefine name="BrokerID" desc="经纪商编号"/>
+						<paraDefine name="AccountID" desc="资金帐号"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+				<defineSearch name="AllByInvestorID" searchUnique="no" runLevel="1">
+					<parameter>
+						<paraDefine name="InvestorID" desc="投资者编号"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+				<defineSearch name="ByBrokerIDInvestorID" indexName="BrokerIDInvestorIDIndex" searchUnique="yes">
+					<parameter>
+						<paraDefine name="BrokerID" desc="经纪商编号"/>
+						<paraDefine name="InvestorID" desc="投资者编号"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+				<defineSearch name="AllByBrokerID" searchUnique="no" runLevel="1">
+					<parameter>
+						<paraDefine name="BrokerID" desc="经纪公司代码"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+				<defineSearch name="All" searchUnique="no" runLevel="1">
+					<parameter>
+					</parameter>
+					<default/>
+				</defineSearch>
+				
+			</search>
+		</table>
+		<table name="InvestorAccountDeposit" usage="账户实时出入金表" manager="none" readTable="yes">
+			<fields ref="InvestorAccountDeposit"/>
+			<hashkeys>
+			</hashkeys>
+			<foreigns/>
+			<index>
+				<defineIndex name="BrokerIDAccountSeqNoIndex" stableIndex="yes">
+					<indexKey name="BrokerID"/>		
+					<indexKey name="AccountSeqNo"/>					
+				</defineIndex>
+			</index>
+			<hashindex>
+			</hashindex>
+			<search>
+				<defineSearch name="ByBrokerIDAccountSeqNo" indexName="BrokerIDAccountSeqNoIndex" isPK="yes">
+					<parameter>
+						<paraDefine name="BrokerID" desc="经纪商编号"/>
+						<paraDefine name="AccountSeqNo" desc="资金流水号"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+			</search>
+		</table>		
+		<table name="Exchange" usage="交易所表" readTable="yes">
+			<fields ref="Exchange"/>
+			<hashkeys>
+			</hashkeys>
+			<foreigns/>
+			<index>
+				<defineIndex name="ExchangeIDIndex" stableIndex="yes">
+					<indexKey name="ExchangeID"/>					
+				</defineIndex>			
+			</index>
+			<hashindex>
+			</hashindex>
+			<search>
+				<defineSearch name="ByExchangeID" indexName="ExchangeIDIndex" isPK="yes">
+					<parameter>
+						<paraDefine name="ExchangeID" desc="交易所代码"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+				<defineSearch name="StartByExchangeID" indexName="ExchangeIDIndex" searchUnique="no" runLevel="1">
+					<parameter>
+						<paraDefine name="ExchangeID" desc="交易所代码" checkParameter="no"/>
+					</parameter>
+					<default/>
+				</defineSearch>		
+				<defineSearch name="All" searchUnique="no" runLevel="1">
+					<parameter>
+					</parameter>
+					<default/>
+				</defineSearch>
+			</search>
+		</table>
+		<table name="Seat" usage="下单席位表"  readTable="yes">
+			<fields ref="Seat"/>
+			<hashkeys>
+			</hashkeys>
+			<foreigns/>
+			<index>
+				<defineIndex name="BrokerIDExchangeIDSeatIDIndex" stableIndex="yes">
+					<indexKey name="BrokerID"/>	
+					<indexKey name="ExchangeID"/>	
+					<indexKey name="SeatID"/>						
+				</defineIndex>
+				<defineIndex name="ExchangeIDParticipantIDSeatIDIndex" stableIndex="yes">
+					<indexKey name="ExchangeID"/>	
+					<indexKey name="ParticipantID"/>						
+					<indexKey name="SeatID"/>						
+				</defineIndex>				
+			</index>
+			<hashindex>
+			</hashindex>
+			<search>
+				<defineSearch name="ByBrokerIDExchangeIDSeatID" indexName="BrokerIDExchangeIDSeatIDIndex" isPK="yes">
+					<parameter>
+						<paraDefine name="BrokerID" desc="经纪商编号"/>
+						<paraDefine name="ExchangeID" desc="交易所代码"/>
+						<paraDefine name="SeatID" desc="席位号"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+				<defineSearch name="ByExchangeIDParticipantIDSeatID" indexName="ExchangeIDParticipantIDSeatIDIndex" searchUnique="yes">
+					<parameter>
+						<paraDefine name="ExchangeID" desc="交易所代码"/>
+						<paraDefine name="ParticipantID" desc="会员编号"/>						
+						<paraDefine name="SeatID" desc="席位号"/>
+					</parameter>
+					<default/>
+				</defineSearch>				
+			</search>
+		</table>
+		<table name="Instrument" usage="期货合约表" readTable="yes">
+			<fields ref="Instrument"/>
+			<hashkeys>
+			</hashkeys>
+			<foreigns>
+			</foreigns>
+			<index>
+				<defineIndex name="ExchangeIDInstrumentIDIndex" stableIndex="yes">
+					<indexKey name="ExchangeID"/>							
+					<indexKey name="InstrumentID"/>							
+				</defineIndex>			
+				<defineIndex name="InstrumentIDIndex" stableIndex="yes">
+					<indexKey name="InstrumentID"/>							
+				</defineIndex>			
+			</index>
+			<hashindex>
+			</hashindex>
+			<search>
+				<defineSearch name="ByExchangeIDAndInstrumentID" indexName="ExchangeIDInstrumentIDIndex" isPK="yes">
+					<parameter>
+						<paraDefine name="ExchangeID" desc="交易所编号"/>
+						<paraDefine name="InstrumentID" desc="合约编号"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+				<defineSearch name="AllByInstrumentID" indexName="InstrumentIDIndex" searchUnique="no" runLevel="1">
+					<parameter>
+						<paraDefine name="InstrumentID" desc="合约代码" checkParameter="no"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+				<defineSearch name="AllByExchangeID" searchUnique="no" runLevel="1">
+					<parameter>
+						<paraDefine name="ExchangeID" desc="交易所编号"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+				<defineSearch name="AllByProductID" searchUnique="no">
+					<parameter>
+						<paraDefine name="ProductID" desc="产品代码"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+				<defineSearch name="All" searchUnique="no" runLevel="1">
+					<parameter>
+					</parameter>
+					<default/>
+				</defineSearch>
+			</search>
+		</table>
+		<table name="CmbInstrumentDetail" usage="期货组合合约明细表" readTable="yes">
+			<fields ref="CmbInstrumentDetail"/>
+			<hashkeys>
+			</hashkeys>
+			<foreigns>
+			</foreigns>
+			<index>
+				<defineIndex name="ExchangeIDArbiInstrumentIDSingelInstrumentIDIndex" stableIndex="yes">
+					<indexKey name="ExchangeID"/>							
+					<indexKey name="ArbiInstrumentID"/>
+					<indexKey name="SingleInstrumentID"/>					
+				</defineIndex>
+				<defineIndex name="ExchangeIDArbiInstrumentIDIndex" stableIndex="yes">
+					<indexKey name="ExchangeID"/>							
+					<indexKey name="ArbiInstrumentID"/>					
+				</defineIndex>
+				<defineIndex name="ExchangeIDSingleInstrumentIDIndex" stableIndex="yes">
+					<indexKey name="ExchangeID"/>							
+					<indexKey name="SingleInstrumentID"/>					
+				</defineIndex>					
+			</index>
+			<hashindex>
+			</hashindex>
+			<search>
+				<defineSearch name="ByExchangeIDAndArbiInstrumentIDAndSingelInstrumentID" indexName="ExchangeIDArbiInstrumentIDSingelInstrumentIDIndex" isPK="yes">
+					<parameter>
+						<paraDefine name="ExchangeID" desc="交易所编号"/>
+						<paraDefine name="ArbiInstrumentID" desc="组合合约编号"/>
+						<paraDefine name="SingleInstrumentID" desc="单腿合约编号"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+				<defineSearch name="AllByExchangeIDAndArbiInstrumentID" indexName="ExchangeIDArbiInstrumentIDIndex" searchUnique="no">
+					<parameter>
+						<paraDefine name="ExchangeID" desc="交易所编号"/>
+						<paraDefine name="ArbiInstrumentID" desc="组合合约编号"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+				<defineSearch name="AllByExchangeIDAndSingleInstrumentID" indexName="ExchangeIDSingleInstrumentIDIndex" searchUnique="no">
+					<parameter>
+						<paraDefine name="ExchangeID" desc="交易所编号"/>
+						<paraDefine name="SingleInstrumentID" desc="单腿合约编号"/>
+					</parameter>
+					<default/>
+				</defineSearch>					
+			</search>
+		</table>		
+		<table name="ClientTradingID" usage="交易所客户编码表"  readTable="yes">
+			<fields ref="ClientTradingID"/>
+			<hashkeys>
+				<hashkey name="BrokerIDExchangeIDPartClientID" stableHashKey="yes">
+					<indexKey name="BrokerID"/>
+					<indexKey name="ExchangeID"/>
+					<indexKey name="ParticipantID"/>
+					<indexKey name="ClientID"/>
+				</hashkey>
+			</hashkeys>
+			<foreigns>
+				<foreign name="InvestorAccount" key="BrokerID,AccountID" factory="InvestorAccount" method="ByBrokerIDAccountID" comment="对应的帐户"/>
+			</foreigns>
+			<index>
+				<defineIndex name="BrkIDExIDInvIDHdgFlgIndex" stableIndex="yes">
+					<indexKey name="BrokerID"/>	
+					<indexKey name="ExchangeID"/>	
+					<indexKey name="InvestorID"/>	
+					<indexKey name="ClientHedgeFlag"/>
+				</defineIndex>		
+				<defineIndex name="BrokerIDInvestorIDIndex" stableIndex="yes" runlevel="1">
+					<indexKey name="BrokerID"/>	
+					<indexKey name="InvestorID"/>
+				</defineIndex>		
+			</index>
+			<hashindex>
+				<defineHashIndex name="BrokerIDExchangeIDPartClientIDHashIndex" hashKey="BrokerIDExchangeIDPartClientID" hashKeySize="1572" stableIndex="yes"/>		
+			</hashindex>
+			<search>
+				<defineSearch name="ByBrokerIDExchangeIDPartClientID" hashIndexName="BrokerIDExchangeIDPartClientIDHashIndex" searchUnique="yes" isPK="yes">
+					<parameter>
+						<paraDefine name="BrokerID" desc="经纪商编号"/>
+						<paraDefine name="ExchangeID" desc="交易所编码"/>
+						<paraDefine name="ParticipantID" desc="会员号"/>
+						<paraDefine name="ClientID" desc="客户编码"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+				<defineSearch name="ByBrkIDExIDInvIDHdgFlg" indexName="BrkIDExIDInvIDHdgFlgIndex" searchUnique="yes">
+					<parameter>
+						<paraDefine name="BrokerID" desc="经纪商编号"/>
+						<paraDefine name="ExchangeID" desc="交易所代码"/>
+						<paraDefine name="InvestorID" desc="投资者编码"/>
+						<paraDefine name="ClientHedgeFlag" desc="投机套保标志"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+				<defineSearch name="ByBrokerIDInvestorID" indexName="BrokerIDInvestorIDIndex" searchUnique="no" runlevel="1">
+					<parameter>
+						<paraDefine name="BrokerID" desc="经纪商编号"/>
+						<paraDefine name="InvestorID" desc="客户编码"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+				<defineSearch name="AllByBrokerID" searchUnique="no" runLevel="1">
+					<parameter>
+						<paraDefine name="BrokerID" desc="经纪公司代码"/>
+					</parameter>
+					<default/>
+				</defineSearch>				
+				<defineSearch name="All" searchUnique="no" runlevel="1">
+					<parameter>
+					</parameter>
+					<default/>
+				</defineSearch>
+			</search>
+		</table>			
+		<table name="Investor" usage="投资者信息表" readTable="yes" >
+			<fields ref="Investor"/>
+			<foreigns/>
+			<index>
+				<defineIndex name="BrokerIDInvestorIDIndex" stableIndex="yes">
+					<indexKey name="BrokerID"/>
+					<indexKey name="InvestorID"/>
+				</defineIndex>
+			</index>
+			<search>
+				<defineSearch name="ByBrokerIDInvestorID" indexName="BrokerIDInvestorIDIndex" isPK="yes" searchUnique="yes">
+					<parameter>
+						<paraDefine name="BrokerID" desc="经纪公司代码"/>
+						<paraDefine name="InvestorID" desc="投资者编号"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+				<defineSearch name="ByInvestorID" indexName="BrokerIDInvestorIDIndex" searchUnique="no">
+					<parameter>
+						<paraDefine name="InvestorID" desc="投资者编号"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+			</search>
+		</table>			
+		<table name="InvestorMargin" usage="客户期货保证金率表" readTable="yes" >
+			<fields ref="InvestorMargin"/>
+			<foreigns/>
+			<index>
+				<defineIndex name="BrokerIDClientIDIndex" stableIndex="yes">
+					<indexKey name="BrokerID"/>
+					<indexKey name="InvestorID"/>
+				</defineIndex>
+			  <defineIndex name="BrkIDExIDIstIDVstIDHdgIndex" stableIndex="yes">
+					<indexKey name="BrokerID"/>
+					<indexKey name="ExchangeID"/>
+					<indexKey name="InstrumentID"/>
+					<indexKey name="InvestorID"/>
+					<indexKey name="HedgeFlag"/>
+				</defineIndex>
+			  	<defineIndex name="BrkIDExIDIstIDVstIDIndex" stableIndex="yes">
+					<indexKey name="BrokerID"/>
+					<indexKey name="ExchangeID"/>
+					<indexKey name="InstrumentID"/>
+					<indexKey name="InvestorID"/>
+				</defineIndex>			
+			</index>
+			<hashkeys>
+			  <hashkey name="InstrumentAndClientID" stableHashKey="yes">
+					<hashitem name="InstrumentID"/>
+					<hashitem name="InvestorID"/>
+				</hashkey>
+			</hashkeys>
+			<hashindex>
+				<defineHashIndex name="InstrumentAndClientID" hashKey="InstrumentAndClientID" hashKeySize="12289" stableIndex="yes"/>
+			</hashindex>
+			<search>
+				<defineSearch name="ByBrokerIDClientID" indexName="BrokerIDClientIDIndex">
+					<parameter>
+						<paraDefine name="BrokerID" desc="经纪公司代码"/>
+						<paraDefine name="InvestorID" desc="客户编码"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+				<defineSearch name="ByBrkIDExIDIstIDVstIDHdg" indexName="BrkIDExIDIstIDVstIDHdgIndex" isPK="yes">
+					<parameter>
+						<paraDefine name="BrokerID" desc="经纪公司代码"/>
+						<paraDefine name="ExchangeID" desc="交易所代码"/>
+						<paraDefine name="InstrumentID" desc="合约代码"/>
+						<paraDefine name="InvestorID" desc="投资者编码"/>
+						<paraDefine name="HedgeFlag" desc="投机套保标志"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+				<defineSearch name="ByBrkIDExIDIstIDVstID" indexName="BrkIDExIDIstIDVstIDIndex" searchUnique="no" runlevel="1">
+					<parameter>
+						<paraDefine name="BrokerID" desc="经纪公司代码"/>
+						<paraDefine name="ExchangeID" desc="交易所代码"/>
+						<paraDefine name="InstrumentID" desc="合约代码"/>
+						<paraDefine name="InvestorID" desc="投资者编码"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+				<defineSearch name="ByInstrumentID" isPK="no" searchUnique="no" runlevel="1">
+					<parameter>
+						<paraDefine name="InstrumentID" desc="合约代码"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+				<defineSearch name="ByBrokerID" isPK="no" searchUnique="no" runlevel="1">
+					<parameter>
+						<paraDefine name="BrokerID" desc="合约代码"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+				<defineSearch name="All" isPK="no" searchUnique="no" runlevel="1">
+					<parameter>
+					</parameter>
+					<default/>
+				</defineSearch>
+			</search>
+		</table>			
+		<table name="InvestorFee" usage="客户手续费率表" readTable="yes" >
+			<fields ref="InvestorFee"/>
+			<foreigns/>
+			<index>
+				<defineIndex name="InstrumentIDIndex" stableIndex="yes">
+					<indexKey name="InstrumentID"/>
+				</defineIndex>
+			   	<defineIndex name="BrkIDExIDIstIDVstIDHdgIndex" stableIndex="yes">
+					<indexKey name="BrokerID"/>
+					<indexKey name="ExchangeID"/>
+					<indexKey name="InstrumentID"/>
+					<indexKey name="InvestorID"/>
+					<indexKey name="HedgeFlag"/>
+				</defineIndex>
+			</index>
+			<search>
+				<defineSearch name="ByBrkIDExIDIstIDVstIDHdg" indexName="BrkIDExIDIstIDVstIDHdgIndex" isPK="yes">
+					<parameter>
+						<paraDefine name="BrokerID" desc="经纪公司代码"/>
+						<paraDefine name="ExchangeID" desc="交易所代码"/>
+						<paraDefine name="InstrumentID" desc="合约代码"/>
+						<paraDefine name="InvestorID" desc="客户号"/>
+						<paraDefine name="HedgeFlag" desc="投机套保标志"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+				<defineSearch name="ByInstrumentID" indexName="InstrumentIDIndex" searchUnique="no" runlevel="1">
+					<parameter>
+						<paraDefine name="InstrumentID" desc="合约编号"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+				<defineSearch name="ByBrokerID" searchUnique="no" runlevel="1">
+					<parameter>
+						<paraDefine name="BrokerID" desc="合约编号"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+				<defineSearch name="All" searchUnique="no" runlevel="1">
+					<parameter>
+					</parameter>
+					<default/>
+				</defineSearch>
+			</search>
+		</table>		
+		<table name="User" usage="用户表"  readTable="yes">
+			<fields ref="User"/>
+			<foreigns/>
+			<index>
+				<defineIndex name="BrokerIDUserIDIndex" stableIndex="yes">
+					<indexKey name="BrokerID"/>
+					<indexKey name="UserID"/>
+				</defineIndex>
+			  	<defineIndex name="UserIDIndex" stableIndex="yes">
+					<indexKey name="UserID"/>
+				</defineIndex>
+			</index>
+			<search>
+				<defineSearch name="ByBrokerIDUserID" indexName="BrokerIDUserIDIndex" isPK="yes">
+					<parameter>
+					  <paraDefine name="BrokerID" desc="经纪公司代码"/>
+						<paraDefine name="UserID" desc="交易用户代码"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+				<defineSearch name="StartByUserID" indexName="UserIDIndex" searchUnique="no" runLevel="1">
+					<parameter>
+						<paraDefine name="UserID" desc="用户编号" checkParameter="no"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+			</search>
+		</table>		
+		<table name="UserInvestor" usage="用户投资者关系表" readTable="yes">
+			<fields ref="UserInvestor"/>
+			<foreigns/>
+			<index>
+				<defineIndex name="BrokerIDUserIDInvestorIDIndex" stableIndex="yes">
+					<indexKey name="BrokerID"/>
+					<indexKey name="UserID"/>
+					<indexKey name="InvestorID"/>				
+				</defineIndex>
+				<!-- longqy 20130905 出入金通知 由InvestorID 查找所有的UserID -->				
+				<defineIndex name="BrokerIDInvestorIDIndex" stableIndex="yes">
+					<indexKey name="BrokerID"/>
+					<indexKey name="InvestorID"/>				
+				</defineIndex>				
+			</index>
+			<search>
+				<defineSearch name="ByBrokerIDUserIDInvestorID" indexName="BrokerIDUserIDInvestorIDIndex" searchUnique="yes" isPK="yes">
+					<parameter>
+						<paraDefine name="BrokerID" desc="经纪公司代码"/>
+						<paraDefine name="UserID" desc="交易用户代码"/>
+						<paraDefine name="InvestorID" desc="投资者编号"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+				<!-- longqy 20130905 出入金通知 由InvestorID 查找所有的UserID -->				
+				<defineSearch name="ByBrokerIDInvestorID" indexName="BrokerIDInvestorIDIndex" searchUnique="no">
+					<parameter>
+						<paraDefine name="BrokerID" desc="经纪公司代码"/>
+						<paraDefine name="InvestorID" desc="投资者编号"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+				<defineSearch name="AllByUserID" searchUnique="no" runLevel="1">
+					<parameter>
+						<paraDefine name="UserID" desc="会员代码"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+				<defineSearch name="AllByBrokerIDUserID" searchUnique="no">
+					<parameter>
+						<paraDefine name="BrokerID" desc="经纪公司代码"/>
+						<paraDefine name="UserID" desc="会员代码"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+				<defineSearch name="AllByBrokerID" searchUnique="no" runLevel="1">
+					<parameter>
+						<paraDefine name="BrokerID" desc="经纪公司代码"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+				<defineSearch name="All" searchUnique="no" runLevel="1">
+					<parameter>
+					</parameter>
+					<default/>
+				</defineSearch>
+				</search>
+		</table>		
+		<table name="OrderInsertFailed" usage="错单表" manager="none" readTable="yes">
+			<fields ref="OrderInsertFailed"/>
+			<foreigns>
+				<foreign name="InvestorAccount" key="BrokerID,AccountID" factory="InvestorAccount" method="ByBrokerIDAccountID" comment="对应的帐户"/>
+				<foreign name="InvestorPosition" key="BrokerID,ExchangeID,InvestorID,InstrumentID,Direction,HedgeFlag" factory="InvestorPosition" method="ByBrkIDExIDInvIDInsDirHed" comment="对应的合约持仓信息"/>
+				<foreign name="Instrument" key="ExchangeID,InstrumentID" factory="Instrument" method="ByExchangeIDAndInstrumentID" comment="对应的合约信息"/>
+				<foreign name="InvestorMargin" key="BrokerID,ExchangeID,InstrumentID,InvestorID,HedgeFlag" factory="InvestorMargin" method="ByBrkIDExIDIstIDVstIDHdg" comment="对应的投资者保证金率信息"/>
+				<foreign name="InvestorFee"    key="BrokerID,ExchangeID,InstrumentID,InvestorID,HedgeFlag" factory="InvestorFee" method="ByBrkIDExIDIstIDVstIDHdg" comment="对应的投资者手续费率信息"/>
+			</foreigns>
+			<index>
+				<defineIndex name="OrderUserIDIndex" stableIndex="yes">
+					<indexKey name="OrderUserID"/>
+				</defineIndex>
+				<defineIndex name="OrderLocalIDIndex" stableIndex="yes">
+					<indexKey name="OrderLocalID"/>
+				</defineIndex>
+				<defineIndex name="ExchangeIDOrderSysIDIndex" stableIndex="yes">
+					<indexKey name="ExchangeID"/>	
+					<indexKey name="OrderSysID"/>						
+				</defineIndex>		
+				<defineIndex name="ExchangeIDSeatIDOrderLocalIDIndex" stableIndex="yes">
+					<indexKey name="ExchangeID"/>	
+					<indexKey name="SeatID"/>	
+					<indexKey name="OrderLocalID"/>						
+				</defineIndex>				
+			</index>
+			<search>
+				<defineSearch name="ByOrderUserID" indexName="OrderUserIDIndex">
+					<parameter>
+						<paraDefine name="OrderUserID" desc="交易用户代码"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+				<defineSearch name="ByOrderLocalID" indexName="OrderLocalIDIndex">
+					<parameter>
+						<paraDefine name="OrderLocalID" desc="本地报单号"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+				<defineSearch name="ByExchangeIDAndOrderSysID" indexName="ExchangeIDOrderSysIDIndex" >
+					<parameter>
+						<paraDefine name="ExchangeID" desc="交易所代码"/>
+						<paraDefine name="OrderSysID" desc="资金帐号"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+				<defineSearch name="AllByExchIDInvIDUserID"  searchUnique="no" runLevel="1">
+					<parameter>
+						<paraDefine name="ExchangeID" desc="交易所代码"/>
+						<paraDefine name="InvestorID" desc="投资者编号"/>
+						<paraDefine name="UserID" desc="交易用户代码"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+				<defineSearch name="AllByExchIDInstruIDUserID"  searchUnique="no" runLevel="1">
+					<parameter>
+						<paraDefine name="ExchangeID" desc="交易所代码"/>
+						<paraDefine name="InstrumentID" desc="合约号" checkParameter="no"/>
+						<paraDefine name="UserID" desc="交易用户代码"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+				<defineSearch name="All" searchUnique="no">
+					<parameter>
+					</parameter>
+					<default/>
+				</defineSearch>
+				<defineSearch name="ByExchangeIDSeatIDAndOrderLocalID" indexName="ExchangeIDSeatIDOrderLocalIDIndex" isPK="yes">
+					<parameter>
+						<paraDefine name="ExchangeID" desc="交易所代码"/>
+						<paraDefine name="SeatID" desc="席位代码"/>
+						<paraDefine name="OrderLocalID" desc="本地报单编号"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+			</search>
+		</table>				
+		<table name="UserTradingRight" usage="用户交易权限表" readTable="yes">
+			<fields ref="UserTradingRight"/>
+			<foreigns/>
+			<index>
+				<defineIndex name="BrkExIDInsUserInvIndex" stableIndex="yes">
+					<indexKey name="BrokerID"/>
+					<indexKey name="ExchangeID"/>
+					<indexKey name="InstrumentID"/>
+					<indexKey name="UserID"/>
+					<indexKey name="InvestorID"/>
+				</defineIndex>
+			</index>
+			<search>
+				<defineSearch name="ByBrkExIDInsUserInv" indexName="BrkExIDInsUserInvIndex" isPK="yes">
+					<parameter>
+						<paraDefine name="BrokerID" desc="经纪公司代码"/>
+						<paraDefine name="ExchangeID" desc="交易所代码"/>
+						<paraDefine name="InstrumentID" desc="合约编号"/>
+						<paraDefine name="UserID" desc="登录用户代码"/>
+						<paraDefine name="InvestorID" desc="投资者代码"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+			</search>
+		</table>
+		<table name="CurrentTime" usage="当前时间" manager="none">
+			<fields ref="CurrentTradeTime"/>
+			<foreigns/>
+			<index/>
+			<search/>
+		</table>
+		<table name="UserSession" usage="交易员在线会话">
+			<fields ref="UserSession"/>
+			<foreigns>
+			</foreigns>
+			<index>
+				<defineIndex name="SessionIDFrontIDIndex" stableIndex="yes">
+					<indexKey name="SessionID"/>
+					<indexKey name="FrontID"/>
+				</defineIndex>
+				<defineIndex name="BrokerIDUserIDSFIDIndex">
+					<indexKey name="BrokerID"/>				
+					<indexKey name="UserID"/>
+					<indexKey name="SessionID"/>
+					<indexKey name="FrontID"/>
+				</defineIndex>
+				<defineIndex name="UserIndex">
+					<indexKey name="UserID"/>
+				</defineIndex>
+			</index>
+			<search>
+				<defineSearch name="BySessionIDFrontID" indexName="SessionIDFrontIDIndex" searchUnique="yes" isPK="yes">
+					<parameter>
+						<paraDefine name="SessionID" desc="会话号"/>
+						<paraDefine name="FrontID" desc="前置编号"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+				<defineSearch name="ByBrokerIDUserIDSFID" indexName="BrokerIDUserIDSFIDIndex" searchUnique="yes">
+					<parameter>
+						<paraDefine name="BrokerID" desc="经纪公司编号"/>
+						<paraDefine name="UserID" desc="用户号"/>						
+						<paraDefine name="SessionID" desc="会话号"/>
+						<paraDefine name="FrontID" desc="前置编号"/>	
+					</parameter>
+					<default/>
+				</defineSearch>
+				<defineSearch name="ByUserID" indexName="UserIndex" searchUnique="no">
+					<parameter>
+						<paraDefine name="UserID" desc="用户号"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+			</search>
+		</table>		
+		<table name="MaxLocalID" usage="最大本地报单号">
+			<fields ref="MaxLocalID"/>
+			<hashkeys>
+				<hashkey name="FrontIDSessionID" stableHashKey="yes">
+					<hashitem name="FrontID"/>
+					<hashitem name="SessionID"/>
+				</hashkey>
+			</hashkeys>
+			<foreigns/>
+			<index/>
+			<hashindex>
+				<defineHashIndex name="FrontIDSessionIDHashIndex" hashKey="FrontIDSessionID" hashKeySize="769" stableIndex="yes"/>
+			</hashindex>
+			<search>
+				<defineSearch name="ByFrontIDSessionID" hashIndexName="FrontIDSessionIDHashIndex" searchUnique="yes" isPK="yes">
+					<parameter>
+						<paraDefine name="FrontID" desc="前置编号"/>
+						<paraDefine name="SessionID" desc="会话号"/>
+					  </parameter>
+					<default/>
+				</defineSearch>
+			</search>
+		</table>		
+		<table name="BrkUserIDLocalID" usage="用户本地报单号">
+			<fields ref="BrkUseridLocalID"/>			
+			<hashkeys>
+				<hashkey name="BrokerIDUserIDLocalID" stableHashKey="yes">
+					<hashitem name="BrokerID"/>
+					<hashitem name="UserID"/>
+					<hashitem name="UserOrderLocalID"/>
+				</hashkey>
+			</hashkeys>
+			<foreigns>
+				<foreign name="PreOrder" key="APIID,OrderLocalID" factory="PreOrder" method="ByAPIIDAndOrderLocalID" comment="对应的报单"/>
+			</foreigns>
+			<index/>
+			<hashindex>
+				<defineHashIndex name="BrokerIDUserIDLocalIDHashIndex" hashKey="BrokerIDUserIDLocalID" hashKeySize="769" stableIndex="yes"/>
+			</hashindex>
+			<search>
+				<defineSearch name="ByBrokerIDUserIDLocalID" hashIndexName="BrokerIDUserIDLocalIDHashIndex" searchUnique="yes" isPK="yes">
+					<parameter>
+						<paraDefine name="BrokerID" desc="经纪公司编号"/>
+						<paraDefine name="UserID" desc="用户编号"/>
+						<paraDefine name="UserOrderLocalID" desc="本地报单号"/>
+					  </parameter>
+					<default/>
+				</defineSearch>
+			</search>
+		</table>		
+		<!-- longqy 20131217 大边保证金功能添加 -->
+		<table name="PartClientInsGroupPosition" usage="客户合约组持仓表" manager="none" readTable="yes">
+			<fields ref="PartClientInsGroupPosition"/>
+			<hashkeys>
+				<hashkey name="PartClientAndInsGroup" stableHashKey="yes">					
+					<hashitem name="BrokerID"/>	
+					<hashitem name="ClientID"/>
+					<hashitem name="InstrumentGroupID"/>
+				</hashkey>
+			</hashkeys>
+			<foreigns>
+			</foreigns>
+			<index>
+			</index>
+			<hashindex>
+				<defineHashIndex name="PartClientAndInsGroupHashIndex" hashKey="PartClientAndInsGroup" hashKeySize="1572869" stableIndex="yes"/>
+			</hashindex>
+			<search>		
+				<defineSearch name="ByBrokerClientAndInsGroup" hashIndexName="PartClientAndInsGroupHashIndex" searchUnique="yes">
+					<parameter>
+						<paraDefine name="BrokerID" desc="会员号"/>
+						<paraDefine name="ClientID" desc="客户号"/>
+						<paraDefine name="InstrumentGroupID" desc="合约组号"/>	
+					</parameter>
+					<default/>
+				</defineSearch>	
+			</search>
+		</table>		
+		<table name="ClientMarginCombType" usage="交易编码组合保证金类型"  readTable="yes">
+			<fields ref="ClientMarginCombType"/>
+			<hashkeys>
+				<hashkey name="ClientAndInsGroup" stableHashKey="yes">
+					<hashitem name="BrokerID"/>
+					<hashitem name="ClientID"/>
+					<hashitem name="InstrumentGroupID"/>
+				</hashkey>
+			</hashkeys>			
+			<foreigns/>
+			<index>
+			</index>
+			<hashindex>
+				<defineHashIndex name="ClientAndInsGroupHashIndex" hashKey="ClientAndInsGroup" stableIndex="yes" hashKeySize="6151"/>
+			</hashindex>			
+			<search>
+				<defineSearch name="ByBrokerClientAndInsGroup" hashIndexName="ClientAndInsGroupHashIndex" isPK="yes">
+					<parameter>
+						<paraDefine name="BrokerID" desc="会员号"/>
+						<paraDefine name="ClientID" desc="客户号"/>
+						<paraDefine name="InstrumentGroupID" desc="客户号"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+			</search>		
+		</table>
+		<table name="InstrumentGroup" usage="合约和合约组关系"  readTable="yes">
+			<fields ref="InstrumentGroup"/>
+			<hashkeys>
+				<hashkey name="BrokerInstrumentID" stableHashKey="yes">
+					<hashitem name="ExchangeID"/>
+					<hashitem name="BrokerID"/>
+					<hashitem name="InstrumentID"/>
+				</hashkey>
+			</hashkeys>			
+			<foreigns/>
+			<index>
+			</index>
+			<hashindex>
+				<defineHashIndex name="BrokerInstrumentIDHashIndex" hashKey="BrokerInstrumentID" stableIndex="yes" hashKeySize="6151"/>
+			</hashindex>			
+			<search>
+				<defineSearch name="ByBrokerInstrumentID" hashIndexName="BrokerInstrumentIDHashIndex" isPK="yes">
+					<parameter>
+						<paraDefine name="ExchangeID" desc="交易所代码"/>
+						<paraDefine name="BrokerID" desc="会员号"/>
+						<paraDefine name="InstrumentID" desc="合约号"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+			</search>		
+		</table>
+		<!-- chengm 20160816 金交所递延费率表 -->
+		<table name="SGEDeferRate" usage="金交所递延费率表" readTable="yes">
+			<fields ref="SGEDeferRate"/>
+			<hashkeys>
+			</hashkeys>
+			<foreigns/>
+			<index>
+				<defineIndex name="TradeDateInstrumentIDIndex" stableIndex="yes">
+					<indexKey name="TradeDate"/>
+ 					<indexKey name="InstrumentID"/>					
+ 				</defineIndex>			
+			</index>
+			<hashindex>
+			</hashindex>
+			<search>
+				<defineSearch name="ByTradeDateInstrumentIDIndex" indexName="TradeDateInstrumentIDIndex" isPK="yes">
+					<parameter>
+						<paraDefine name="TradeDate" desc="交易日期" />
+						<paraDefine name="InstrumentID" desc="合约代码" />
+ 					</parameter>
+					<default/>
+				</defineSearch>
+				<defineSearch name="AllByInstrumentID" searchUnique="no" runLevel="1">
+					<parameter>
+						<paraDefine name="InstrumentID" desc="合约代码" checkParameter="no"/>
+					</parameter>
+					<default/>
+				</defineSearch>				
+				<defineSearch name="All" searchUnique="no" runLevel="1">
+					<parameter>
+					</parameter>
+					<default/>
+				</defineSearch>
+			</search>
+		</table>
+		<!-- add by jinpc  -->
+		<table name="InvestorTradingRight" usage="投资者交易权限表" readTable="yes">
+			<fields ref="InvestorTradingRight"/>
+			<foreigns/>
+			<index>
+				<defineIndex name="BrkExIDInsInvIndex" stableIndex="yes">
+					<indexKey name="BrokerID"/>
+					<indexKey name="ExchangeID"/>
+					<indexKey name="InstrumentID"/>
+					<indexKey name="InvestorID"/>
+					<indexKey name="ProductClass"/>
+				</defineIndex>
+			</index>
+			<search>
+				<defineSearch name="ByBrkExIDInsInv" indexName="BrkExIDInsInvIndex" isPK="yes">
+					<parameter>
+						<paraDefine name="BrokerID" desc="经纪公司代码"/>
+						<paraDefine name="ExchangeID" desc="交易所代码"/>
+						<paraDefine name="InstrumentID" desc="合约编号"/>
+						<paraDefine name="InvestorID" desc="投资者代码"/>
+						<paraDefine name="ProductClass" desc="产品类型"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+			</search>
+		</table>
+		<table name="UserIP" usage="交易员IP地址" readTable="yes">
+			<fields ref="UserIP"/>
+			<foreigns/>
+			<index>
+				<defineIndex name="UserIPMaskIndex" stableIndex="yes">
+					<indexKey name="BrokerID"/>
+					<indexKey name="UserID"/>
+					<indexKey name="IPAddress"/>
+					<indexKey name="IPMask"/>
+				</defineIndex>
+			</index>
+			<search>
+				<defineSearch name="ByUserID" indexName="UserIPMaskIndex" searchUnique="no">
+					<parameter>
+						<paraDefine name="BrokerID" desc="经纪公司代码"/>
+						<paraDefine name="UserID" desc="用户编号"/>
+					</parameter>
+					<default>
+						<defaultDefine name="IPAddress" value='""'/>
+						<defaultDefine name="IPMask" value='""'/>
+					</default>
+				</defineSearch>
+				<defineSearch name="ByUserIPAndMask" indexName="UserIPMaskIndex" searchUnique="yes" isPK="yes">
+					<parameter>
+						<paraDefine name="BrokerID" desc="经纪公司代码"/>
+						<paraDefine name="UserID" desc="用户编号"/>
+						<paraDefine name="IPAddress" desc="IP地址"/>
+						<paraDefine name="IPMask" desc="IP地址掩码"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+			</search>
+		</table>
+		<table name="InvestorOptionFee" usage="客户期权手续费率表" readTable="yes" >
+			<fields ref="InvestorOptionFee"/>
+			<foreigns/>
+			<hashkeys>
+				<hashkey name="BrkIDExIDIstIDVstID" stableHashKey="yes">
+					<hashitem name="BrokerID"/>
+					<hashitem name="ExchangeID"/>
+					<hashitem name="InstrumentID"/>
+					<hashitem name="InvestorID"/>
+				</hashkey>
+			</hashkeys>
+			<hashindex>
+				<defineHashIndex name="BrkIDExIDIstIDVstIDHashIndex" hashKey="BrkIDExIDIstIDVstID" hashKeySize="6151" stableIndex="yes"/>
+			</hashindex>
+			<index>
+			</index>
+			<search>
+				<defineSearch name="ByBrkIDExIDIstIDVstID" hashIndexName="BrkIDExIDIstIDVstIDHashIndex" searchUnique="yes" isPK="yes">
+					<parameter>
+						<paraDefine name="BrokerID" desc="经纪公司代码"/>
+						<paraDefine name="ExchangeID" desc="交易所代码"/>
+						<paraDefine name="InstrumentID" desc="合约代码"/>
+						<paraDefine name="InvestorID" desc="投资者号"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+			</search>
+		</table>
+		<table name="MarketData" usage="实时行情表"  manager="none"  readTable="yes">
+			<fields ref="MarketData"/>
+			<hashkeys>
+			</hashkeys>
+			<foreigns/>
+			<index>
+				<defineIndex name="ExchangeIDAndInstrumentIDIndex" stableIndex="yes">
+					<indexKey name="ExchangeID"/>
+					<indexKey name="InstrumentID"/>					
+				</defineIndex>			
+			</index>
+			<hashindex>
+			</hashindex>
+			<search>
+				<defineSearch name="ByExchangeIDAndInstrumentID" indexName="ExchangeIDAndInstrumentIDIndex" isPK="yes">
+					<parameter>
+						<paraDefine name="ExchangeID" desc="交易所编号"/>
+						<paraDefine name="InstrumentID" desc="合约编号"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+				<defineSearch name="All" searchUnique="no" runLevel="1">
+					<parameter>
+					</parameter>
+					<default/>
+				</defineSearch>
+			</search>
+		</table>
+		<table name="OrderDelay" usage="委托延迟表" hasTable="yes">
+			<fields ref="OrderDelay"/>
+			<foreigns/>
+			<index/>
+			<search/>
+		</table>
+		<table name="SystemInfo" usage="QDP系统信息" readTable="yes">
+			<fields ref="SystemInfo"/>
+			<foreigns/>
+			<index>
+				<defineIndex name="SystemIDIndex" stableIndex="yes">
+					<indexKey name="SystemID"/>				
+				</defineIndex>			
+			</index>
+			<hashindex>
+			</hashindex>
+			<search>
+				<defineSearch name="BySystemID" indexName="SystemIDIndex" isPK="yes">
+					<parameter>
+						<paraDefine name="SystemID" desc="交易所编号"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+			</search>		
+		</table>
+		<table name="InvestorPositionLimit" usage="客户持仓限额表" readTable="yes">
+			<fields ref="InvestorPositionLimit"/>
+			<foreigns/>
+			<hashkeys>
+				<hashkey name="BrkIDVstIDExIDIstID" stableHashKey="yes">
+					<hashitem name="BrokerID"/>
+					<hashitem name="InvestorID"/>
+					<hashitem name="ExchangeID"/>
+					<hashitem name="InstrumentID"/>
+				</hashkey>
+			</hashkeys>
+			<hashindex>
+				<defineHashIndex name="BrkIDVstIDExIDIstIDHashIndex" hashKey="BrkIDVstIDExIDIstID" hashKeySize="20000" stableIndex="yes"/>
+			</hashindex>
+			<index>
+			</index>
+			<search>
+				<defineSearch name="ByBrkIDVstIDExIDIstID" hashIndexName="BrkIDVstIDExIDIstIDHashIndex" searchUnique="yes" isPK="yes">
+					<parameter>
+						<paraDefine name="BrokerID" desc="经纪公司代码"/>
+						<paraDefine name="InvestorID" desc="投资者号"/>
+						<paraDefine name="ExchangeID" desc="交易所代码"/>
+						<paraDefine name="InstrumentID" desc="合约代码"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+				<defineSearch name="All" searchUnique="no" runLevel="1">
+					<parameter>
+					</parameter>
+					<default/>
+				</defineSearch>
+			</search>
+		</table>
+		<table name="ExchTimeDiff" usage="交易所时间偏差表" readTable="yes">
+			<fields ref="ExchTimeDiff"/>
+			<hashkeys>
+			</hashkeys>
+			<foreigns/>
+			<index>
+				<defineIndex name="ExchangeIDIndex" stableIndex="yes">
+					<indexKey name="ExchangeID"/>					
+				</defineIndex>			
+			</index>
+			<hashindex>
+			</hashindex>
+			<search>
+				<defineSearch name="ByExchangeID" indexName="ExchangeIDIndex" isPK="yes">
+					<parameter>
+						<paraDefine name="ExchangeID" desc="交易所代码"/>
+					</parameter>
+					<default/>
+				</defineSearch>
+				<defineSearch name="StartByExchangeID" indexName="ExchangeIDIndex" searchUnique="no" runLevel="1">
+					<parameter>
+						<paraDefine name="ExchangeID" desc="交易所代码" checkParameter="no"/>
+					</parameter>
+					<default/>
+				</defineSearch>		
+				<defineSearch name="All" searchUnique="no" runLevel="1">
+					<parameter>
+					</parameter>
+					<default/>
+				</defineSearch>
+			</search>
+		</table>		
+	</tables>
+	<entities/>
+</system>

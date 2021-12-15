@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="gb2312"?>
+<packageDefine name="sgeapi" version="1" type="cpp" includedir="." platform="all">
+	<parameter/>
+	<depend>
+	</depend>
+	<cppfile>
+	</cppfile>
+	<headfile>
+		<file name="Api.h"/>
+		<file name="ApiStruct.h"/>
+		<file name="ByteArray.h"/>
+		<file name="Constant.h"/>
+		<file name="ExchangeDataType.h"/>
+		<file name="TraderApi.h"/>
+	</headfile>
+	<libfile>
+		<file name="memapi"/>
+	</libfile>
+	<command/>
+</packageDefine>

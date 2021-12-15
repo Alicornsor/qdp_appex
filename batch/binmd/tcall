@@ -1,0 +1,70 @@
+DispDiskInfo()
+{
+	cntexpr=`wc -l ./list.trade |awk '{print $1}'`
+	cnt=`expr $cntexpr`
+	i=0
+	echo  "-------bdf---------- `date`">>runinfo.info
+	printf "%-12s %-15s %-15s\n" "machine"	"/home"	"/cffex"
+	while [ $i -lt $cnt ]	
+	do
+		read srv no
+		dispdisk  $srv $no
+		i=`expr $i + 1 `
+	done < ./list.trade
+	#add by wangwei 增加对autoorder1,2两台机器的磁盘空间信息检查
+	dispdisk autoorder 1
+	dispdisk autoorder 2
+	echo ""
+	echo "请注意，autoorder没有CFFEX卷为正常!"
+}
+
+dispdisk()
+{
+	HomeBdf=`ssh -n  $1$2 df -k | grep -w '/home'|grep -v '/home/' | awk ' { print $5 } '`
+
+	#add by wangwei,autoorder没有cffex卷
+	if [ $1 != "autoorder" ]
+	then
+		CffexBdf=`ssh -n  $1$2 df -k | grep -w '/cffex'|grep -v '/cffex/' | awk ' { print $5 } '`
+	fi
+	if [ "$CffexBdf" = "/cffex" ]
+	then
+		CffexBdf=`ssh -n  $1$2 df -k | grep -w '/cffex'|grep -v '/cffex/' | awk ' { print $4 } '`
+	fi
+	printf "%-12s %-15s %-15s\n"  "$1$2"	$HomeBdf	$CffexBdf
+}
+
+DispBiz()
+{
+#
+# 首先取得当天的日期
+n=`ssh -n tkernel1 tail -n 1 /cffex/trade/tkernel1/dump/SGDataSyncStatus.csv | awk -F, '{ print $2 }'`
+# 然后取得当天初始的内存数量
+tmpmem=`ssh -n qkernel1 grep MemoryDatabaseUsage /cffex/trade/qkernel1/bin/Syslog.log| grep -v 'MemoryDatabaseUsage 0'`
+memmin=`echo $tmpmem|head -n 1|awk ' { print $8 } '`
+#memmin=`ssh -n qkernel1 grep MemoryDatabaseUsage /cffex/trade/qkernel1/bin/Syslog.log| grep -v 'MemoryDatabaseUsage 0'|head -n 1 | awk ' { print $8 } '`
+# 然后取得当天最后的内存数量
+memmax=`ssh -n qkernel1 grep MemoryDatabaseUsage /cffex/trade/qkernel1/bin/Syslog.log| tail -n 1 | awk ' { print $8 } '`
+# 然后取得当天ClientPositionSize
+cpsize=`ssh -n qkernel1 grep ClientPositionSize /cffex/trade/qkernel1/bin/Syslog.log | tail -n 1 | awk ' { print $8 } '`
+#然后取得当天ClientSize
+csize=`ssh -n qkernel1 grep ClientSize /cffex/trade/qkernel1/bin/Syslog.log|grep -v PartClient|tail -n 1 | awk ' { print $8 } '`
+#然后取得当天的OrderSize
+osize=`ssh -n qkernel1 grep OrderSize /cffex/trade/qkernel1/bin/Syslog.log|tail -n 1 | awk ' { print $8 } '`
+#然后取得当天的TradeSize
+tsize=`ssh -n qkernel1 grep TradeSize /cffex/trade/qkernel1/bin/Syslog.log|tail -n 1 | awk ' { print $8 } '`
+#然后取得当天的tseriesLen
+tlen=` ssh -n tkernel1 grep tseriesLen /cffex/trade/tkernel1/bin/Syslog.log|tail -n 1 | awk ' { print $8 } '`
+#然后取得当天的tresultLen
+rlen=`ssh -n tkernel1 grep tresultLen /cffex/trade/tkernel1/bin/Syslog.log|tail -n 1 | awk ' { print $8 } '`
+echo Tradingday,Memory_init,Memory_final,ClientPositionSize,ClientSize,OrderSize,TradeSize,tseriesLen,tresultLen
+echo $n,$memmin,$memmax,$cpsize,$csize,$osize,$tsize,$tlen,$rlen
+#echo Tradingday,Memory_init,Memory_final,ClientPositionSize,ClientSize,OrderSize,TradeSize,tseriesLen,tresultLen >/home/trade/$n.info
+#echo $n,$memmin,$memmax,$cpsize,$csize,$osize,$tsize,$tlen,$rlen >>./$n.info
+echo $n,$memmin,$memmax,$cpsize,$csize,$osize,$tsize,$tlen,$rlen >>./runinfo.info
+}
+
+DispDiskInfo
+echo ""
+echo ""
+DispBiz

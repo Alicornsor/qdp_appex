@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="GB2312"?>
+<exchangeinfo author="xuzh" version="1.0" comment="交易所相关信息">
+	<exchangeid name="Qdp"/>
+	<functionid name="Qdp"/>
+	<macroid name="QDP"/>
+	<fileid name="Qdp"/>
+</exchangeinfo>

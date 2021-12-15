@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="gb2312"?>
+<packageDefine name="traderdemo" version="1" type="cpp" includedir="." platform="all">
+	<parameter/>
+	<depend/>
+	<cppfile>
+		<file name="TraderDemo.cpp">
+	</cppfile>
+	<headfile>
+		<file name="QdpFtdcTraderApi.h">
+		<file name="QdpFtdcUserApiDataType.h">
+		<file name="QdpFtdcUserApiStruct.h">
+	</headfile>
+	<libfile>
+	</libfile>
+	<command/>
+</packageDefine>

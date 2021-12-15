@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="gb2312"?>
+
+<packageDefine name="initServiceImpl" version="1" type="cpp" includedir="." platform="all">
+	<parameter>
+		<useParameter name="XTPMDBEnv"/>
+	</parameter>
+	<depend>
+		<package name="platform" version="1"/>
+		<package name="base" version="1"/>
+		<package name="probelogger" version="1"/>
+		<package name="utility" version="1"/>
+		<package name="datastruct" version="1"/>
+		<package name="customDataType" version="1"/>
+		<package name="memorydatabase" version="1"/>
+		<package name="error" version="1"/>
+		<package name="serviceInterface" version="1"/>
+	</depend>
+	<cppfile>
+		<file name="CInitServiceImpl.cpp"/>
+		<file name="CInitServiceCheckImpl.cpp"/>
+		<file name="CLinkTask.cpp"/>
+		<file name="CDumpTask.cpp"/>
+	</cppfile>
+	<headfile>
+		<file name="CInitServiceImpl.h"/>
+		<file name="CInitServiceCheckImpl.h"/>
+		<file name="ITask.h"/>
+		<file name="CLinkTask.h"/>
+		<file name="CDumpTask.h"/>
+	</headfile>
+	<command>
+		<pump>
+			<target type="file" value="CInitServiceImpl.h"/>
+			<template type="file" value="CInitServiceImpl.h.tpl"/>
+			<env type="parameter" value="XTPMDBEnv"/>
+		</pump>
+		<pump>
+			<target type="file" value="CInitServiceImpl.cpp"/>
+			<template type="file" value="CInitServiceImpl.cpp.tpl"/>
+			<env type="parameter" value="XTPMDBEnv"/>
+		</pump>
+		<pump>
+			<target type="file" value="CDumpTask.h"/>
+			<template type="file" value="CDumpTask.h.tpl"/>
+			<env type="parameter" value="XTPMDBEnv"/>
+		</pump>
+		<pump>
+			<target type="file" value="CDumpTask.cpp"/>
+			<template type="file" value="CDumpTask.cpp.tpl"/>
+			<env type="parameter" value="XTPMDBEnv"/>
+		</pump>
+	</command>
+</packageDefine>

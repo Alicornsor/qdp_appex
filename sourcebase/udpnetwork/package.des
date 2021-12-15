@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="gb2312"?>
+
+<packageDefine name="udpnetwork" version="1" type="cpp" includedir="." platform="all">
+	<parameter/>
+	<depend>
+		<package name="platform" version="1"/>
+		<package name="base" version="1"/>
+		<package name="probelogger" version="1"/>
+		<package name="utility" version="1"/>
+		<package name="datastruct" version="1"/>
+		<package name="network" version="1"/>
+		<package name="event" version="1"/>
+	</depend>
+	<cppfile>
+		<file name="UdpChannel.cpp"/>
+		<file name="UdpClient.cpp"/>
+		<file name="UdpServer.cpp"/>
+		<file name="UdpNetworkFactory.cpp"/>
+	</cppfile>
+	<headfile>
+		<file name="UdpChannel.h"/>
+		<file name="UdpClient.h"/>
+		<file name="UdpServer.h"/>
+		<file name="UdpNetworkFactory.h"/>
+	</headfile>
+	<command/>
+</packageDefine>

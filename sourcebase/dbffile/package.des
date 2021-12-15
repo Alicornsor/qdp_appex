@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="gb2312"?>
+<packageDefine name="dbffile" version="1" type="cpp" includedir="." platform="all">
+	<parameter/>
+	<depend>
+	</depend>
+	<cppfile>
+		<file name="dbf.cpp"/>
+		<file name="dbf_file.cpp"/>
+	</cppfile>
+	<headfile>
+		<file name="dbf.h"/>
+		<file name="dbf_file.h"/>
+	</headfile>
+	<command/>
+</packageDefine>

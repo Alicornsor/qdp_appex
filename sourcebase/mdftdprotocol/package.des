@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="gb2312"?>
+
+<packageDefine name="mdftdprotocol" version="1" type="cpp" includedir="." platform="all">
+	<parameter/>
+	<depend>
+		<package name="platform" version="1"/>
+		<package name="base" version="1"/>
+		<package name="probelogger" version="1"/>
+		<package name="utility" version="1"/>
+		<package name="datastruct" version="1"/>
+		<package name="event" version="1"/>
+		<package name="customDataType" version="1"/>
+		<package name="ftdfield" version="1"/>
+		<package name="network" version="1"/>
+		<package name="protocol" version="1"/>
+		<package name="channelprotocol" version="1"/>
+		<package name="xmpprotocol" version="1"/>
+		<package name="compressprotocol" version="1"/>
+	</depend>
+	<cppfile>
+		<file name="FTDCPackage.cpp"/>
+		<file name="FTDCProtocol.cpp"/>
+		<file name="FTDCSession.cpp"/>
+		<file name="FTDCPubEndPoint.cpp"/>
+		<file name="FTDCSubEndPoint.cpp"/>
+	</cppfile>
+	<headfile>
+		<file name="FTDCPackage.h"/>
+		<file name="FTDCProtocol.h"/>
+		<file name="FTDCSession.h"/>
+		<file name="FTDCPubEndPoint.h"/>
+		<file name="FTDCSubEndPoint.h"/>
+		<file name="FTDCSubscriber.h"/>
+	</headfile>
+	<command/>
+</packageDefine>

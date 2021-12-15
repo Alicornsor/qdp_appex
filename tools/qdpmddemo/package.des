@@ -1,0 +1,13 @@
+<packageDefine name="mddemo" version="1" type="cpp" includedir="." platform="all">
+	<parameter/>
+	<depend/>
+	<cppfile>
+		<file name="MdDemo.cpp"/>
+	</cppfile>
+	<headfile>
+		<file name="QdpFtdcMdApi.h"/>
+		<file name="QdpFtdcUserApiDaMdApi.h"/>
+		<file name="QdpFtdcMdApi.h"/>
+	</headfile>
+	<command/>
+</packageDefine>

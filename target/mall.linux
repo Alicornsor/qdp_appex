@@ -1,0 +1,16 @@
+cd ../sourcebase/sqlapi/sqlapi64_linux/src
+make
+cd ../../../../target/
+
+cp ../sourcebase/db/sqlapiso/package.des.linux ../sourcebase/db/sqlapiso/package.des
+cp ../sourcebase/base/package.des.linux ../sourcebase/base/package.des
+cp ../sourcebase/openssl/package.des.linux ../sourcebase/openssl/package.des
+cp ../sourceapp/qtrade/cffextradelink/libCFFEXtraderapi.so.1.62 ../sourceapp/qtrade/cffextradelink/libCFFEXtraderapi.so
+cp  ../sourceapp/qgwsgeV3/package.des_linux ../sourceapp/qgwsgeV3/package.des
+
+ID=`cat apiname`
+cp ../datamodel/commonEnv/exinfo.${ID}.xml ../datamodel/commonEnv/exinfo.xml
+cp ../sourceapp/apiuserapi/package.${ID}.des_linux ../sourceapp/apiuserapi/package.des
+cp ../api/apiuserapi/apiuserapi.${ID}.prj ../api/apiuserapi/apiuserapi.prj
+cp ./qtrade/qtrade.shme.prj ./qtrade/qtrade.prj
+cp ./qfixfront/qfixfront.linux.prj ./qfixfront/qfixfront.prj

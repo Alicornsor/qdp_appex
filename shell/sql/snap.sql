@@ -1,0 +1,6 @@
+INSERT INTO `t_oper_investoraccount_snap` (batchno,brokerid, investorid, accountid, prebalance, preavailable, deposit, withdraw, margin, premium, fee, frozenmargin, frozenpremium, frozenfee, closeprofit, positionprofit, 
+available, balance, longmargin, shortmargin,longfrozenmargin, shortfrozenmargin, dynamicrights, risk, otherfee, mortgage, currency, totalfrozenpos, todayinout, releasemargin, isprofitcanuse, manualfrozen,systemid,tradedate,snaptime)
+SELECT (SELECT (IFNULL(MAX(batchno),0)+1) FROM t_oper_investoraccount_snap),brokerid, investorid, accountid, prebalance, preavailable, deposit, withdraw, margin, premium, fee, frozenmargin, frozenpremium, frozenfee, closeprofit, positionprofit, available, balance, longmargin, 
+       shortmargin,longfrozenmargin, shortfrozenmargin, dynamicrights, risk, otherfee, mortgage, currency, totalfrozenpos, todayinout, releasemargin, isprofitcanuse, manualfrozen,systemid,
+       DATE_FORMAT(NOW(),'%Y%m%d'),DATE_FORMAT(NOW(),'%H%m%s')
+  FROM t_oper_investoraccount;

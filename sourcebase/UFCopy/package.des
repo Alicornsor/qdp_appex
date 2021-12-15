@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="gb2312"?>
+
+<packageDefine name="UFCopy" version="1" type="cpp" includedir="." platform="all">
+	<parameter>
+		<useParameter name="UFEntityEnv"/>
+		<useParameter name="MDBEnv"/>
+		<useParameter name="XTPEnv"/>
+		<useParameter name="FTDEnv"/>
+	</parameter>
+	<depend/>
+	<cppfile/>
+	<headfile>
+		<file name="UFEntityCopy.h"/>	
+		<file name="UFCopy.h"/>
+		<file name="MDBCopy.h"/>
+		<file name="XTPCopy.h"/>
+		<file name="FTDCopy.h"/>
+	</headfile>
+	<command>
+		<pump>
+			<target type="file" value="UFEntityCopy.h"/>
+			<template type="file" value="UFEntityCopy.h.tpl"/>
+			<env type="parameter" value="UFEntityEnv"/>
+		</pump>
+		<pump>
+			<target type="file" value="MDBCopy.h"/>
+			<template type="file" value="MDBCopy.h.tpl"/>
+			<env type="parameter" value="MDBEnv"/>
+		</pump>
+		<pump>
+			<target type="file" value="XTPCopy.h"/>
+			<template type="file" value="XTPCopy.h.tpl"/>
+			<env type="parameter" value="XTPEnv"/>
+		</pump>
+		<pump>
+			<target type="file" value="FTDCopy.h"/>
+			<template type="file" value="FTDCopy.h.tpl"/>
+			<env type="parameter" value="FTDEnv"/>
+		</pump>
+	</command>
+</packageDefine>

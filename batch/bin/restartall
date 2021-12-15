@@ -1,0 +1,15 @@
+starttime=`getcfg starttime`
+if [ $starttime != "null" ]
+then
+	echo	 start time is $starttime ",continue ?"
+	read con
+	if [ $con != "y" ]
+	then
+		return 
+	fi
+else
+	starttime=""
+fi
+
+run_batch restartservice $*
+

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="gb2312"?>
+<!DOCTYPE project SYSTEM "C:\wsh\project.dtd">
+<project target="qquery" targettype="exe" hasdebug="yes" hasmap="no" hasprofile="no" multithread="yes" workdir="bin\" warninglevel="2" libs="" cppflags="-DDEBUG_NOT_LOG -DAPP_QQUERY" ldflags="" arflags="">
+	<package name="platform" dir="../../sourcebase/platform"/>
+	<package name="base" dir="../../sourcebase/base"/>
+	<package name="utility" dir="../../sourcebase/utility"/>
+	<package name="datastruct" dir="../../sourcebase/datastruct"/>
+	<package name="event" dir="../../sourcebase/event"/>
+	<package name="network" dir="../../sourcebase/network"/>
+	<package name="tcpnetwork" dir="../../sourcebase/tcpnetwork"/>
+	<package name="udpnetwork" dir="../../sourcebase/udpnetwork"/>
+	<package name="protocol" dir="../../sourcebase/protocol"/>
+	<package name="error" dir="../../sourcebase/error">
+		<parameter name="errorEnv" value="../../datamodel/commonEnv/error.xml"/>
+	</package>
+	<package name="customDataType" dir="../../sourcebase/customDataType">
+		<parameter name="UFDatatypeEnv" value="../../datamodel/commonEnv/UFDataType.xml"/>
+	</package>
+	<package name="xtpfield" dir="../../sourcebase/xtpfield">
+		<parameter name="XTPEnv" value="../../datamodel/envGenerated/XTP.xml"/>
+	</package>
+	<package name="UFCopy" dir="../../sourcebase/UFCopy">
+		<parameter name="UFEntityEnv" value="../../datamodel/commonEnv/UFEntity.xml"/>
+		<parameter name="MDBEnv" value="../../datamodel/envGenerated/MDB.xml"/>
+		<parameter name="XTPEnv" value="../../datamodel/envGenerated/XTP.xml"/>
+		<parameter name="FTDEnv" value="../../datamodel/envGenerated/FTD.xml"/>
+	</package>	
+	<package name="BaseEngine" dir="../../sourcebase/baseengine"/>
+	<package name="Engine" dir="../../sourcebase/engine"/>
+	<package name="channelprotocol" dir="../../sourcebase/channelprotocol"/>
+	<package name="scpprotocol" dir="../../sourcebase/scpprotocol"/>
+	<package name="xmpprotocol" dir="../../sourcebase/xmpprotocol"/>
+	<package name="xtpprotocol" dir="../../sourcebase/xtpprotocol"/>
+	<package name="compressprotocol" dir="../../sourcebase/compressprotocol">	
+	<package name="fib" dir="../../sourcebase/fib"/>
+	<package name="version" dir="../../sourcebase/version"/>
+	<package name="crypt" dir="../../sourcebase/crypt"/>
+	<package name="ftdfield" dir="../../sourcebase/ftdfield">
+		<parameter name="FTDEnv" value="../../datamodel/envGenerated/FTD.xml"/>
+	</package>
+	<package name="xml" dir="../../sourcebase/xml"/>
+	<package name="sqlapi" dir="../../sourcebase/db/sqlapiso"/>
+	<package name="memorydatabase" dir="../../sourcebase/memorydatabase">
+		<parameter name="databaseDataEnv" value="../../datamodel/envGenerated/MDB.xml"/>
+	</package>
+	<package name="tradingtools" dir="../../sourcebase/tradingtools"/>
+	<package name="probelogger" dir="../../sourcebase/probelogger"/>
+	<package name="tcpxtpprotocol" dir="../../sourcebase/tcpxtpprotocol"/>
+	<package name="tcpxtplink" dir="../../sourcebase/tcpxtplink"/>	
+	<package name="serviceInterface" dir="../../sourceapp/serviceInterface"/>
+	<package name="serviceXTPLink" dir="../../sourceapp/serviceXTPLink"/>
+	<package name="baseRules" dir="../../sourceapp/serviceImpl/baseRules"/>
+	<package name="linkmanager" dir="../../sourceapp/qtrade/linkmanager"/>	
+	<package name="linkbase" dir="../../sourceapp/qtrade/linkbase"/>
+	<package name="tradingRules" dir="../../sourceapp/serviceImpl/trade/tradingRules"/>
+	<package name="qdpmdlink" dir="../../sourceapp/qquery/qdpmdlink"/>
+	<package name="innertradelink" dir="../../sourceapp/qtrade/innertradelink"/>
+	<package name="qtesttradelink" dir="../../sourceapp/qtrade/qtesttradelink"/>
+	<package name="apextradelink" dir="../../sourceapp/qtrade/apextradelink"/>
+	<package name="tradingQueryServiceImpl" dir="../../sourceapp/serviceImpl/tradingQuery">
+		<parameter name="XTPEnv" value="../../datamodel/envGenerated/XTP.xml"/>
+		<parameter name="MDBEnv" value="../../datamodel/envGenerated/MDB.xml"/>
+	</package>	
+	<package name="tradingQueryXTPLink" dir="../../sourceapp/serviceXTPLink/tradingQuery">
+		<parameter name="XTPEnv" value="../../datamodel/envGenerated/XTP.xml"/>
+	</package>
+	<package name="queryengine" dir="../../sourceapp/engine/queryengine"/>
+	<package name="dbengine" dir="../../sourceapp/engine/dbengine">
+	<package name="qquery" dir="../../sourceapp/qquery"/>
+</project>

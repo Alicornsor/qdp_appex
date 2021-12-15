@@ -1,0 +1,137 @@
+#Name: 端口检查脚本
+#Editor: 徐忠华
+#date  : 2013-03-18
+#####################################################
+
+LinkListFile=../list/list.link
+PortListFile=../list/list.port
+UpListFile=../list/list.up
+
+link()
+{
+	echo ""
+	echo "=================tcp连接数==========================="
+	echo "名字			机器				当前		上一次		新增连接数"
+	rm -rf $LinkListFile.tmp
+	cntexpr=`wc -l $LinkListFile | awk '{print $1}'`
+	cnt=`expr $cntexpr`
+	i=0
+	while [ $i -lt $cnt ]
+	do
+		i=`expr $i + 1 `
+		read name user port cntpre
+		cntnow=`ssh -n $user netstat -an 2>/dev/null | grep $port| grep ESTABLISHED| wc -l`
+		echo "$name		$user			$cntnow		$cntpre		`expr $cntnow - $cntpre`"
+		echo $name " " $user " " $port " " $cntnow >> $LinkListFile.tmp
+	done < $LinkListFile
+	cp $LinkListFile.tmp $LinkListFile
+}
+
+port()
+{
+	echo ""
+	echo "=================检查端口情况==========================="
+
+	cntexpr=`wc -l $PortListFile | awk '{print $1}'`
+	cntall=`expr $cntexpr`
+	#echo $cntall
+	i=0
+	while [ $i -lt $cntall ]
+	do
+		i=`expr $i + 1 `
+		read user type port
+		if [ "$user" = "" ]
+		then
+			echo "=========================================================="
+		else
+			if [ "$type" = "" ]
+			then
+				echo $user
+			else
+				if [ "$type" == "tcp" ]
+				then
+					CheckTcpPort $user $port 
+				else
+					CheckUdpPort $user $port
+				fi
+			fi
+		fi
+	done < $PortListFile
+}
+
+up()
+{
+	echo ""
+	echo "======================检查连接上层端口情况==========================="
+
+	cntexpr=`wc -l $UpListFile | awk '{print $1}'`
+	cntall=`expr $cntexpr`
+	#echo $cntall
+	i=0
+	while [ $i -lt $cntall ]
+	do
+		i=`expr $i + 1 `
+		read name user ip port
+		if [ "$name" = "" ]
+		then
+			echo "=========================================================="
+		else
+			if [ "$user" = "" ]
+			then
+				echo $name
+			else
+				echo $name:
+				ssh -n $user netstat -an |grep tcp | grep ":$port" | grep $ip | grep "ESTABLISHED"
+				ssh -n $user onload_stackdump netstat -an |grep TCP | grep ":$port" | grep $ip | grep "ESTABLISHED"
+			fi
+		fi
+	done < $UpListFile
+}
+
+CheckTcpPort()
+{
+	AlivePort=`ssh -n $1 netstat -an |grep tcp | grep "LISTEN" |grep ":$2" | awk ' { print $4 }'`
+	#echo AlivePort=$AlivePort
+	if [ "$AlivePort" != "" ]
+	then
+		printf "%-15s %-15s tcp	%-15s alive \n" $3  $1 port[$AlivePort]
+		#echo $1 tcp  port[$AlivePort] alive, error!
+	else
+		printf "%-15s %-15s tcp	%-15s null \n" $3 $1 port[$2]
+		#echo $1 tcp  port[$2] null, OK!
+	fi
+}
+
+CheckUdpPort()
+{
+	AlivePort=`ssh -n $1 netstat -an | grep udp| grep ":$2" | awk ' { print $5 }' `
+	echo $AlivePort > ./.udpcnt
+	cnt=`wc -l .udpcnt | awk ' { print $1 }'`
+	iiii=0
+	if [ "$AlivePort" != "" ]
+	then
+		while [ $iiii -lt $cnt ]
+		do
+			iiii=`expr $iiii + 1`
+			read tmpport
+			printf "%-15s %-15s udp     %-15s alive\n" "$3" "$1" "port[$tmpport]"
+		done < .udpcnt
+		#echo $1 udp  port[$AlivePort] alive,  error!
+	else
+		printf "%-15s %-15s udp     %-15s null\n" $3 $1 port[$2]
+	fi
+	rm -f ./.udpcnt >/dev/null
+}
+
+
+callall()
+{
+	if [ $# -eq 0 ]
+	then
+		echo "Usage: $0 link|port|up"
+		exit
+	fi
+	$*
+}
+
+callall  $*

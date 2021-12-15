@@ -1,0 +1,5 @@
+qdp@localhost tcp  30001
+qdp@localhost tcp  30003
+qdp@localhost tcp  30004
+qdp@localhost tcp  30005
+qmarket@172.16.102.66 tcp  30007

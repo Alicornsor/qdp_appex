@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="gb2312"?>
+
+<packageDefine name="dbmtServiceXTPLink" version="1" type="cpp" includedir="." platform="all">
+	<parameter>
+		<useParameter name="XTPEnv"/>
+	</parameter>
+	<depend>
+		<package name="platform" version="1"/>
+		<package name="base" version="1"/>
+		<package name="probelogger" version="1"/>
+		<package name="utility" version="1"/>
+		<package name="datastruct" version="1"/>
+		<package name="customDataType" version="1"/>
+		<package name="memorydatabase" version="1"/>
+		<package name="serviceInterface" version="1"/>
+		<package name="xtpfield" version="1"/>
+		<package name="xml" version="1"/>
+		<package name="serviceXTPLink" version="1"/>
+		<package name="UFCopy" version="1"/>
+		<package name="error" version="1"/>
+		<package name="xtpprotocol" version="1"/>
+		<package name="xmpprotocol" version="1"/>
+		<package name="protocol" version="1"/>
+		<package name="event" version="1"/>
+		<package name="fib" version="1"/>
+		<package name="network" version="1"/>
+		<package name="tcpnetwork" version="1"/>
+		<package name="channelprotocol" version="1"/>
+		<package name="scpprotocol" version="1"/>
+	</depend>
+	<cppfile>
+		<file name="DbmtServiceXTPLink.cpp"/>
+	</cppfile>
+	<headfile>
+		<file name="DbmtServiceXTPLink.h"/>
+	</headfile>
+	<command>
+		<pump>
+			<target type="file" value="DbmtServiceXTPLink.cpp"/>
+			<template type="file" value="DbmtServiceXTPLink.cpp.tpl"/>
+			<env type="parameter" value="XTPEnv"/>
+		</pump>
+	</command>
+</packageDefine>

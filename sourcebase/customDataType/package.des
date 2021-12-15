@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="gb2312"?>
+
+<packageDefine name="customDataType" version="1" type="cpp" includedir="." platform="all">
+	<parameter>
+		<useParameter name="UFDatatypeEnv"/>
+	</parameter>
+	<depend>
+		<package name="platform" version="1"/>
+		<package name="base" version="1"/>
+		<package name="probelogger" version="1"/>
+		<package name="utility" version="1"/>
+		<package name="datastruct" version="1"/>
+	</depend>
+	<cppfile/>
+	<headfile>
+		<file name="customDataType.h"/>
+	</headfile>
+	<command>
+		<pump>
+			<target type="file" value="customDataType.h"/>
+			<template type="file" value="customDataType.h.tpl"/>
+			<env type="parameter" value="UFDatatypeEnv"/>
+		</pump>
+	</command>
+</packageDefine>

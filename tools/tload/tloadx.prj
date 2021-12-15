@@ -1,0 +1,17 @@
+<project target="tload" targettype="exe" hasdebug="yes" hasmap="no" hasprofile="no" multithread="yes" warninglevel="2" libs="" workdir="" cppflags= "-DDEBUG_NOT_LOG" ldflags="" arflags="" >
+	<package name="platform" dir="../../sourcebase/platform"/>
+	<package name="base" dir="../../sourcebase/base"/>
+	<package name="utility" dir="../../sourcebase/utility"/>
+	<package name="datastruct" dir="../../sourcebase/datastruct"/>
+	<package name="event" dir="../../sourcebase/event"/>
+	<package name="network" dir="../../sourcebase/network"/>
+	<package name="tcpnetwork" dir="../../sourcebase/tcpnetwork"/>
+	<package name="openssl" dir="../../sourcebase/openssl"/>
+	<package name="error" dir="../../sourcebase/error">
+		<parameter name="errorEnv" value="../../datamodel/commonEnv/error.xml"/>
+	</package>
+	<package name="probelogger" dir="../../sourcebase/probelogger"/>
+	<package name="userapi" dir="./userapi">
+	</package>	
+	<package name="tload" dir="./src"/>
+</project>

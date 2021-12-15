@@ -1,0 +1,23 @@
+LD_LIBRARY_PATH=/lib:/usr/lib:.
+export LD_LIBRARY_PATH
+ulimit -c unlimited
+ulimit  unlimited
+umask 027
+if [ $# -eq 1 ]
+then
+  	cd $1/bin
+#        if [ "$1" = "qdata" ]
+#        then
+#            nohup ./$* -d 20120304  2>&1 &
+#        else
+            nohup ./$1 2>&1  &
+#        fi
+else
+	cd $1$2/bin
+	if [ $# -eq 2 ]
+	then
+		nohup ./$1 $2 2>&1 &
+	else
+		nohup ./$* 2>&1 &
+	fi
+fi

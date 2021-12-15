@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="gb2312"?>
+
+<packageDefine name="flowviewer" version="1" type="cpp" includedir="." platform="all">
+	<parameter/>
+	<depend>
+		<package name="platform" version="1"/>
+		<package name="base" version="1"/>
+		<package name="probelogger" version="1"/>
+		<package name="utility" version="1"/>
+		<package name="datastruct" version="1"/>
+		<package name="network" version="1"/>
+		<package name="protocol" version="1"/>
+		<package name="xtpprotocol" version="1"/>
+		<package name="xtpfield" version="1"/>
+	</depend>
+	<cppfile>
+		<file name="flowviewer.cpp"/>
+	</cppfile>
+	<headfile/>
+	<command/>
+</packageDefine>

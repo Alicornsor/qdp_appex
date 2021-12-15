@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="GB2312"?>
+<!-- edited with XMLSPY v2004 rel. 4 U (http://www.xmlspy.com) by xuzh (ORiON) -->
+<mduserapi author="徐忠华" version="1.0" comment="qdp行情API中用到的各种FTD报文">
+	<ftdpackage name="RspError"/>
+	<ftdpackage name="ReqUserLogin"/>
+	<ftdpackage name="RspUserLogin"/>
+	<ftdpackage name="ReqUserLogout"/>
+	<ftdpackage name="RspUserLogout"/>
+	<ftdpackage name="ReqSubscribeTopic"/>	
+	<ftdpackage name="RspSubscribeTopic"/>
+	<ftdpackage name="ReqSubMarketData"/>
+	<ftdpackage name="RspSubMarketData"/>
+	<ftdpackage name="ReqUnSubMarketData"/>
+	<ftdpackage name="RspUnSubMarketData"/>	
+	<ftdpackage name="ReqQryTopic"/>
+	<ftdpackage name="RspQryTopic"/>
+	<ftdpackage name="RtnDepthMarketData"/>
+	<ftdpackage name="ReqQryDepthMarketData"/>
+	<ftdpackage name="RspQryDepthMarketData"/>	
+	<ftdpackage name="RtnMBLMarketData"/>
+	<ftdpackage name="RtnQmdInstrumentStatu"/>
+</mduserapi>

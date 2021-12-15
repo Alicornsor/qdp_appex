@@ -1,0 +1,78 @@
+ListUser=$3
+
+if [ "$ListUser" = "" ]
+then
+	ListUser=../list/list.user
+fi
+
+echo "请选择现在需要执行的系统编号"
+
+cntexpr=`wc -l $ListUser | awk '{print $1}'`
+cntall=`expr $cntexpr`
+i=0
+while [ $i -lt $cntall ]
+do
+	i=`expr $i + 1 `
+	read id user host name
+	echo $i $id[$name] : $user@$host
+done < $ListUser
+
+echo "a: 选择全部执行请输入 a "
+echo "请选择:"
+read number
+
+#验证选择的正确性
+
+if [ "$number" = "" ]
+then
+	echo "没有选择，退出!"
+	exit
+fi
+
+if [ "$number" = "a" ]
+then
+	echo 您的选择是:全部执行
+else
+	if [[ $number != *[!0-9]* ]]
+	then
+		if [ $number -gt $cntall -o $number -lt 0 ]
+		then
+			echo "选择应该在 0 和 $cntall 之间，退出!"
+			exit
+		else
+			echo 您的选择是:$number
+		fi
+	else
+		echo 选择应该是数字
+		exit
+	fi
+fi
+
+#确认选择
+
+msg="全部"
+i=0
+while [ $i -lt $cntall ]
+do
+	i=`expr $i + 1 `
+	read id user host name
+	if [ "$i" =  "$number" ]
+	then
+		msg=$id[$name]
+		break
+	fi
+done < $ListUser
+
+echo "are you sure to $* $msg ? (yes or no)"
+read sure
+
+if [ "$sure" != "yes" ]
+then
+	echo you give up, exit!
+	exit		
+fi
+
+#启动程序
+
+echo ./callone $1 $2 $ListUser $number
+./callone $1 $2 $ListUser $number

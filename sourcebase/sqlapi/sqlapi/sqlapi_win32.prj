@@ -1,0 +1,3 @@
+<project target="sqlapi" targettype="dll" hasdebug="yes" hasmap="no" hasprofile="no" multithread="yes" warninglevel="2" libs="" cppflags="-DSA_USE_PTHREAD  -DSS_64BIT_SERVER" ldflags="" arflags="">
+	<package name="sqlapi" dir="./"/>	
+</project>

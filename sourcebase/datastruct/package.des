@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="gb2312"?>
+<packageDefine name="datastruct" version="1" type="cpp" includedir="." platform="all">
+	<parameter/>
+	<depend>
+		<package name="platform" version="1"/>
+		<package name="base" version="1"/>
+		<package name="probelogger" version="1"/>
+		<package name="utility" version="1"/>
+	</depend>
+	<cppfile>
+		<file name="CFixMem.cpp"/>
+		<file name="CAVLTree.cpp"/>
+		<file name="CTransaction.cpp"/>
+		<file name="CMemory.cpp"/>
+		<file name="CFiniteState.cpp"/>
+		<file name="CacheList.cpp"/>
+		<file name="FieldDescribe.cpp"/>
+		<file name="FieldSet.cpp"/>
+		<file name="Index.cpp"/>
+		<file name="Package.cpp"/>
+		<file name="Flow.cpp"/>
+		<file name="ReadOnlyFlow.cpp"/>
+		<file name="FlowReader.cpp"/>
+		<file name="OrderingQ.cpp"/>
+		<file name="CachedFileFlow.cpp"/>
+		<file name="LockFileFlow.cpp"/>
+		<file name="CachedFlow.cpp"/>
+		<file name="ReqFlow.cpp"/>
+		<file name="FileFlow.cpp"/>
+		<file name="IndexPackageFlow.cpp"/>
+		<file name="CSVParser.cpp"/>
+		<file name="CSequenceInterface.cpp"/>
+		<file name="CMemorySequence.cpp"/>
+		<file name="CErrorEngine.cpp"/>
+		<file name="CDate.cpp"/>
+		<file name="Allocator.cpp"/>
+		<file name="CHashIndex.cpp"/>
+		<file name="PtrList.cpp"/>
+		<file name="ObjAllocator.cpp"/>
+		<file name="ExCachedFlow.cpp"/>
+	</cppfile>
+	<headfile>
+		<file name="LockFileFlow.h"/>
+		<file name="ReqFlow.h"/>
+		<file name="CachedFileFlow.h"/>
+		<file name="CachedFlow.h"/>
+		<file name="IndexPackageFlow.h"/>
+		<file name="FileFlow.h"/>
+		<file name="CFixMem.h"/>
+		<file name="CAVLTree.h"/>
+		<file name="CResource.h"/>
+		<file name="CTransaction.h"/>
+		<file name="CMemory.h"/>
+		<file name="CFiniteState.h"/>
+		<file name="CacheList.h"/>
+		<file name="FieldDescribe.h"/>
+		<file name="FieldSet.h"/>
+		<file name="Index.h"/>
+		<file name="Package.h"/>
+		<file name="HashMap.h"/>
+		<file name="Flow.h"/>
+		<file name="ReadOnlyFlow.h"/>
+		<file name="FlowReader.h"/>
+		<file name="PersistentState.h"/>
+		<file name="OrderingQ.h"/>
+		<file name="UFDataType.h"/>
+		<file name="CSVParser.h"/>
+		<file name="CSequenceInterface.h"/>
+		<file name="CMemorySequence.h"/>
+		<file name="CErrorEngine.h"/>
+		<file name="CDate.h"/>
+		<file name="Allocator.h"/>
+		<file name="MemoryStack.h"/>
+		<file name="ThreadSafeFlow.h"/>
+		<file name="CHashIndex.h"/>
+		<file name="PtrList.h"/>
+		<file name="ObjAllocator.h"/>
+		<file name="ExCachedFlow.h"/>
+	</headfile>
+	<command/>
+</packageDefine>

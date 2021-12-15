@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="gb2312"?>
+<project target="qtrade" targettype="exe" hasdebug="yes" hasmap="no" hasprofile="no" multithread="yes" warninglevel="2" workdir="bin" libs="" cppflags="-DDEBUG_NOT_LOG -DOUTPUT_INNER_LATENCY" ldflags="" arflags="">
+	<package name="platform" dir="../../sourcebase/platform"/>
+	<package name="base" dir="../../sourcebase/base"/>
+	<package name="utility" dir="../../sourcebase/utility"/>
+	<package name="probelogger" dir="../../sourcebase/probelogger"/>
+	<package name="datastruct" dir="../../sourcebase/datastruct"/>
+	<package name="event" dir="../../sourcebase/event"/>
+	<package name="network" dir="../../sourcebase/network"/>
+	<package name="tcpnetwork" dir="../../sourcebase/tcpnetwork"/>
+	<package name="udpnetwork" dir="../../sourcebase/udpnetwork"/>
+	<package name="protocol" dir="../../sourcebase/protocol"/>
+	<package name="channelprotocol" dir="../../sourcebase/channelprotocol"/>
+	<package name="xmpprotocol" dir="../../sourcebase/xmpprotocol"/>
+	<package name="scpprotocol" dir="../../sourcebase/scpprotocol"/>
+	<package name="nsprotocol" dir="../../sourcebase/nsprotocol">
+	<package name="compressprotocol" dir="../../sourcebase/compressprotocol">
+	<package name="version" dir="../../sourcebase/version"/>	
+	<package name="customDataType" dir="../../sourcebase/customDataType">
+		<parameter name="UFDatatypeEnv" value="../../datamodel/commonEnv/UFDataType.xml"/>
+	</package>
+	<package name="xtpfield" dir="../../sourcebase/xtpfield">
+		<parameter name="XTPEnv" value="../../datamodel/envGenerated/XTP.xml"/>
+	</package>
+	<package name="ftdfield" dir="../../sourcebase/ftdfield">
+		<parameter name="FTDEnv" value="../../datamodel/envGenerated/FTD.xml"/>
+	</package>
+	<package name="UFCopy" dir="../../sourcebase/UFCopy">
+		<parameter name="UFEntityEnv" value="../../datamodel/commonEnv/UFEntity.xml"/>
+		<parameter name="MDBEnv" value="../../datamodel/envGenerated/MDB.xml"/>
+		<parameter name="XTPEnv" value="../../datamodel/envGenerated/XTP.xml"/>
+		<parameter name="FTDEnv" value="../../datamodel/envGenerated/FTD.xml"/>
+	</package>
+	<package name="xtpprotocol" dir="../../sourcebase/xtpprotocol"/>	
+	<package name="fibproxyfield" dir="../../sourcebase/fibproxyfield"/>
+	<package name="fibprotocol" dir="../../sourcebase/fibprotocol"/>
+	<package name="ftdprotocol" dir="../../sourcebase/ftdprotocol"/>	
+	<package name="ftdrprotocol" dir="../../sourcebase/ftdrprotocol"/>
+	<package name="fib" dir="../../sourcebase/fib"/>
+	<package name="xml" dir="../../sourcebase/xml"/>	
+	<package name="memorydatabase" dir="../../sourcebase/memorydatabase">
+		<parameter name="databaseDataEnv" value="../../datamodel/envGenerated/MDB.xml"/>
+	</package>		
+	<package name="error" dir="../../sourcebase/error">
+		<parameter name="errorEnv" value="../../datamodel/commonEnv/error.xml"/>
+	</package>
+	<package name="BaseEngine" dir="../../sourcebase/baseengine"/>
+	<package name="Engine" dir="../../sourcebase/engine"/>	
+	<package name="databaseTriggers" dir="../../sourcebase/databaseTriggers"/>
+	<package name="tradingtools" dir="../../sourcebase/tradingtools"/>
+	<package name="tcpxtpprotocol" dir="../../sourcebase/tcpxtpprotocol"/>	
+	<package name="tcpxtplink" dir="../../sourcebase/tcpxtplink"/>
+	<package name="crypt" dir="../../sourcebase/crypt"/>
+	
+	<package name="serviceInterface" dir="../../sourceapp/serviceInterface"/>
+	<package name="serviceXTPLink" dir="../../sourceapp/serviceXTPLink"/>
+	<package name="initServiceImpl" dir="../../sourceapp/serviceImpl/init">
+		<parameter name="XTPMDBEnv" value="../../datamodel/envGenerated/XTP.xml ../../datamodel/envGenerated/MDB.xml"/>
+	</package>
+	<package name="initServiceXTPLink" dir="../../sourceapp/serviceXTPLink/init">
+		<parameter name="XTPEnv" value="../../datamodel/envGenerated/XTP.xml"/>
+	</package>
+	<package name="dbmtServiceImpl" dir="../../sourceapp/serviceImpl/dbmt">
+		<parameter name="XTPMDBEnv" value="../../datamodel/envGenerated/XTP.xml ../../datamodel/envGenerated/MDB.xml"/>
+	</package>
+	<package name="dbmtServiceXTPLink" dir="../../sourceapp/serviceXTPLink/dbmt">
+		<parameter name="XTPEnv" value="../../datamodel/envGenerated/XTP.xml"/>
+	</package>
+	<package name="loginServiceImpl" dir="../../sourceapp/serviceImpl/login">
+		<parameter name="XTPEnv" value="../../datamodel/envGenerated/XTP.xml"/>
+	</package>
+	<package name="loginServiceXTPLink" dir="../../sourceapp/serviceXTPLink/login"/>	
+	<package name="tradeServiceImpl" dir="../../sourceapp/serviceImpl/trade"/>	
+	<package name="tradeServiceXTPLink" dir="../../sourceapp/serviceXTPLink/trade"/>	
+
+	<package name="baseRules" dir="../../sourceapp/serviceImpl/baseRules"/>
+	<package name="tradingRules" dir="../../sourceapp/serviceImpl/trade/tradingRules"/>
+
+	<package name="innertradelink" dir="../../sourceapp/qtrade/innertradelink"/>
+	<package name="qtesttradelink" dir="../../sourceapp/qtrade/qtesttradelink"/>
+	<package name="apextradelink" dir="../../sourceapp/qtrade/apextradelink"/>
+	<package name="frontbase" dir="../../sourceapp/frontbase"/>
+	<package name="gatewaybase" dir="../../sourceapp/gatewaybase"/>	
+	<package name="qtradefront" dir="../../sourceapp/qtrade/qtradefront"/>	
+	<package name="linkmanager" dir="../../sourceapp/qtrade/linkmanager"/>	
+	<package name="linkbase" dir="../../sourceapp/qtrade/linkbase"/>
+	<package name="shmnetwork" dir="../../sourcebase/shmnetwork"/>
+	<package name="qtrade" dir="../../sourceapp/qtrade"/>	
+</project>

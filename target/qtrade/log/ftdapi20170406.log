@@ -1,0 +1,148 @@
+[04-06 16:51:38.635320]Init API V1.1.1.6,mode:1,logpath:../log/,MP:2222
+[04-06 16:51:38.635320]Init API,UDPPort:22677
+[04-06 16:51:43.920623]Connect to ZCE,IP:218.29.68.203,Port:22677,Wait:5.000
+[04-06 16:51:43.952624]Start driving thread
+[04-06 16:51:44.002627]Connect ZCE successfully
+[04-06 16:51:44.002627]Connect to ZCE,IP:218.29.68.203,Port:22677,Wait:5.000
+[04-06 16:51:44.034629]Start driving thread
+[04-06 16:51:44.084632]Connect ZCE successfully
+[04-06 16:51:44.085632]01570090 Login,PVersion:2,Flow:0,Encrypt:1,Commpress:1
+[04-06 16:51:44.117634]Link successfully negotiate
+[04-06 16:51:44.150636]Login successfully
+[04-06 16:51:44.150636]01570090 Login,PVersion:2,Flow:1,Encrypt:1,Commpress:1
+[04-06 16:51:44.182638]Link successfully negotiate
+[04-06 16:51:44.214639]Login successfully
+[04-06 16:53:10.601580]Init API V1.1.1.6,mode:1,logpath:../log/,MP:2222
+[04-06 16:53:10.601580]Init API,UDPPort:22677
+[04-06 16:53:15.843880]Connect to ZCE,IP:218.29.68.203,Port:22677,Wait:5.000
+[04-06 16:53:15.874882]Start driving thread
+[04-06 16:53:15.924885]Connect ZCE successfully
+[04-06 16:53:15.924885]Connect to ZCE,IP:218.29.68.203,Port:22677,Wait:5.000
+[04-06 16:53:15.955887]Start driving thread
+[04-06 16:53:16.005890]Connect ZCE successfully
+[04-06 16:53:16.008890]01570090 Login,PVersion:2,Flow:0,Encrypt:1,Commpress:1
+[04-06 16:53:16.038891]Link successfully negotiate
+[04-06 16:53:16.070893]Login successfully
+[04-06 16:53:16.070893]01570090 Login,PVersion:2,Flow:1,Encrypt:1,Commpress:1
+[04-06 16:53:16.100895]Link successfully negotiate
+[04-06 16:53:16.132897]Login successfully
+[04-06 17:21:45.269654]Init API V1.1.1.6,mode:1,logpath:../log/,MP:2222
+[04-06 17:21:45.269654]Init API,UDPPort:22677
+[04-06 17:21:50.532955]Connect to ZCE,IP:218.29.68.203,Port:22677,Wait:5.000
+[04-06 17:21:50.563957]Start driving thread
+[04-06 17:21:50.614960]Connect ZCE successfully
+[04-06 17:21:50.614960]Connect to ZCE,IP:218.29.68.203,Port:22677,Wait:5.000
+[04-06 17:21:50.643961]Start driving thread
+[04-06 17:21:50.693964]Connect ZCE successfully
+[04-06 17:21:50.694964]01570090 Login,PVersion:2,Flow:0,Encrypt:1,Commpress:1
+[04-06 17:21:50.724966]Link successfully negotiate
+[04-06 17:21:50.756968]Login successfully
+[04-06 17:21:50.756968]01570090 Login,PVersion:2,Flow:1,Encrypt:1,Commpress:1
+[04-06 17:21:50.782969]Link successfully negotiate
+[04-06 17:21:50.809971]Login successfully
+[04-06 17:24:34.708345]Init API V1.1.1.6,mode:1,logpath:../log/,MP:2222
+[04-06 17:24:34.708345]Init API,UDPPort:22677
+[04-06 17:25:51.240723]Init API V1.1.1.6,mode:1,logpath:../log/,MP:2222
+[04-06 17:25:51.240723]Init API,UDPPort:22677
+[04-06 17:25:56.620030]Connect to ZCE,IP:218.29.68.203,Port:22677,Wait:5.000
+[04-06 17:25:56.651032]Start driving thread
+[04-06 17:25:56.701035]Connect ZCE successfully
+[04-06 17:25:56.702035]Connect to ZCE,IP:218.29.68.203,Port:22677,Wait:5.000
+[04-06 17:25:56.731037]Start driving thread
+[04-06 17:25:56.781039]Connect ZCE successfully
+[04-06 17:25:56.782039]01570090 Login,PVersion:2,Flow:0,Encrypt:1,Commpress:1
+[04-06 17:25:56.813041]Link successfully negotiate
+[04-06 17:25:56.844043]Login successfully
+[04-06 17:25:56.844043]01570090 Login,PVersion:2,Flow:1,Encrypt:1,Commpress:1
+[04-06 17:25:56.871045]Link successfully negotiate
+[04-06 17:25:56.898046]Login successfully
+[04-06 17:29:18.345568]Init API V1.1.1.6,mode:1,logpath:../log/,MP:2222
+[04-06 17:29:18.345568]Init API,UDPPort:22677
+[04-06 17:29:33.681445]Init API V1.1.1.6,mode:1,logpath:../log/,MP:2222
+[04-06 17:29:33.681445]Init API,UDPPort:22677
+[04-06 17:29:39.045752]Connect to ZCE,IP:218.29.68.203,Port:22677,Wait:5.000
+[04-06 17:29:39.072754]Start driving thread
+[04-06 17:29:39.123757]Connect ZCE successfully
+[04-06 17:29:39.123757]Connect to ZCE,IP:218.29.68.203,Port:22677,Wait:5.000
+[04-06 17:29:39.157759]Start driving thread
+[04-06 17:29:39.207762]Connect ZCE successfully
+[04-06 17:29:39.207762]01570090 Login,PVersion:2,Flow:0,Encrypt:1,Commpress:1
+[04-06 17:29:39.234763]Link successfully negotiate
+[04-06 17:29:39.261765]Login successfully
+[04-06 17:29:39.262765]01570090 Login,PVersion:2,Flow:1,Encrypt:1,Commpress:1
+[04-06 17:29:39.293766]Link successfully negotiate
+[04-06 17:29:39.324768]Login successfully
+[04-06 17:39:40.891032]Init API V1.1.1.6,mode:1,logpath:../log/,MP:2222
+[04-06 17:39:40.891032]Init API,UDPPort:22677
+[04-06 17:39:46.210641]Connect to ZCE,IP:218.29.68.203,Port:22677,Wait:5.000
+[04-06 17:39:46.241841]Start driving thread
+[04-06 17:39:46.304241]Connect ZCE successfully
+[04-06 17:39:46.304241]Connect to ZCE,IP:218.29.68.203,Port:22677,Wait:5.000
+[04-06 17:39:46.319841]Start driving thread
+[04-06 17:39:46.382241]Connect ZCE successfully
+[04-06 17:39:46.382241]01570090 Login,PVersion:2,Flow:0,Encrypt:1,Commpress:1
+[04-06 17:39:46.413441]Link successfully negotiate
+[04-06 17:39:46.444642]Login successfully
+[04-06 17:39:46.444642]01570090 Login,PVersion:2,Flow:1,Encrypt:1,Commpress:1
+[04-06 17:39:46.460242]Link successfully negotiate
+[04-06 17:39:46.491442]Login successfully
+[04-06 17:41:44.224473]Init API V1.1.1.6,mode:1,logpath:../log/,MP:2222
+[04-06 17:41:44.224473]Init API,UDPPort:22677
+[04-06 17:41:49.512883]Connect to ZCE,IP:218.29.68.203,Port:22677,Wait:5.000
+[04-06 17:41:49.544083]Start driving thread
+[04-06 17:41:49.606483]Connect ZCE successfully
+[04-06 17:41:49.606483]Connect to ZCE,IP:218.29.68.203,Port:22677,Wait:5.000
+[04-06 17:41:49.637683]Start driving thread
+[04-06 17:41:49.700083]Connect ZCE successfully
+[04-06 17:41:49.700083]01570090 Login,PVersion:2,Flow:0,Encrypt:1,Commpress:1
+[04-06 17:41:49.731283]Link successfully negotiate
+[04-06 17:41:49.762483]Login successfully
+[04-06 17:41:49.762483]01570090 Login,PVersion:2,Flow:1,Encrypt:1,Commpress:1
+[04-06 17:41:49.793683]Link successfully negotiate
+[04-06 17:41:49.824883]Login successfully
+[04-06 17:44:34.179864]Init API V1.1.1.6,mode:1,logpath:../log/,MP:2222
+[04-06 17:44:34.179864]Init API,UDPPort:22677
+[04-06 17:51:02.042773]Init API V1.1.1.6,mode:1,logpath:../log/,MP:2222
+[04-06 17:51:02.042773]Init API,UDPPort:22677
+[04-06 17:51:07.319583]Connect to ZCE,IP:218.29.68.203,Port:22677,Wait:5.000
+[04-06 17:51:07.350783]Start driving thread
+[04-06 17:51:07.413183]Connect ZCE successfully
+[04-06 17:51:07.413183]Connect to ZCE,IP:218.29.68.203,Port:22677,Wait:5.000
+[04-06 17:51:07.444383]Start driving thread
+[04-06 17:51:07.506783]Connect ZCE successfully
+[04-06 17:51:07.506783]01570090 Login,PVersion:2,Flow:0,Encrypt:1,Commpress:1
+[04-06 17:51:07.537983]Link successfully negotiate
+[04-06 17:51:07.569183]Login successfully
+[04-06 17:51:07.569183]01570090 Login,PVersion:2,Flow:1,Encrypt:1,Commpress:1
+[04-06 17:51:07.600383]Link successfully negotiate
+[04-06 17:51:07.631583]Login successfully
+[04-06 17:53:58.418498]Init API V1.1.1.6,mode:1,logpath:../log/,MP:2222
+[04-06 17:53:58.418498]Init API,UDPPort:22677
+[04-06 17:54:11.077522]Init API V1.1.1.6,mode:1,logpath:../log/,MP:2222
+[04-06 17:54:11.077522]Init API,UDPPort:22677
+[04-06 17:54:16.363332]Connect to ZCE,IP:218.29.68.203,Port:22677,Wait:5.000
+[04-06 17:54:16.378932]Start driving thread
+[04-06 17:54:16.441332]Connect ZCE successfully
+[04-06 17:54:16.441332]Connect to ZCE,IP:218.29.68.203,Port:22677,Wait:5.000
+[04-06 17:54:16.472532]Start driving thread
+[04-06 17:54:16.534932]Connect ZCE successfully
+[04-06 17:54:16.534932]01570090 Login,PVersion:2,Flow:0,Encrypt:1,Commpress:1
+[04-06 17:54:16.550532]Link successfully negotiate
+[04-06 17:54:16.581732]Login successfully
+[04-06 17:54:16.581732]01570090 Login,PVersion:2,Flow:1,Encrypt:1,Commpress:1
+[04-06 17:54:16.612932]Link successfully negotiate
+[04-06 17:54:16.644132]Login successfully
+[04-06 17:56:40.841595]Init API V1.1.1.6,mode:1,logpath:../log/,MP:2222
+[04-06 17:56:40.841595]Init API,UDPPort:22677
+[04-06 17:56:46.136005]Connect to ZCE,IP:218.29.68.203,Port:22677,Wait:5.000
+[04-06 17:56:46.167205]Start driving thread
+[04-06 17:56:46.229605]Connect ZCE successfully
+[04-06 17:56:46.229605]Connect to ZCE,IP:218.29.68.203,Port:22677,Wait:5.000
+[04-06 17:56:46.260805]Start driving thread
+[04-06 17:56:46.323205]Connect ZCE successfully
+[04-06 17:56:46.323205]01570090 Login,PVersion:2,Flow:0,Encrypt:1,Commpress:1
+[04-06 17:56:49.414011]Link successfully negotiate
+[04-06 17:56:49.445211]Login successfully
+[04-06 17:56:49.445211]01570090 Login,PVersion:2,Flow:1,Encrypt:1,Commpress:1
+[04-06 17:56:49.476411]Link successfully negotiate
+[04-06 17:56:49.538811]Login successfully

@@ -1,0 +1,30 @@
+<fibprotocol version="1" type="cpp" includedir="." platform="all">
+	<parameter/>
+	<depend>
+		<platform version="1"/>
+		<base version="1"/>
+		<probelogger version="1"/>
+		<utility version="1"/>
+		<datastruct version="1"/>
+		<event version="1"/>
+		<network version="1"/>
+		<protocol version="1"/>
+		<channelprotocol version="1"/>
+		<xmpprotocol version="1"/>
+		<compressprotocol version="1"/>
+	</depend>
+	<cppfile>
+		<FIBProtocol.cpp/>
+		<FIBSession.cpp/>
+		<FIBPubEndPoint.cpp/>
+		<FIBSubEndPoint.cpp/>
+	</cppfile>
+	<headfile>
+		<FIBProtocol.h/>
+		<FIBSession.h/>
+		<FIBPubEndPoint.h/>
+		<FIBSubEndPoint.h/>
+		<FIBSubscriber.h/>
+	</headfile>
+	<command/>
+</fibprotocol>

@@ -1,0 +1,69 @@
+!!enter UFDataTypes!!
+/////////////////////////////////////////////////////////////////////////
+///@system 执行引擎系统
+///@company 上海量投网络科技有限公司
+///@file customDataType.h
+///@brief定义了交易所内部数据的底层支持类
+///@history 
+///20050324	xuzh		创建该文件
+/////////////////////////////////////////////////////////////////////////
+
+#ifndef CUSTOMDATATYPE_H
+#define CUSTOMDATATYPE_H
+
+#include "UFDataType.h"
+
+!!travel self!!
+/////////////////////////////////////////////////////////////////////////
+///C!!@name!!Type是一个!!@label!!类
+/////////////////////////////////////////////////////////////////////////
+!!if !strcmp(@name,"RangeInt")!!
+DefineRangeIntType(!!@from!!,!!@to!!,!!@typename!!Type)
+
+!!elseif !strcmp(@name,"RangeChar")!!
+DefineRangeCharType(!!@from!!,!!@to!!,!!@typename!!Type)
+
+!!elseif !strcmp(@name,"String")!!
+DefineStringType(!!@length!!,!!@typename!!Type)
+
+!!elseif !strcmp(@name,"VString")!!
+DefineStringType(!!@length!!,!!@typename!!Type)
+
+!!elseif !strcmp(@name,"Array")!!
+DefineStringType(!!@length!!,!!@typename!!Type)
+
+!!elseif !strcmp(@name,"Int")!!
+DefineUFType(UFIntType,!!@typename!!Type)
+
+!!elseif !strcmp(@name,"Long")!!
+DefineUFType(UFLongType,!!@typename!!Type)
+
+!!elseif !strcmp(@name,"Word")!!
+DefineUFType(UFWordType,!!@typename!!Type)
+
+!!elseif !strcmp(@name,"Char")!!
+DefineUFType(UFCharType,!!@typename!!Type)
+
+!!elseif !strcmp(@name,"EnumChar")!!
+!!travel self!!
+///!!@label!!
+#define !!@prefix!!_!!@name!! '!!@value!!'
+!!next!!
+DefineEnumCharType(!!@typename!!Type,"!!travel self!!!!@value!!!!next!!")
+
+!!elseif !strcmp(@name,"Float")!!
+DefineFloatType(!!@length!!,!!@precision!!,!!@typename!!Type)
+
+!!elseif !strcmp(@name,"FixNumber")!!
+//DefineFixNumberType(!!@length!!,!!@precision!!,!!@typename!!Type)
+DefineFloatType(!!@length!!,!!@precision!!,!!@typename!!Type)
+
+!!elseif !strcmp(@name,"Pointer")!!
+DefineUFType(UFPointerType,!!@typename!!Type)
+
+!!else!!
+	!!error printf("unknown type %s in %s\n",@name,@typename);!!
+!!endif!!
+!!next!!
+#endif
+!!leave!!

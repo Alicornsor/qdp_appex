@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="gb2312"?>
+
+<packageDefine name="event" version="1" type="cpp" includedir="." platform="all">
+	<parameter/>
+	<depend>
+		<package name="platform" version="1"/>
+		<package name="base" version="1"/>
+		<package name="probelogger" version="1"/>
+		<package name="utility" version="1"/>
+		<package name="datastruct" version="1"/>
+		<package name="network" version="1"/>
+	</depend>
+	<cppfile>
+		<file name="EventHandler.cpp"/>
+		<file name="EventQueue.cpp"/>
+		<file name="EventDispatcher.cpp"/>
+		<file name="Reactor.cpp"/>
+		<file name="Semaphore.cpp"/>
+		<file name="Thread.cpp"/>
+		<file name="SelectReactor.cpp"/>	
+		<file name="PipeEventHandler.cpp"/>
+		<file name="TimerHeap.cpp"/>
+		<file name="EpollReactor.cpp"/>
+		<file name="SimpleReactor.cpp">
+	</cppfile>
+	<headfile>
+		<file name="EventHandler.h"/>
+		<file name="EventQueue.h"/>
+		<file name="Reactor.h"/>
+		<file name="Semaphore.h"/>
+		<file name="Thread.h"/>
+		<file name="Mutex.h"/>
+		<file name="SelectReactor.h"/>
+		<file name="TimerHeap.h"/>
+		<file name="TimerQueue.h"/>
+		<file name="EventDispatcher.h"/>
+		<file name="EpollReactor.h"/>
+		<file name="PipeEventHandler.h"/>
+		<file name="SimpleReactor.h">
+	</headfile>
+	<command/>
+</packageDefine>

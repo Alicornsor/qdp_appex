@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="gb2312"?>
+
+<packageDefine name="sqlite3" version="1" type="cpp" includedir="." platform="all">
+	<parameter/>
+	<depend/>
+	<cppfile>
+		<file name="sqlite3util.cpp"/>
+	</cppfile>
+	<headfile>
+		<file name="sqlite3.h"/>
+		<file name="sqlite3util.h"/>
+	</headfile>
+	<libfile>
+		<file name="sqlite3"/>	
+	</libfile>	
+	<command/>
+</packageDefine>

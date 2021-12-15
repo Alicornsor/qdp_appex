@@ -1,0 +1,6 @@
+qdata qdp localhost qdata
+qquery qdp localhost qquery
+qmdb qdp localhost qmdb
+qtrade qdp localhost qtrade
+qmarket qdp localhost qmarket 
+qsdb qdp localhost qsdb 

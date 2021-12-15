@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="gb2312"?>
+
+<packageDefine name="ftdrprotocol" version="1" type="cpp" includedir="." platform="all">
+	<parameter/>
+	<depend>
+		<package name="ftdprotocol" version="1"/>
+	</depend>
+	<cppfile>
+		<file name="FTDCRSession.cpp"/>
+	</cppfile>
+	<headfile>
+		<file name="FTDCRSession.h"/>
+	</headfile>
+	<command/>
+</packageDefine>

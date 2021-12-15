@@ -1,0 +1,252 @@
+#femas remote shell ecall 飞马远程运行脚本
+#Editor: 徐忠华
+#date  : 2013-03-18
+#####################################################
+#define area  定义区域
+CP=scp
+SH="ssh -n"
+SH_ARG=""
+#PATH setup 路径设置
+BASEPATH=$HOME
+OBJPATH=$BASEPATH/run
+RunListFile=$BASEPATH/bin/list.run
+UserListFile=$BASEPATH/bin/list.user
+
+#####################################################
+#impl area 功能函数区
+#用户可以根据实际需要增加 可以通过ecall function来调用function中实现的功能
+#ecall会为功能函数传入两个参数 $1:远程机器名  $2:远程服务名 远程机器名=远程服务名+编号 远程机器名定义在/etc/hosts中
+
+#启动服务
+startservice()
+{
+	##检查是否有进程
+	rm -f .run
+        processname=$3
+        if [ "$4" != "" ]
+        then
+                processname=`echo $3 $4`
+        fi
+	$SH $1@$2 $SH_ARG ps -fu $1|grep -w "$processname"|grep -v ssh |grep -v sh|grep -v ps|grep -v grep | grep  -v shcdynamicrp |grep -v remsh|grep -v start|grep -v vi >/dev/null && > .run
+	if [ -r .run ]
+	then
+		echo "Warnning: service already running"	
+	else
+		$SH $1@$2 $SH_ARG ./start $3 $4 ">" $3$4/log/out &
+	fi
+	
+##	##检查时间是否正确
+##	$SH $1 $SH_ARG ./chktime.sh > .timeok
+##	read timeok curtime_org <.timeok
+##	if [ $timeok -ne 1 ]
+##	then
+##		timeok=0
+##		printf "StartTime Conflics, starttime($curtime_org) should be in 07:00:00 and 08:00:00\n"
+##	fi
+}
+
+#启动服务
+restartservice()
+{
+	##检查是否有进程
+	rm -f .run
+        processname=$3
+        if [ "$4" != "" ]
+        then
+                processname=`echo $3 $4`
+        fi
+	$SH $1@$2 $SH_ARG ps -fu $1|grep -w "$processname"|grep -v ssh |grep -v sh|grep -v ps|grep -v grep | grep  -v shcdynamicrp |grep -v remsh|grep -v start|grep -v vi >/dev/null && > .run
+	if [ -r .run ]
+	then
+		echo "Warnning: service already running"	
+	else
+		$SH $1@$2 $SH_ARG ./restart $3 $4 ">" $3$4/log/out &
+	fi	
+##	##检查时间是否正确
+##	$SH $1 $SH_ARG ./chktime.sh > .timeok
+##	read timeok curtime_org <.timeok
+##	if [ $timeok -ne 1 ]
+##	then
+##		timeok=0
+##		printf "StartTime Conflics, starttime($curtime_org) should be in 07:00:00 and 08:00:00\n"
+##	fi
+}
+
+#停止服务
+stopservice()
+{
+	$SH $1@$2 $SH_ARG ./stop $3 $4
+}
+
+chkversion()
+{
+	$SH $1@$2 $SH_ARG "cd $3$4/bin/;./$3 -v"
+}
+
+#显示服务进程运行情况
+showservice()
+{
+	if [ $# -eq 3 ]
+	then
+		nk=`$SH $1@$2 $SH_ARG ps -fu $1|grep -w ./$3 |grep -v sshd:|grep -v ps|grep -v ssh |grep -v ping| grep -v  shcdynamicr |grep -v tail|grep -v grep|grep -v remsh|grep -v start|grep -v vi|awk '{printf "    %-16s%-8s%8s",$8,$9,$5}'`
+	else
+		nk=`$SH $1@$2 $SH_ARG ps -fu $1|grep -w "./$3 $4" |grep -v sshd:|grep -v ps|grep -v ssh|grep -v ping | grep -v  shcdynamicr |grep -v tail|grep -v grep|grep -v remsh|grep -v start|grep -v vi|awk '{printf "    %-16s%-8s%8s",$8,$9,$5}'`
+	fi
+
+	nk1=`echo $nk | awk '{print $3}'`
+	if [ '['$nk1']' = '[]' ]
+	then
+		nk1=`echo $nk | awk '{print $2}'`
+	fi
+	if [ '['$nk1']' = '[]' ]
+	then
+		nk1=''
+		nk0='NONE'
+	fi
+
+	nk1time=`echo $nk1 | awk -F: '{print $2}'`
+	if [ "$nk1time" = "" ]
+	then
+		nk1='00:00'
+	fi
+	
+	nkshow=''
+	nkerror=''
+	if [ "$nk0" = "NONE" ]
+	then
+		nk0=$nk1
+	else
+		nk01_h=`echo $nk0 | awk -F: '{print $1}'`
+		nk01_m=`echo $nk0 | awk -F: '{print $2}'`
+		nk01_s=`echo $nk0 | awk -F: '{print $3}'`
+		nk11_h=`echo $nk1 | awk -F: '{print $1}'`
+		nk11_m=`echo $nk1 | awk -F: '{print $2}'`
+		nk11_s=`echo $nk1 | awk -F: '{print $3}'`
+		if [ '['$nk01_h']' = '[]' ]
+		then
+			nk01_h=0
+		fi
+		if [ '['$nk01_m']' = '[]' ]
+		then
+			nk01_m=0
+		fi
+		if [ '['$nk01_s']' = '[]' ]
+		then
+			nk01_s=0
+		fi
+		if [ '['$nk11_h']' = '[]' ]
+		then
+			nk11_h=0
+		fi
+		if [ '['$nk11_m']' = '[]' ]
+		then
+			nk11_m=0
+		fi
+		if [ '['$nk11_s']' = '[]' ]
+		then
+			nk11_s=0
+		fi
+		nk01=`expr $nk01_h \* 3600 + $nk01_m \* 60 + $nk01_s`
+
+		nk11=`expr $nk11_h \* 3600 + $nk11_m \* 60 + $nk11_s`
+		if [ $nk01 -lt $nk11 ]
+		then
+			nkout=`expr $nk11 - $nk01`
+		else
+			nkout=`expr $nk01 - $nk11`
+		fi
+		nkshow=`expr $nk11 - $nk01`
+		if [ $nkout -gt 60 ]
+		then
+			nkerror='超过60秒时差'
+		fi
+		ofp=`echo $nk | grep ofpmd | awk '{print $1}'`
+		if [ '['$ofp']' != '[]' ]
+		then
+			nkerror=''
+		fi
+	fi
+	printf "$nk %10s    %-30s\n" $nkshow $nkerror
+}
+
+#功能函数调用接口
+#callImpl i user hosts service no 
+callImpl()
+{
+	if [ $2 != "showservice" ]
+	then
+		printf "No.%02d %s%-15s:\n" $1 "_________" $5$6 
+	else
+		printf "%2d  " $1
+	fi
+	rm -f .alive
+	ping $4 -c 1 -W 2 >/dev/null || > .alive
+	if [ -r .alive ]
+	then
+		echo "Warnning:" $4 "not alive"
+		return
+	fi
+	$2 $3 $4 $5 $6
+}
+
+callall()
+{
+	rm -r $UserListFile.tmp $RunListFile.tmp
+	case $# in
+	1) ##如果没有参数，全部启动
+		cat $UserListFile > $UserListFile.tmp
+		cat $RunListFile > $RunListFile.tmp;;
+	3) ##如果有3个参数，视为对user的过滤
+		grep $2 $UserListFile | grep $3 > $UserListFile.tmp
+		cat $RunListFile > $RunListFile.tmp;;
+	4) ##如果4个参数，视为对user和进程的过滤
+		grep $2 $UserListFile | grep $3 > $UserListFile.tmp
+		grep $4 $RunListFile > $RunListFile.tmp;;
+	5) ##如果5个参数，视为对user和进程的过滤
+		grep $2 $UserListFile | grep $3 > $UserListFile.tmp
+		grep $4 $RunListFile | grep $5 > $RunListFile.tmp;;		
+	esac
+
+	##循环每个用户，启动进程
+	cntexpr=`wc -l $UserListFile.tmp | awk '{print $1}'`
+	cnt=`expr $cntexpr`	
+	nk0='NONE'
+	i=0
+	while [ $i -lt $cnt ]
+	do
+		i=`expr $i + 1 `
+		read user host
+		##每个user里面启动所有的进程
+		echo $i: $user@$host
+		cntexpr2=`wc -l $RunListFile.tmp | awk '{print $1}'`
+		cnt2=`expr $cntexpr2`		
+		i2=0
+		while [ $i2 -lt $cnt2 ]
+		do
+			i2=`expr $i2 + 1 `
+			read srv no 
+			callImpl $i2 $1 $user $host $srv $no 
+		done < $RunListFile.tmp
+	done < $UserListFile.tmp
+}
+
+#ecall主调用入口
+ecall()
+{
+	echo "#################################################"
+	echo "##    begin to run batch                      ###"
+	echo "#################################################"
+
+	if [ $# -eq 0 ]
+	then
+		echo "Usage: $0 |showservice|stopservice|startservice|restartservice|chkversion"
+	else
+		 if [ "$1" = "showservice" -o "$1" = "stopservice" -o "$1" = "startservice" -o "$1" = "restartservice" -o "$1" = "chkversion" ]
+		 then
+				callall $*
+		 else
+				echo "输入参数错误!!!"
+		 fi
+	fi
+}
+ecall $*

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="gb2312"?>
+
+<packageDefine name="platform" version="1" type="cpp" includedir="." platform="all">
+	<parameter/>
+	<depend/>
+	<cppfile>
+		<file name="system.cpp"/>
+		<file name="platform.cpp"/>
+		<file name="mpath.cpp"/>
+	</cppfile>
+	<headfile>
+		<file name="system.h"/>
+		<file name="platform.h"/>
+		<file name="mpath.h"/>
+	</headfile>
+	<command/>
+</packageDefine>

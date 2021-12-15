@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="gb2312"?>
+<!DOCTYPE packageDefine SYSTEM "C:\wsh\package.dtd">
+<packageDefine name="multinetwork" version="1" type="cpp" includedir="." platform="all">
+	<parameter/>
+	<depend>
+		<package name="platform" version="1"/>
+		<package name="base" version="1"/>
+		<package name="probelogger" version="1"/>
+		<package name="utility" version="1"/>
+		<package name="datastruct" version="1"/>
+		<package name="network" version="1"/>
+		<package name="event" version="1"/>
+	</depend>
+	<cppfile>
+		<file name="MultiChannel.cpp"/>
+		<file name="MultiClient.cpp"/>
+		<file name="MultiServer.cpp"/>
+		<file name="MultiNetworkFactory.cpp"/>
+	</cppfile>
+	<headfile>
+		<file name="MultiChannel.h"/>
+		<file name="MultiClient.h"/>
+		<file name="MultiServer.h"/>
+		<file name="MultiNetworkFactory.h"/>
+	</headfile>
+	<command/>
+</packageDefine>

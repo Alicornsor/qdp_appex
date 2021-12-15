@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="gb2312"?>
+<packageDefine name="fix42" version="1" type="cpp" includedir="." platform="all">
+	<parameter/>
+	<depend/>
+	<headfile/>
+	<cppfile/>
+	<command/>
+</packageDefine>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="gb2312"?>
+
+<packageDefine name="xmlapi" version="1" type="cpp" includedir="." platform="all">
+	<parameter>
+		<useParameter name="systemConfigEnv"/>
+		<useParameter name="deployConfigEnv"/>
+		<useParameter name="mergeConfigEnv"/>
+	</parameter>
+	<depend>
+		<package name="platform" version="1"/>
+		<package name="base" version="1"/>
+		<package name="probelogger" version="1"/>
+		<package name="utility" version="1"/>
+		<package name="datastruct" version="1"/>
+		<package name="xml" version="1"/>
+	</depend>
+	<cppfile>
+		<file name="CConfigXML.cpp"/>
+		<file name="CSystemConfig.cpp"/>
+		<file name="CDeployConfig.cpp"/>
+		<file name="CMergeConfig.cpp"/>
+	</cppfile>
+	<headfile>
+		<file name="CConfigXML.h"/>
+		<file name="CSystemConfig.h"/>
+		<file name="CDeployConfig.h"/>
+		<file name="CDeployConfig.h.tpl"/>
+		<file name="CDeployConfig.cpp.tpl"/>
+		<file name="CSystemConfig.h.tpl"/>
+		<file name="CSystemConfig.cpp.tpl"/>
+		<file name="CMergeConfig.h"/>
+		<file name="CMergeConfig.h.tpl"/>
+		<file name="CMergeConfig.cpp.tpl"/>
+		<file name="package.des"/>
+	</headfile>
+	<command>
+		<pump>
+			<target type="file" value="CSystemConfig.h"/>
+			<template type="file" value="CSystemConfig.h.tpl"/>
+			<env type="parameter" value="systemConfigEnv"/>
+		</pump>
+		<pump>
+			<target type="file" value="CSystemConfig.cpp"/>
+			<template type="file" value="CSystemConfig.cpp.tpl"/>
+			<env type="parameter" value="systemConfigEnv"/>
+		</pump>
+		<pump>
+			<target type="file" value="CDeployConfig.h"/>
+			<template type="file" value="CDeployConfig.h.tpl"/>
+			<env type="parameter" value="deployConfigEnv"/>
+		</pump>
+		<pump>
+			<target type="file" value="CDeployConfig.cpp"/>
+			<template type="file" value="CDeployConfig.cpp.tpl"/>
+			<env type="parameter" value="deployConfigEnv"/>
+		</pump>
+		<pump>
+			<target type="file" value="CMergeConfig.h"/>
+			<template type="file" value="CMergeConfig.h.tpl"/>
+			<env type="parameter" value="mergeConfigEnv"/>
+		</pump>
+		<pump>
+			<target type="file" value="CMergeConfig.cpp"/>
+			<template type="file" value="CMergeConfig.cpp.tpl"/>
+			<env type="parameter" value="mergeConfigEnv"/>
+		</pump>
+	</command>
+</packageDefine>

@@ -1,0 +1,5 @@
+"BrokerID","UserID","Password","IsActive","UserName","UserType","Department","GrantFuncSet","CheckIpMacAddr"
+"guofu","0001","111111","1","交易用户01","1","1","1","0"
+"guofu","0002","111111","1","交易用户02","1","1","1","0"
+"guofu","0003","111111","1","交易用户03","1","1","1","0"
+"guofu","2001","123456","0","上期2号交易员","1","1","1","0"

@@ -1,0 +1,39 @@
+<project target="tload" targettype="exe" hasdebug="yes" hasmap="no" hasprofile="no" multithread="yes" warninglevel="2" libs="" workdir="" cppflags= "-DDEBUG_NOT_LOG" ldflags="" arflags="" >
+	<package name="platform" dir="../../sourcebase/platform"/>
+	<package name="base" dir="../../sourcebase/base"/>
+	<package name="version" dir="../../sourcebase/version"/>
+	<package name="utility" dir="../../sourcebase/utility"/>
+	<package name="datastruct" dir="../../sourcebase/datastruct"/>
+	<package name="event" dir="../../sourcebase/event"/>
+	<package name="network" dir="../../sourcebase/network"/>
+	<package name="tcpnetwork" dir="../../sourcebase/tcpnetwork"/>
+	<package name="error" dir="../../sourcebase/error">
+		<parameter name="errorEnv" value="../../datamodel/commonEnv/error.xml"/>
+	</package>
+	<package name="udpnetwork" dir="../../sourcebase/udpnetwork"/>
+	<package name="protocol" dir="../../sourcebase/protocol"/>
+	<package name="channelprotocol" dir="../../sourcebase/channelprotocol"/>
+	<package name="xmpprotocol" dir="../../sourcebase/xmpprotocol"/>
+	<package name="ftdprotocol" dir="../../sourcebase/ftdprotocol"/>
+	<package name="nsprotocol" dir="../../sourcebase/nsprotocol"/>
+	<package name="compressprotocol" dir="../../sourcebase/compressprotocol"/>
+	<package name="customDataType" dir="../../sourcebase/customDataType">
+		<parameter name="UFDatatypeEnv" value="../../datamodel/commonEnv/UFDataType.xml"/>
+	</package>
+	<package name="ftdfield" dir="../../sourcebase/ftdfield">
+		<parameter name="FTDEnv" value="../../datamodel/envGenerated/FTD.xml"/>
+	</package>
+	<package name="UFCopy" dir="../../sourcebase/UFCopy">
+		<parameter name="UFEntityEnv" value="../../datamodel/commonEnv/UFEntity.xml"/>
+		<parameter name="MDBEnv" value="../../datamodel/envGenerated/MDB.xml"/>
+		<parameter name="XTPEnv" value="../../datamodel/envGenerated/XTP.xml"/>
+		<parameter name="FTDEnv" value="../../datamodel/envGenerated/FTD.xml"/>
+	</package>
+	<package name="probelogger" dir="../../sourcebase/probelogger"/>	
+	<package name="shmwork" dir="../../sourcebase/shmwork"/>
+
+	<package name="apiuserapi" dir="../../sourceapp/apiuserapi">
+		<parameter name="APIFTDEnv" value="../../datamodel/envGenerated/FTD.xml ../../datamodel/commonEnv/exinfo.xml"/>
+	</package>
+	<package name="tload" dir="./src"/>
+</project>

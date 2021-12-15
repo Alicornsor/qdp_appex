@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="gb2312"?>
+
+<packageDefine name="tradeServiceImpl" version="1" type="cpp" includedir="." platform="all">
+	<parameter>
+	</parameter>
+	<depend>
+		<package name="platform" version="1"/>
+		<package name="base" version="1"/>
+		<package name="probelogger" version="1"/>
+		<package name="utility" version="1"/>
+		<package name="datastruct" version="1"/>
+		<package name="customDataType" version="1"/>
+		<package name="memorydatabase" version="1"/>
+		<package name="error" version="1"/>
+		<package name="serviceInterface" version="1"/>
+	</depend>
+	<cppfile>
+		<file name="CTradeServiceImpl.cpp"/>
+        </cppfile>
+	<headfile>
+		<file name="CTradeServiceImpl.h"/>
+        </headfile>
+	<command>
+	</command>
+</packageDefine>

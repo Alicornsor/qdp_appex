@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="gb2312"?>
+<packageDefine name="innertradelink" version="1" type="cpp" includedir="." platform="all">
+	<parameter/>
+	<depend>
+	</depend>
+	<cppfile>		
+		<file name="InnerTradeLink.cpp"/>			
+	</cppfile>
+	<headfile>		
+		<file name="InnerTradeLink.h"/>			
+	</headfile>
+	<command/>
+</packageDefine>

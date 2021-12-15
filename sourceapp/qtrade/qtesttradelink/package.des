@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="gb2312"?>
+<packageDefine name="qtesttradelink" version="1" type="cpp" includedir="." platform="all">
+	<parameter/>
+	<depend>
+	</depend>
+	<cppfile>		
+		<file name="QTestTradeLink.cpp"/>
+	</cppfile>
+	<headfile>		
+		<file name="QTestTradeLink.h"/>
+		<file name="QTestFtdcTraderApi.h"/>
+		<file name="QTestFtdcUserApiDataType.h"/>
+		<file name="QTestFtdcUserApiStruct.h"/>		
+	</headfile>
+	<libfile>
+		<file name="qtesttraderapi"/>
+	</libfile>
+	<command/>
+</packageDefine>

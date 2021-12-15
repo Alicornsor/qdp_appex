@@ -1,0 +1,186 @@
+#femas remote shell ecall 飞马远程运行脚本
+#Editor: 徐忠华
+#date  : 2013-03-18
+#####################################################
+#define area  定义区域
+CP=scp
+SH="ssh -n"
+SH_ARG=""
+#PATH setup 路径设置
+BASEPATH=$HOME
+OBJPATH=$BASEPATH/run
+CFGPATH=$BASEPATH/run/config
+RunListFile=$BASEPATH/bin/list.run
+UserListFile=$BASEPATH/bin/list.user
+
+#####################################################
+#impl area 功能函数区
+#用户可以根据实际需要增加 可以通过ecall function来调用function中实现的功能
+#ecall会为功能函数传入两个参数 $1:远程机器名  $2:远程服务名 远程机器名=远程服务名+编号 远程机器名定义在/etc/hosts中
+
+#构建服务运行依赖的基本目录
+make_deploy_dir()
+{
+	$SH $1@$2 $SH_ARG rm -fr $3$4 config
+	$SH $1@$2 $SH_ARG " rm stop start chktime.sh diffini.sh restart GenMD5 " 
+	$SH $1@$2 $SH_ARG "umask 027; mkdir $3$4"
+	$SH $1@$2 $SH_ARG "umask 027; mkdir $3$4/flow"
+	$SH $1@$2 $SH_ARG "umask 027; mkdir $3$4/dump"
+	$SH $1@$2 $SH_ARG "umask 027; mkdir $3$4/log"
+	$SH $1@$2 $SH_ARG "umask 027; mkdir $3$4/bin"
+}
+
+cpall()
+{
+	cpini  $*
+	cpobj  $*
+}
+
+#发布服务器运行依赖的基本文件
+cpbase()
+{
+	$CP $OBJPATH/stop $1@$2:./
+	$CP $OBJPATH/start $1@$2:./
+	$CP $OBJPATH/chktime.sh  $1@$2:./
+	$CP $OBJPATH/clearlog.sh  $1@$2:./
+	$CP $OBJPATH/backlog.sh  $1@$2:./	
+	$CP $OBJPATH/backmdlog.sh  $1@$2:./	
+	$CP $OBJPATH/looptime.sh  $1@$2:./	
+	$CP $OBJPATH/diffini.sh $1@$2:./
+	$CP $OBJPATH/restart $1@$2:./
+	$CP $OBJPATH/GenMD5 $1@$2:./
+	$SH $1@$2 "chmod  750 *"
+}
+
+#发布运行配置文件
+cpini()
+{
+	# 复制到目标ini配置文件	
+	~/bin/GenMD5 -g $OBJPATH/$3/$3.ini
+	$CP $OBJPATH/$3/$3.ini $1@$2:./$3$4/bin/$3.ini
+	$CP $OBJPATH/$3/$3.ini.md5 $1@$2:./$3$4/bin/$3.ini.md5
+	$SH $1@$2 chmod 640 ./$3$4/bin/$3.ini*
+}
+
+#发布运行码
+cpobj()
+{
+	$CP $OBJPATH/$3/$3 $1@$2:./$3$4/bin/
+	#if [ "$3" = "qtrade" -o "$3" = "qmarket_tcp" ]
+	#then
+	#	$CP $OBJPATH/$3/lib* $1@$2:./$3$4/bin/
+	#fi
+	$CP $OBJPATH/$3/lib* $1@$2:./$3$4/bin/
+	$CP ~/bin/gdb $1@$2:./$3$4/bin/
+	$SH $1@$2 "chmod 750 ./$3$4/bin/*; chmod 750 ./$3$4/bin/gdb; chmod g+x *"  
+}
+
+#功能函数调用接口
+#callImpl i user hosts service no 
+callImpl()
+{
+	if [ $2 != "showservice" ]
+	then
+		printf "No.%02d %s%-15s:\n" $1 "_________" $5$6 
+	else
+		printf "%2d  " $1
+	fi
+	rm -f .alive
+	ping $4 -c 1 -W 2 >/dev/null || > .alive
+	if [ -r .alive ]
+	then
+		echo "Warnning:" $4 "not alive"
+		return
+	fi
+	$2 $3 $4 $5 $6
+}
+
+callhost()
+{
+	rm -r $UserListFile.tmp
+	case $# in
+	1) ##如果没有参数，全部启动
+		cat $UserListFile > $UserListFile.tmp;;
+	3) ##如果有3个参数，视为对user的过滤
+		grep $2 $UserListFile | grep $3 > $UserListFile.tmp;;
+	esac
+
+	##循环每个用户，启动进程
+	cntexpr=`wc -l $UserListFile.tmp | awk '{print $1}'`
+	cnt=`expr $cntexpr`
+	i=0
+	while [ $i -lt $cnt ]
+	do
+		i=`expr $i + 1 `
+		read user host
+		##每个user里面启动所有的进程
+		echo $i: $user@$host
+		$1 $user $host
+	done < $UserListFile.tmp		
+}
+
+callall()
+{
+	rm -r $UserListFile.tmp $RunListFile.tmp
+	case $# in
+	1) ##如果没有参数，全部启动
+		cat $UserListFile > $UserListFile.tmp
+		cat $RunListFile > $RunListFile.tmp;;
+	3) ##如果有3个参数，视为对user的过滤
+		grep $2 $UserListFile | grep $3 > $UserListFile.tmp
+		cat $RunListFile > $RunListFile.tmp;;
+	4) ##如果4个参数，视为对user和进程的过滤
+		grep $2 $UserListFile | grep $3 > $UserListFile.tmp
+		grep $4 $RunListFile > $RunListFile.tmp;;
+	5) ##如果5个参数，视为对user和进程的过滤
+		grep $2 $UserListFile | grep $3 > $UserListFile.tmp
+		grep $4 $RunListFile | grep $5 > $RunListFile.tmp;;		
+	esac
+
+	##循环每个用户，启动进程
+	cntexpr=`wc -l $UserListFile.tmp | awk '{print $1}'`
+	cnt=`expr $cntexpr`	
+	i=0
+	while [ $i -lt $cnt ]
+	do
+		i=`expr $i + 1 `
+		read user host
+		##每个user里面启动所有的进程
+		echo $i: $user@$host
+		cntexpr2=`wc -l $RunListFile.tmp | awk '{print $1}'`
+		cnt2=`expr $cntexpr2`		
+		i2=0
+		while [ $i2 -lt $cnt2 ]
+		do
+			i2=`expr $i2 + 1 `
+			read srv no
+			callImpl $i2 $1 $user $host $srv $no
+		done < $RunListFile.tmp
+	done < $UserListFile.tmp
+}
+
+#ecall主调用入口
+ecall()
+{
+	echo "#################################################"
+	echo "##    begin to run batch                      ###"
+	echo "#################################################"
+
+	if [ $# -eq 0 ]
+	then
+		echo "Usage: $0 [make_deploy_dir|cpbase|cpini|cpall|cpobj|[user host [module no]] [all]"
+	else
+		 if [ "$1" = "make_deploy_dir" -o "$1" = "cpini" -o "$1" = "cpall" -o "$1" = "cpobj" ]
+		 then
+				callall $*
+		 else
+			if [ "$1" = "cpbase" ]
+			then
+				callhost $*
+			else
+				echo "输入参数错误!!!"
+			fi
+		 fi
+	fi
+}
+ecall $*

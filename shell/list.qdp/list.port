@@ -1,0 +1,20 @@
+上海张江01
+qdp@qdp01.shzj tcp  30001
+qdp@qdp01.shzj tcp  30003
+qdp@qdp01.shzj tcp  30004
+qdp@qdp01.shzj tcp  30005
+qmarket@qmarket01.shzj tcp  30007
+
+上海移动01
+qdp@qdp01.shyd tcp  30001
+qdp@qdp01.shyd tcp  30003
+qdp@qdp01.shyd tcp  30004
+qdp@qdp01.shyd tcp  30005
+qdp@qdp01.shyd tcp  30007
+
+大连飞创01
+qdp@qdp01.dlfc tcp  30001
+qdp@qdp01.dlfc tcp  30003
+qdp@qdp01.dlfc tcp  30004
+qdp@qdp01.dlfc tcp  30005
+qdp@qdp01.dlfc tcp  30007

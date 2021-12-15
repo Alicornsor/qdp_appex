@@ -1,0 +1,77 @@
+COMMONDATAMODEL=..\commonEnv
+
+DATATYPE=$(COMMONDATAMODEL)\UFDataType.xml
+ENTITY=$(COMMONDATAMODEL)\UFEntity.xml
+
+MDB=..\envGenerated\MDB.xml
+MDB_Misc=..\env\MDBMisc.xml
+
+XTP=..\envGenerated\XTP.xml
+XTP_Misc=..\env\XTPMisc.xml
+
+FTD=..\envGenerated\FTD.xml
+FTD_Misc=..\env\FTDMisc.xml
+
+DB=..\envGenerated\DB.xml
+DB_Misc=..\env\DBMisc.xml
+SQL=..\sqlGenerated
+
+DMBT_CMD=..\envGenerated\dbmt.cmd
+
+MERGEUFXML=mergeUFXML
+
+all: cpp
+
+cpp: warning.txt $(SQL)\DBAll.sql $(DMBT_CMD)
+
+######################################################
+#
+#	产生警告信息
+#
+######################################################
+warning.txt: $(DATATYPE) $(ENTITY) $(MDB) $(XTP) $(FTD) 
+	$(MERGEUFXML) CHECK $(DATATYPE) $(ENTITY) $(MDB) $(XTP) $(FTD)> warning.txt
+
+######################################################
+#
+#	产生MDB.xml的部分
+#
+######################################################
+$(MDB): $(MDB_Misc) $(ENTITY) $(DATATYPE)
+	$(MERGEUFXML) MDB $(MDB) $(MDB_Misc) $(ENTITY) $(DATATYPE)
+
+######################################################
+#
+#	产生XTP.xml的部分
+#
+######################################################
+$(XTP): $(XTP_Misc) $(ENTITY) $(DATATYPE)
+	$(MERGEUFXML) XTP $(XTP) $(XTP_Misc) $(ENTITY) $(DATATYPE)
+
+######################################################
+#
+#	产生FTD.xml的部分
+#
+######################################################
+$(FTD): $(FTD_Misc) $(ENTITY) $(DATATYPE)
+	$(MERGEUFXML) FTD $(FTD) $(FTD_Misc) $(ENTITY) $(DATATYPE)
+	
+######################################################
+#
+#	产生dbmt.cmd的部分
+#
+######################################################
+$(DMBT_CMD):$(COMMONDATAMODEL)\dbmt.cmd.tpl $(XTP) $(DATATYPE)
+	pump $@ $(COMMONDATAMODEL)\dbmt.cmd.tpl $(XTP) $(DATATYPE)
+	
+######################################################
+#
+#	产生DB.xml的部分
+#
+######################################################	
+$(DB): $(DB_Misc) $(ENTITY) $(DATATYPE)
+	$(MERGEUFXML) DB $(DB) $(DB_Misc) $(ENTITY) $(DATATYPE)
+
+$(SQL)\DBAll.sql: $(COMMONDATAMODEL)\DBAll.sql.tpl $(DB)
+	pump $@ $(COMMONDATAMODEL)\DBAll.sql.tpl $(DB)
+	pump_cut $@ $(SQL)

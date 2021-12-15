@@ -1,0 +1,13 @@
+DELETE FROM t_oper_investorposition WHERE systemid=
+DELETE FROM t_oper_datasyncstatus  WHERE systemid=
+DELETE FROM t_oper_exchange WHERE systemid=
+DELETE FROM t_oper_instrument WHERE systemid=
+DELETE FROM t_oper_investoraccount WHERE systemid=
+DELETE FROM t_oper_order WHERE systemid=
+DELETE FROM t_oper_orderinsertfailed WHERE systemid=
+DELETE FROM t_oper_tmdbaccomplish WHERE systemid=
+DELETE FROM t_oper_trade WHERE systemid=
+DELETE FROM t_oper_user WHERE systemid=
+DELETE FROM t_oper_usersession WHERE systemid=
+DELETE FROM t_oper_investortradingright WHERE systemid=
+DELETE FROM t_oper_systeminfo WHERE systemid=

@@ -1,0 +1,7 @@
+cd ../sourcebase/sqlapi/sqlapi64_hpux/src
+make
+cd ../../../../target/
+
+cp ../sourcebase/openssl/package.des.hpux ../sourcebase/openssl/package.des
+cp ../sourceapp/qtrade/cffextradelink/libCFFEXtraderapi.so.hpux ../sourcebase/qtrade/cffextradelink/libCFFEXtraderapi.so
+cp ../sourceapp/qmarket/cffexclient/libCFFEXmduserapi.so.hpux ../sourcebase/qmarket/cffexclient/libCFFEXmduserapi.so

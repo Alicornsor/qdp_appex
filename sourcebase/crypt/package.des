@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="gb2312"?>
+
+<packageDefine name="crypt" version="1" type="cpp" includedir="." platform="all">
+	<parameter/>
+	<depend>
+		<package name="platform" version="1"/>
+	</depend>
+	<cppfile>
+		<file name="md5Handler.cpp"/>
+		<file name="hexEncode.cpp"/>
+		<file name="cryptUtility.cpp"/>
+		<file name="Des.cpp"/>
+	</cppfile>
+	<headfile>
+		<file name="cryptAll.h"/>
+		<file name="md5Handler.h"/>
+		<file name="hexEncode.h"/>
+		<file name="cryptUtility.h"/>
+		<file name="Des.h"/>
+		<file name="DesEncryptAlgorithm.h"/>
+	</headfile>
+	<command/>
+</packageDefine>

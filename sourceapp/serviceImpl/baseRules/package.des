@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="gb2312"?>
+<packageDefine name="baseRules" version="1" type="cpp" includedir="." platform="all">
+	<parameter>
+	</parameter>
+	<depend>
+	</depend>
+	<cppfile>
+		<file name="baseAlgorithms.cpp"/>
+	</cppfile>
+	<headfile>
+		<file name="baseAlgorithms.h"/>
+	</headfile>
+	<command>
+	</command>
+</packageDefine>

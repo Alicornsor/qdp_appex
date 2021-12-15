@@ -1,0 +1,22 @@
+#检查操作时间是否在合理的时间段
+#start: 07:40:00 至 08:10:00
+#stop:  15:20 后
+
+starttime1=070000
+starttime2=080000
+stoptime=152000
+
+#获取当前时间
+curtime_org=`date | awk '{print $4}'`
+curtime=`echo $curtime_org|awk -F: '{print $1$2$3}'`
+#检查时间段是否合理
+timeok=0
+if [ $curtime -ge $stoptime ]
+then
+		timeok=1
+else
+		printf "停止时间(当前:$curtime_org)应当在15:20后!\n"
+		timeok=0
+fi
+
+./run_batch stopservice $*

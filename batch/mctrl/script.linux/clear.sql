@@ -1,0 +1,11 @@
+truncate t_oper_investorposition;
+truncate t_oper_datasyncstatus;
+truncate t_oper_exchange;
+truncate t_oper_instrument;
+truncate t_oper_investoraccount;
+truncate t_oper_order;
+truncate t_oper_orderinsertfailed;
+truncate t_oper_tmdbaccomplish;
+truncate t_oper_trade;
+truncate t_oper_user;
+truncate t_oper_usersession;

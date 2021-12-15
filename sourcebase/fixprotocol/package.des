@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="gb2312"?>
+
+<packageDefine name="fixprotocol" version="1" type="cpp" includedir="." platform="all">
+	<parameter/>
+	<depend>
+	</depend>
+	<cppfile>
+        <file name="FixServerSession.cpp"/>
+        <file name="FixApplication.cpp"/>
+        <file name="FixSocketAcceptor.cpp"/>
+	</cppfile>
+	<headfile>
+        <file name="FixServerSession.h"/>
+        <file name="FixApplication.h"/>
+        <file name="FixStructDefs.h"/>
+        <file name="FixSocketAcceptor.h"/>
+	</headfile>
+	<command/>
+</packageDefine>

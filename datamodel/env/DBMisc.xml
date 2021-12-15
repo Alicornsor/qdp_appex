@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="gb2312"?>
+<DB author="XUZH" version="1" iskey="no" notnull="no" order="asc" unique="no">
+	<schemas>
+		<schema name="Oper">
+			<tableGroup name="Oper"/>
+		</schema>
+		<schema name="Sync">
+			<tableGroup name="Sync"/>
+		</schema>
+	</schemas>
+	<tableGroups>
+		<tables group="Oper">
+			<table name="Oper_User" title="用户表" description="">
+				<Columns ref="User"/>
+				<Index/>
+			</table>
+			<table name="Oper_UserSession" title="用户登陆信息表" description="">
+				<Columns ref="UserSession"/>
+				<Index/>
+			</table>			
+			<table name="Oper_InvestorPosition" title="持仓表" description="">
+				<Columns ref="InvestorPosition"/>
+				<Index/>
+			</table>
+			<table name="Oper_InvestorAccount" title="账户实时资金表" description="">
+				<Columns ref="InvestorAccount"/>
+				<Index/>
+			</table>
+			<table name="Oper_OrderInsertFailed" title="错单表" description="">
+				<Columns ref="OrderInsertFailed"/>
+				<Index/>
+			</table>
+			<table name="Oper_Trade" title="成交表" description="">
+				<Columns ref="Trade"/>
+				<Index/>
+			</table>	
+			<table name="Oper_Order" title="委托表" description="">			
+				<Columns ref="Order"/>
+				<Index/>
+			</table>
+			<table name="Oper_TmdbAccomplish" title="TMDB完成情况" description="TMDB完成情况">
+				<Columns ref="TmdbAccomplish"/>
+				<Index/>
+			</table>
+			<table name="Oper_DataSyncStatus" title="数据同步状态" description="说明当前数据同步状态">
+				<Columns ref="DataSyncStatus"/>
+				<Index/>
+			</table>
+			<table name="Oper_Exchange" title="交易所交易日" description="交易所交易日">
+				<Columns ref="Exchange"/>
+				<Index/>
+			</table>
+			<table name="Oper_Instrument" title="合约信息" description="合约信息">
+				<Columns ref="Instrument"/>
+				<Index/>
+			</table>
+			<table name="Oper_InvestorTradingRight" title="投资者交易权限表" description="投资者交易权限表">
+				<Columns ref="InvestorTradingRight"/>
+				<Index/>
+			</table>	
+			<table name="Oper_SGEDeferRate" title="金交所递延费率表" description="金交所递延费率表">
+				<Columns ref="SGEDeferRate"/>
+				<Index/>
+			</table>			
+			<!--end add-->	
+		</tables>
+		<tables group="Sync">
+			<!--Sync_SystemStatus表既有上场也有下场-->
+			<table name="Sync_SystemStatus" title="当前系统状态" description="">
+				<Columns ref="SystemStatus"/>
+				<Index/>
+			</table>
+			<table name="Sync_UserInvestor" title="用户投资者关系表" description="">
+				<Columns ref="UserInvestor"/>
+				<Index/>
+			</table>
+			<table name="Sync_ClientTradingID" title="交易所客户编码表" description="">
+				<Columns ref="ClientTradingID"/>
+				<Index/>
+			</table>
+			<table name="Sync_Investor" title="投资者信息表" description="">
+				<Columns ref="Investor"/>
+				<Index/>
+			</table>
+			<table name="Sync_User" title="用户表" description="">
+				<Columns ref="User"/>
+				<Index/>
+			</table>
+			<table name="Sync_UserTradingRight" title="用户交易权限表" description="">
+				<Columns ref="UserTradingRight"/>
+				<Index/>
+			</table>		
+			<table name="Sync_InvestorPosition" title="持仓表" description="">
+				<Columns ref="InvestorPosition"/>
+				<Index/>
+			</table>
+			<table name="Sync_InvestorAccount" title="账户实时资金表" description="">
+				<Columns ref="InvestorAccount"/>
+				<Index/>
+			</table>
+			<table name="Sync_InvestorMargin" title="客户期货保证金率表" description="">
+				<Columns ref="InvestorMargin"/>
+				<Index/>
+			</table>
+			<table name="Sync_Seat" title="席位表" description="">
+				<Columns ref="Seat"/>
+				<Index/>
+			</table>
+			<table name="Sync_InvestorFee" title="客户手续费率表" description="">
+				<Columns ref="InvestorFee"/>
+				<Index/>
+			</table>
+			<table name="Sync_TBCommand" title="DB命令集" description="应用系统向交易核心发出DB命令集">
+				<Columns ref="TBCommand"/>
+				<Index/>
+			</table>
+
+			<!-- lidp 2013/12/31 为实现大边保证金添加两张Sync表 -->
+			<table name="Sync_InstrumentGroup" title="合约和合约组关系" description="说明合约和合约组关系">
+				<Columns ref="InstrumentGroup"/>
+				<Index/>
+			</table> 
+			<table name="Sync_ClientMarginCombType" title="交易编码组合保证金类型" description="说明交易编码组合保证金类型情况">
+				<Columns ref="ClientMarginCombType"/>
+				<Index/>
+			</table> 
+			<!-- chengm 20160120 为套利添加通道和InvestorID的映射关系 -->
+			<table name="Sync_InvestorLinker" title="投资者和通道映射关系" description="投资者和通道映射关系">
+				<Columns ref="InvestorLinker"/>
+				<Index/>
+			</table> 
+			<!-- add by jinpc 交易权限 -->
+			<table name="Sync_InvestorTradingRight" title="投资者交易权限表" description="">
+				<Columns ref="InvestorTradingRight"/>
+				<Index/>
+			</table>
+			<table name="Sync_UserIP" title="交易员IP" description="">
+				<Columns ref="UserIP"/>
+				<Index/>
+			</table>
+			<table name="Sync_InvestorOptionFee" title="客户期权手续费率表" description="">
+				<Columns ref="InvestorOptionFee"/>
+				<Index/>
+			</table>
+		</tables>
+    </tableGroups>
+	<entities>
+		<Entity name="OperInfo" title="用户数据库操作记录" description="用户数据库操作记录">
+			<Field name="SetUserID" type="UserID" description="用户代码" notnull="no" label="修改用户编号" iskey="no"/>
+			<Field name="CommandDate" type="Date" description="操作日期" notnull="no" label="操作日期" iskey="no"/>
+			<Field name="CommandTime" type="Time" description="操作时间" notnull="no" label="操作时间" iskey="no"/>
+		</Entity>	
+		<Entity name="CheckInfo" title="用户数据库复核记录" description="用户数据库复核记录">
+			<Field name="CheckUserID" type="UserID" description="用户代码" notnull="no" label="复核用户编号" iskey="no"/>
+			<Field name="CheckDate" type="Date" description="复核日期" notnull="no" label="复核日期" iskey="no"/>
+			<Field name="CheckTime" type="Time" description="复核时间" notnull="no" label="复核时间" iskey="no"/>
+		</Entity>
+		<Entity name="UserInvestorSys" title="用户投资者关系表" description="用户投资者关系表加上系统号">
+			<Ref entity="UserInvestor"/>
+			<Ref entity="OperInfo"/>
+		</Entity>
+		<Entity name="ClientTradingIDSys" title="交易所客户编码表" description="交易所客户编码表加上系统号">
+			<Ref entity="ClientTradingID"/>	
+			<Ref entity="OperInfo"/>
+		</Entity>
+		<Entity name="InvestorSys" title="投资者信息表" description="投资者信息表加上系统号">
+			<Ref entity="Investor"/>
+			<Ref entity="OperInfo"/>
+		</Entity>		
+		<Entity name="UserTradingRightSys" title="用户交易权限表" description="用户交易权限表加上系统号">
+			<Ref entity="UserTradingRight"/>
+			<Ref entity="OperInfo"/>
+		</Entity>		
+		<Entity name="InvestorPositionSys" title="持仓表" description="持仓表加上系统号">
+			<Ref entity="InvestorPosition"/>
+			<Ref entity="OperInfo"/>			
+		</Entity>
+		<Entity name="InvestorAccountSys" title="账户实时资金表" description="账户实时资金表加上系统号">
+			<Ref entity="InvestorAccount"/>			
+			<Ref entity="OperInfo"/>			
+		</Entity>	
+		<Entity name="DepositSys" title="账户实时出入金表" description="账户实时出入金表加上系统号">
+			<Ref entity="InvestorAccountDeposit"/>			
+			<Ref entity="OperInfo"/>			
+			<Ref entity="CheckInfo"/>			
+		</Entity>
+		<Entity name="InvestorMarginSys" title="客户期货保证金率表" description="客户期货保证金率表加上系统号">
+			<Ref entity="InvestorMargin"/>			
+			<Ref entity="OperInfo"/>			
+		</Entity>	
+		<Entity name="UserSys" title="用户表" description="用户表加上系统号">
+			<Ref entity="User"/>			
+			<Ref entity="OperInfo"/>			
+		</Entity>
+		<Entity name="SeatSys" title="席位表" description="席位表加上系统号">
+			<Ref entity="Seat"/>			
+			<Ref entity="OperInfo"/>			
+		</Entity>
+		<Entity name="InvestorFeeSys" title="客户手续费率表" description="客户手续费率表加上系统号">
+			<Ref entity="InvestorFee"/>			
+			<Ref entity="OperInfo"/>			
+		</Entity>
+		<Entity name="ComplianceParamSys" title="交易所合规参数表" description="交易所合规参数表加上系统号">
+			<Ref entity="ComplianceParam"/>			
+			<Ref entity="OperInfo"/>			
+		</Entity>	
+		<Entity name="InstrumentGroupSys" title="合约和合约组关系" description="合约和合约组关系加上系统号">
+			<Ref entity="InstrumentGroup"/>	
+			<Ref entity="OperInfo"/>			
+		</Entity>	
+		<Entity name="ClientMarginCombTypeSys" title="交易编码组合保证金类型" description="交易编码组合保证金类型表加上系统号">
+			<Ref entity="ClientMarginCombType"/>	
+			<Ref entity="OperInfo"/>			
+		</Entity>	
+		<Entity name="InvestorOptionFeeSys" title="客户期权手续费率表" description="客户期权手续费率表加上系统号">
+			<Ref entity="InvestorOptionFee"/>			
+			<Ref entity="OperInfo"/>			
+		</Entity>
+		<Entity name="InvestorTradingRightSys" title="投资者交易权限表" description="投资者交易权限表">
+			<Ref entity="InvestorTradingRight"/>			
+			<Ref entity="OperInfo"/>			
+		</Entity>
+	</entities>
+	
+</DB>
+
+	

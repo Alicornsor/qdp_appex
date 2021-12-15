@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="gb2312"?>
+<project target="mergeUFXML" targettype="exe" hasdebug="yes" hasmap="no" hasprofile="no" multithread="yes" warninglevel="2" libs="" cppflags="" ldflags="" arflags="">
+	<package name="platform" dir="../../sourcebase/platform"/>
+	<package name="base" dir="../../sourcebase/base"/>
+	<package name="utility" dir="../../sourcebase/utility"/>
+	<package name="datastruct" dir="../../sourcebase/datastruct"/>
+	<package name="probelogger" dir="../../sourcebase/probelogger"/>
+	<package name="xml" dir="../../sourcebase/xml"/>
+	<package name="network" dir="../../sourcebase/network"/>
+	<package name="event" dir="../../sourcebase/event"/>
+	<package name="tcpnetwork" dir="../../sourcebase/tcpnetwork"/>	
+	<package name="mergeUFXML" dir="."/>
+</project>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="gb2312"?>
+
+<packageDefine name="memorydatabase" version="1" type="cpp" includedir="." platform="all">
+	<parameter>
+		<useParameter name="databaseDataEnv"/>
+	</parameter>
+	<depend>
+		<package name="platform" version="1"/>
+		<package name="base" version="1"/>
+		<package name="probelogger" version="1"/>
+		<package name="utility" version="1"/>
+		<package name="datastruct" version="1"/>
+		<package name="customDataType" version="1"/>
+	</depend>
+	<cppfile>
+		<file name="CDatabaseDataFactory.cpp"/>
+		<file name="CDatabaseResource.cpp"/>
+		<file name="BaseDataStruct.cpp"/>
+		<file name="databaseResources.cpp"/>
+		<file name="databaseFactories.cpp"/>
+		<file name="databaseFactorySearchs.cpp"/>
+		<file name="databaseIterators.cpp"/>
+		<file name="CMemoryDB.cpp"/>
+		<file name="CDumpLog.cpp"/>
+		<file name="databaseGroupActions.cpp"/>
+		<file name="databaseIteratorRepository.cpp"/>
+	</cppfile>
+	<headfile>
+		<file name="CDatabaseDataFactory.h"/>
+		<file name="CDatabaseResource.h"/>
+		<file name="BaseDataStruct.h"/>
+		<file name="databaseResources.h"/>
+		<file name="databaseFactories.h"/>
+		<file name="databaseIterators.h"/>
+		<file name="CMemoryDB.h"/>
+		<file name="CDumpLog.h"/>
+		<file name="databaseGroupActions.h"/>
+		<file name="databaseIteratorRepository.h"/>
+		<file name="databaseData.h"/>
+	</headfile>
+	<command>
+		<pump>
+			<target type="file" value="BaseDataStruct.h"/>
+			<template type="file" value="BaseDataStruct.h.tpl"/>
+			<env type="parameter" value="databaseDataEnv"/>
+		</pump>
+		<pump>
+			<target type="file" value="BaseDataStruct.cpp"/>
+			<template type="file" value="BaseDataStruct.cpp.tpl"/>
+			<env type="parameter" value="databaseDataEnv"/>
+		</pump>
+		<pump>
+			<target type="file" value="databaseResources.h"/>
+			<template type="file" value="databaseResources.h.tpl"/>
+			<env type="parameter" value="databaseDataEnv"/>
+		</pump>
+		<pump>
+			<target type="file" value="databaseResources.cpp"/>
+			<template type="file" value="databaseResources.cpp.tpl"/>
+			<env type="parameter" value="databaseDataEnv"/>
+		</pump>
+		<pump>
+			<target type="file" value="databaseFactories.h"/>
+			<template type="file" value="databaseFactories.h.tpl"/>
+			<env type="parameter" value="databaseDataEnv"/>
+		</pump>
+		<pump>
+			<target type="file" value="databaseFactories.cpp"/>
+			<template type="file" value="databaseFactories.cpp.tpl"/>
+			<env type="parameter" value="databaseDataEnv"/>
+		</pump>
+		<pump>
+			<target type="file" value="databaseFactorySearchs.cpp"/>
+			<template type="file" value="databaseFactorySearchs.cpp.tpl"/>
+			<env type="parameter" value="databaseDataEnv"/>
+		</pump>
+		<pump>
+			<target type="file" value="databaseIterators.h"/>
+			<template type="file" value="databaseIterators.h.tpl"/>
+			<env type="parameter" value="databaseDataEnv"/>
+		</pump>
+		<pump>
+			<target type="file" value="databaseIterators.cpp"/>
+			<template type="file" value="databaseIterators.cpp.tpl"/>
+			<env type="parameter" value="databaseDataEnv"/>
+		</pump>
+		<pump>
+			<target type="file" value="CMemoryDB.h"/>
+			<template type="file" value="CMemoryDB.h.tpl"/>
+			<env type="parameter" value="databaseDataEnv"/>
+		</pump>
+		<pump>
+			<target type="file" value="CMemoryDB.cpp"/>
+			<template type="file" value="CMemoryDB.cpp.tpl"/>
+			<env type="parameter" value="databaseDataEnv"/>
+		</pump>
+		<pump>
+			<target type="file" value="CDumpLog.h"/>
+			<template type="file" value="CDumpLog.h.tpl"/>
+			<env type="parameter" value="databaseDataEnv"/>
+		</pump>
+		<pump>
+			<target type="file" value="CDumpLog.cpp"/>
+			<template type="file" value="CDumpLog.cpp.tpl"/>
+			<env type="parameter" value="databaseDataEnv"/>
+		</pump>
+		<pump>
+			<target type="file" value="databaseGroupActions.h"/>
+			<template type="file" value="databaseGroupActions.h.tpl"/>
+			<env type="parameter" value="databaseDataEnv"/>
+		</pump>
+		<pump>
+			<target type="file" value="databaseGroupActions.cpp"/>
+			<template type="file" value="databaseGroupActions.cpp.tpl"/>
+			<env type="parameter" value="databaseDataEnv"/>
+		</pump>
+		<pump>
+			<target type="file" value="databaseIteratorRepository.h"/>
+			<template type="file" value="databaseIteratorRepository.h.tpl"/>
+			<env type="parameter" value="databaseDataEnv"/>
+		</pump>
+		<pump>
+			<target type="file" value="databaseIteratorRepository.cpp"/>
+			<template type="file" value="databaseIteratorRepository.cpp.tpl"/>
+			<env type="parameter" value="databaseDataEnv"/>
+		</pump>
+	</command>
+</packageDefine>

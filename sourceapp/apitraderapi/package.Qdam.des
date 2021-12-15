@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="gb2312"?>
+<packageDefine name="apitraderapi" version="1" type="cpp" includedir="." platform="all">
+	<parameter>
+		<useParameter name="APIFTDEnv"/>
+	</parameter>
+	<depend>
+		<package name="ftdprotocol" version="1"/>
+		<package name="apiuserapi" version="1"/>
+	</depend>
+	<cppfile>
+		<file name="FtdcTraderApiImpl.cpp"/>
+	</cppfile>
+	<headfile>
+		<file name="QdamFtdcTraderApi.h"/>
+		<file name="FtdcTraderApiImpl.h"/>
+	</headfile>
+	<command>
+		<pump>
+			<target type="file" value="QdamFtdcTraderApi.h"/>
+			<template type="file" value="FtdcTraderApi.h.tpl"/>
+			<env type="parameter" value="APIFTDEnv"/>
+		</pump>
+		<pump>
+			<target type="file" value="FtdcTraderApiImpl.h"/>
+			<template type="file" value="FtdcTraderApiImpl.h.tpl"/>
+			<env type="parameter" value="APIFTDEnv"/>
+		</pump>
+		<pump>
+			<target type="file" value="FtdcTraderApiImpl.cpp"/>
+			<template type="file" value="FtdcTraderApiImpl.cpp.tpl"/>
+			<env type="parameter" value="APIFTDEnv"/>
+		</pump>
+	</command>
+</packageDefine>

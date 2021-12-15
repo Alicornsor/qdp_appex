@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="gb2312"?>
+<packageDefine name="gatewaybase" version="1" type="cpp" includedir="." platform="all">
+	<parameter/>
+	<depend>
+		<package name="platform" version="1"/>
+		<package name="base" version="1"/>
+		<package name="probelogger" version="1"/>
+		<package name="utility" version="1"/>
+		<package name="datastruct" version="1"/>
+		<package name="network" version="1"/>
+		<package name="tcpnetwork" version="1"/>
+		<package name="protocol" version="1"/>
+		<package name="channelprotocol" version="1"/>
+		<package name="scpprotocol" version="1"/>
+		<package name="xmpprotocol" version="1"/>
+		<package name="xtpprotocol" version="1"/>
+		<package name="fib" version="1"/>
+		<package name="xtpfield" version="1"/>
+		<package name="ftdprotocol" version="1"/>
+		<package name="ftdfield" version="1"/>
+		<package name="UFCopy" version="1"/>
+		<package name="event" version="1"/>
+		<package name="customDataType" version="1"/>
+		<package name="xml" version="1"/>
+	</depend>
+	<cppfile>
+		<file name="GatewayClient.cpp"/>
+		<file name="GatewayServer.cpp"/>			
+	</cppfile>
+	<headfile>
+		<file name="GatewayClient.h"/>
+		<file name="GatewayServer.h"/>	
+	</headfile>
+	<command/>
+</packageDefine>

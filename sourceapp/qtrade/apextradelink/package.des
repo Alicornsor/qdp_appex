@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="gb2312"?>
+<packageDefine name="apextradelink" version="1" type="cpp" includedir="." platform="all">
+	<parameter/>
+	<depend>
+	</depend>
+	<cppfile>		
+		<file name="ApexTradeLink.cpp"/>
+	</cppfile>
+	<headfile>			
+		<file name="ApexTradeLink.h"/>
+		<file name="ApexFtdcTraderApi.h"/>
+		<file name="ApexFtdcUserApiDataType.h"/>
+		<file name="ApexFtdcUserApiStruct.h"/>		
+	</headfile>
+	<libfile>
+		<file name="apextraderapi"/>
+	</libfile>
+	<command/>
+</packageDefine>

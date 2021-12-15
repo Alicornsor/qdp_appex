@@ -1,0 +1,14 @@
+TRUNCATE t_oper_investorposition;
+TRUNCATE t_oper_datasyncstatus;
+TRUNCATE t_oper_exchange;
+TRUNCATE t_oper_instrument;
+TRUNCATE t_oper_investoraccount;
+TRUNCATE t_oper_order;
+TRUNCATE t_oper_orderinsertfailed;
+TRUNCATE t_oper_tmdbaccomplish;
+TRUNCATE t_oper_trade;
+TRUNCATE t_oper_user;
+TRUNCATE t_oper_usersession;
+TRUNCATE t_oper_investortradingright;
+TRUNCATE t_oper_sgedeferrate;
+TRUNCATE t_oper_systeminfo;

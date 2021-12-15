@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="gb2312"?>
+<packageDefine name="dbengine" version="1" type="cpp" includedir="." platform="all">
+	<parameter>
+	</parameter>
+	<depend>
+		<package name="platform" version="1"/>
+		<package name="base" version="1"/>
+		<package name="probelogger" version="1"/>
+		<package name="utility" version="1"/>
+		<package name="datastruct" version="1"/>
+		<package name="customDataType" version="1"/>
+		<package name="error" version="1"/>
+		<package name="xml" version="1"/>
+		<package name="xtpprotocol" version="1"/>
+		<package name="channelprotocol" version="1"/>
+		<package name="network" version="1"/>
+		<package name="protocol" version="1"/>
+		<package name="event" version="1"/>
+		<package name="xmpprotocol" version="1"/>
+		<package name="scpprotocol" version="1"/>
+		<package name="fib" version="1"/>
+		<package name="tcpnetwork" version="1"/>
+		<package name="UFCopy" version="1"/>
+		<package name="sqlapi" version="1"/>
+	</depend>
+	<cppfile>
+		<file name="DbConnection.cpp"/>
+		<file name="TMDBWorker.cpp"/>
+		<file name="TMDBScheduler.cpp"/>
+		<file name="AccomplishFlow.cpp"/>
+		<file name="TMDBEngine.cpp"/>
+	</cppfile>
+	<headfile>
+		<file name="DbConnection.h"/>
+		<file name="TMDBWorker.h"/>
+		<file name="TMDBScheduler.h"/>
+		<file name="AccomplishFlow.h"/>
+		<file name="TMDBEngine.h"/>		
+	</headfile>
+	<command>
+	</command>
+</packageDefine>

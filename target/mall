@@ -1,0 +1,71 @@
+### mall noclear	清理掉*.o文件
+### mall         	不清理文件，使用脚本中的版本号编译
+### mall qdp1.0.01 20140203  自定义版本号
+
+#!/bin/bash
+
+versionprefix=QDP_V2.1.3_intl_EP3
+
+if [ "$1" != "noclear" ]
+then
+	echo rm *.o files !
+	#删除.o文件，避免编译中间文件的混乱
+	cd ..
+	rm `find ./ -name *.o`
+	cd target
+	
+	versiondate=$1
+	if [ "$versiondate" = "" ]
+	then
+		versiondate=`date +%Y%m%d.%H:%M:%S`
+	fi
+
+	version=${versionprefix}_${versiondate}
+
+	#将此刻的时间变成编译version的时间
+	chmod +w ../sourcebase/version/versionValue.h
+	echo \#define QVERSION \"$version\" > ../sourcebase/version/versionValue.h
+fi
+
+
+
+#hpux和linux的编译设置，不同的环境按不同的方式编译
+os=`uname`
+if [ "$os" = "Linux" ]
+then
+	chmod u+x mall.linux
+	./mall.linux
+else 
+	if [ "$os" = "HP-UX" ]
+	then
+		chmod u+x mall.hpux
+		./mall.hpux
+	fi
+fi
+
+#编译所有的模块
+for project in qtrade qdata qquery qfixfront
+do 
+    echo make $project
+    cd $project 
+    amake $project.prj
+	make clean
+    make
+    cd ..
+done 
+
+cd ../tools/
+for project in testapi dumptool tload slogparser flowviewer
+do 
+    echo make $project
+    cd $project 
+    amake $project.prj
+    make
+    cd ..
+done 
+
+
+echo Below is compiling errors...
+find -name output | xargs grep 错误 >> error.txt
+find -name output | xargs grep error | grep -v errorDefine >>error.txt
+cat error.txt

@@ -1,0 +1,94 @@
+#femas remote shell ecall 飞马远程运行脚本
+#Editor: 徐忠华
+#date  : 2013-03-18
+#####################################################
+#define area  定义区域
+CP=scp
+SH="ssh -n"
+SH_ARG=""
+#PATH setup 路径设置
+BASEPATH=$HOME
+OBJPATH=$BASEPATH/run
+CFGPATH=$BASEPATH/config
+RunListFile=list.run
+UserListFile=list.user
+
+#####################################################
+#impl area 功能函数区
+#用户可以根据实际需要增加 可以通过ecall function来调用function中实现的功能
+#ecall会为功能函数传入两个参数 $1:远程机器名  $2:远程服务名 远程机器名=远程服务名+编号 远程机器名定义在/etc/hosts中
+
+pre_deploy_change_attr()
+{
+	$SH $1@$2 $SH_ARG chmod u+w start
+	$SH $1@$2 $SH_ARG chmod u+w stop
+	$SH $1@$2 $SH_ARG chmod u+w restart
+	$SH $1@$2 $SH_ARG chmod u+w chktime.sh
+	$SH $1@$2 $SH_ARG chmod u+w chearlog.sh	
+	$SH $1@$2 $SH_ARG chmod u+w backlog.sh		
+	$SH $1@$2 $SH_ARG chmod u+w GenMD5
+	$SH $1@$2 $SH_ARG chmod u+w diffini.sh
+	$SH $1@$2 $SH_ARG chmod u+w ./*/bin/* 
+	$SH $1@$2 $SH_ARG chmod -R u+w ./config/*	
+	chmod 750 deploy_batch	
+}
+
+aft_deploy_change_attr()
+{
+	$SH $1@$2 $SH_ARG chmod -w start
+	$SH $1@$2 $SH_ARG chmod -w stop
+	$SH $1@$2 $SH_ARG chmod -w restart
+	$SH $1@$2 $SH_ARG chmod -w chktime.sh
+	$SH $1@$2 $SH_ARG chmod -w clearlog.sh	
+	$SH $1@$2 $SH_ARG chmod -w GenMD5
+	$SH $1@$2 $SH_ARG chmod -w diffini.sh
+	$SH $1@$2 $SH_ARG chmod -w ./*/bin/*
+	$SH $1@$2 $SH_ARG chmod -R -w ./config/*	
+	chmod 400 deploy_batch
+}
+
+callhost()
+{
+	rm -r .$UserListFile
+	case $# in
+	1) ##如果没有参数，全部启动
+		cat $UserListFile > .$UserListFile;;
+	3) ##如果有3个参数，视为对user的过滤
+		grep $2 $UserListFile | grep $3 > .$UserListFile;;
+	esac
+
+	##循环每个用户，启动进程
+	cntexpr=`wc -l .$UserListFile | awk '{print $1}'`
+	cnt=`expr $cntexpr`
+	i=0
+	while [ $i -lt $cnt ]
+	do
+		i=`expr $i + 1 `
+		read user host
+		##每个user里面启动所有的进程
+		printf "%2d %s %s \n" $i $user $host
+		$1 $user $host
+	done < .$UserListFile		
+}
+
+
+#ecall主调用入口
+ecall()
+{
+	echo "#################################################"
+	echo "##    begin to run batch                      ###"
+	echo "#################################################"
+
+	if [ $# -eq 0 ]
+	then
+		echo "Usage: $0 [|aft_deploy_change_attr|pre_deploy_change_attr]"
+	else
+		 if [ "$1" = "pre_deploy_change_attr" -o "$1" = "aft_deploy_change_attr" ]
+		 then
+			callhost $*
+		 else
+			echo "输入参数错误!!!"
+		 fi
+	fi
+}
+ecall $*

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="gb2312"?>
+
+<packageDefine name="channelprotocol" version="1" type="cpp" includedir="." platform="all">
+	<parameter/>
+	<depend>
+		<package name="platform" version="1"/>
+		<package name="base" version="1"/>
+		<package name="probelogger" version="1"/>
+		<package name="utility" version="1"/>
+		<package name="datastruct" version="1"/>
+		<package name="network" version="1"/>
+		<package name="protocol" version="1"/>
+		<package name="event" version="1"/>
+	</depend>
+	<cppfile>
+		<file name="ChannelProtocol.cpp"/>
+		<file name="ChannelPackage.cpp"/>
+		<file name="Session.cpp"/>
+		<file name="SessionFactory.cpp"/>
+	</cppfile>
+	<headfile>
+		<file name="ChannelProtocol.h"/>
+		<file name="ChannelPackage.h"/>
+		<file name="Session.h"/>
+		<file name="SessionFactory.h"/>
+	</headfile>
+	<command/>
+</packageDefine>

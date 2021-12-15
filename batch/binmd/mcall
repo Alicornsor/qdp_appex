@@ -1,0 +1,327 @@
+#femas remote shell ecall qdp远程运行脚本
+#Editor: 徐忠华
+#date  : 2013-03-18
+#####################################################
+#define area  定义区域
+CP=scp
+SH="ssh -n"
+SH_ARG=""
+#PATH setup 路径设置
+BASEPATH=$HOME
+OBJPATH=$BASEPATH/run
+CFGPATH=$BASEPATH/config
+RunListFile=list.run
+UserListFile=list.user
+BACKUPPATH=$HOME/backup/
+
+#####################################################
+#impl area 功能函数区
+#用户可以根据实际需要增加 可以通过ecall function来调用function中实现的功能
+#ecall会为功能函数传入两个参数 $1:远程机器名  $2:远程服务名 远程机器名=远程服务名+编号 远程机器名定义在/etc/hosts中
+
+
+clearlog()
+{
+	$SH $1@$2 $SH_ARG ./clearlog.sh
+}
+
+looptime()
+{
+	$SH $1@$2 $SH_ARG ./looptime.sh
+}
+
+chkver()
+{
+	$SH $1@$2 $SH_ARG "export LD_LIBRARY_PATH=.;cd uskernel1/bin; ./uskernel -v"
+	$SH $1@$2 $SH_ARG "export LD_LIBRARY_PATH=.;cd usquery1/bin; ./usquery -v"
+	$SH $1@$2 $SH_ARG "export LD_LIBRARY_PATH=.;cd ustmdb/bin; ./ustmdb -v"
+	$SH $1@$2 $SH_ARG "export LD_LIBRARY_PATH=.;cd ustinit/bin; ./ustinit -v"
+	$SH $1@$2 $SH_ARG "export LD_LIBRARY_PATH=.;cd mstinit/bin; ./mstinit -v"
+	$SH $1@$2 $SH_ARG "export LD_LIBRARY_PATH=.;cd mscffex/bin; ./mscffex -v"
+}
+
+dumptinit()
+{
+	$SH $1@$2 $SH_ARG ./dump.sh
+	$SH $1@$2 $SH_ARG "cd ./ustinit/dump;cat t_Sync_User.csv" >> mstinitdumptmp.csv 
+}
+
+chktxt()
+{	
+	#检查减少的错误记录
+	checktxt_rev $1 $2
+	#检查新增的错误记录
+	checktxt $1 $2
+}
+
+chksys()
+{
+	$SH $1@$2 $SH_ARG "grep SysNumber ./ustmdb/bin/ustmdb.ini"
+	$SH $1@$2 $SH_ARG "grep SysNumber ./ustinit/bin/ustinit.ini"
+}
+
+chkconfig()
+{
+	$SH $1@$2 $SH_ARG grep tcp ./config/DeployConfig.xml | grep -v ms
+	$SH $1@$2 $SH_ARG grep msudp ./config/DeployConfig.xml
+}
+
+backlog()
+{
+	curdate=`date "+%Y%m%d"`
+	$SH $1@$2 $SH_ARG ./backlog.sh $1_$2_$curdate
+	$CP $1@$2:./$1_$2_$curdate.tar.gz $BACKUPPATH
+	$CP $1@$2:./uskernel1/dump/check.txt $BACKUPPATH/checktxt/checktxt.$1.$2
+	$SH $1@$2 $SH_ARG rm -r	$1_$2_$curdate.tar.gz
+	ls -l $BACKUPPATH$1_$2_$curdate.tar.gz
+}
+
+chkbase()
+{
+	callfuns CheckAllPort
+	callfuns checklink
+}
+
+dispdisk()
+{
+	HomeBdf=`ssh -n  $1@$2 df -k | grep -w '/home'|grep -v '/home/' | awk ' { print $4 } '`
+	CffexBdf=`ssh -n  $1@$2 df -k | grep -w '/cffex'|grep -v '/cffex/' | awk ' { print $4 } '`
+	printf "%-24s /home:%-10s /cffex:%-12s\n"  "$1@$2"  	$HomeBdf	$CffexBdf
+}
+
+showtime()
+{
+	xxt=`$SH $1@$2 date`
+	echo $xxt;
+}
+
+checktxt_rev()
+{
+	$CP $1@$2:uskernel1/dump/check.txt ./.today.txt.$1.$2 >/dev/null
+	
+	TodayCheck=$BACKUPPATH/checktxt/checktxt.$1.$2
+	YestdayCheck=./.today.txt.$1.$2
+	
+	newls=`wc -l $TodayCheck |awk '{print $1}'`
+	newcnt=`expr $newls`
+	newi=0
+	newbegin=0
+	
+	#add by jiangyuan
+	DiffLinesCnt=0
+	echo "" > .tempcheckresult_reduce.txt.$1.$2
+	tempCheckResult=./.tempcheckresult_reduce.txt.$1.$2
+	
+	while [ $newi -lt $newcnt ]
+	do
+		read sline
+		
+		if [ "`echo $sline | cut -c 1-2`" = "共" ]
+		then
+			#检查结束，删掉临时文件
+			rm $tempCheckResult
+			return
+		fi
+
+		if [ $newbegin -eq 1 ]
+		then
+			FindIsExit $sline
+			#modify by jiangyuan
+			#不同的行数大于0，代表减少
+			if [ $DiffLinesCnt -gt 0 ]
+			then
+				IsChecked $sline
+				if [ $? -eq 1 ]
+				then
+					echo "减少" $DiffLinesCnt "行: " $sline
+					#写入临时文件
+					echo $sline >> $tempCheckResult
+				fi
+				
+			fi
+		fi
+		#暂时用这个表名字作为分隔符
+		if [ "$sline" = "UstpUserTradingRightSize" ]
+		then
+			newbegin=1
+		fi
+		
+		newi=`expr $newi + 1 `
+	done < $TodayCheck
+}
+
+checktxt()
+{
+	$CP $1@$2:uskernel1/dump/check.txt ./.today.txt.$1.$2 >/dev/null
+	#jiangyuan
+	TodayCheck=./.today.txt.$1.$2
+	YestdayCheck=$BACKUPPATH/checktxt/checktxt.$1.$2
+	
+	newls=`wc -l  $TodayCheck |awk '{print $1}'`
+	newcnt=`expr $newls`
+	newi=0
+	newbegin=0
+	
+	#add by jiangyuan
+	DiffLinesCnt=0
+	echo "" > .tempcheckresult_add.txt.$1.$2
+	tempCheckResult=./.tempcheckresult_add.txt.$1.$2
+	
+	while [ $newi -lt $newcnt ]
+	do
+		read sline
+		
+		if [ "`echo $sline | cut -c 1-2`" = "共" ]
+		then
+			echo $sline
+			echo "检查完毕!"
+			#检查结束，删掉临时文件
+			rm $tempCheckResult
+			return
+		fi
+	
+		if [ $newbegin -eq 1 ]
+		then
+			FindIsExit $sline
+			# modify by jiangyuan 
+			# 不同的行数大于0，代表新增
+			if [ $DiffLinesCnt -gt 0 ]
+			then
+				IsChecked $sline
+				if [ $? -eq 1 ]
+				then 
+					echo "新增" $DiffLinesCnt "行: " $sline
+					#把这一行写到临时文件里
+					echo $sline >> $tempCheckResult
+				fi
+				
+			fi
+		fi
+		#暂时用这个表名字作为分隔符
+		if [ "$sline" = "UstpUserTradingRightSize" ]
+		then
+			newbegin=1
+		fi
+		
+		newi=`expr $newi + 1 `
+	done < $TodayCheck	
+}
+
+#add by jiangyuan
+#检查check.txt中的一行是否已经检查过
+IsChecked()
+{
+	checkresult=`grep $1 $tempCheckResult`
+	if [ "$checkresult" = "" ]
+	then
+		return 1
+	else
+		return 0
+	fi
+}
+#错误记录在昨天和今天的check.txt中出现次数之差
+FindIsExit()
+{	
+	#add by jiangyuan 20121115
+	TodayLines=`grep $1 $TodayCheck | wc -l | awk '{print $1}'`
+	YesterdayLines=`grep $1 $YestdayCheck | wc -l | awk '{print $1}'`
+	
+	DiffLines=`expr $TodayLines - $YesterdayLines`
+	DiffLinesCnt=$DiffLines
+	return 0
+	#20121115 add end 
+}
+callhost()
+{
+	rm -r .$UserListFile
+	case $# in
+	1) ##如果没有参数，全部启动
+		cat $UserListFile > .$UserListFile;;
+	3) ##如果有3个参数，视为对user的过滤
+		grep $2 $UserListFile | grep $3 > .$UserListFile;;
+	esac
+
+	##循环每个用户，启动进程
+	cntexpr=`wc -l .$UserListFile | awk '{print $1}'`
+	cnt=`expr $cntexpr`
+	i=0
+	while [ $i -lt $cnt ]
+	do
+		i=`expr $i + 1 `
+		read user host
+		##每个user里面启动所有的进程
+		printf "%2d %s %s \n" $i $user $host
+		$1 $user $host
+	done < .$UserListFile
+}
+
+callall()
+{
+	rm -r .$UserListFile .$RunListFile
+	case $# in
+	1) ##如果没有参数，全部启动
+		cat $UserListFile > .$UserListFile
+		cat $RunListFile > .$RunListFile;;
+	3) ##如果有3个参数，视为对user的过滤
+		grep $2 $UserListFile | grep $3 > .$UserListFile
+		cat $RunListFile > .$RunListFile;;
+	4) ##如果4个参数，视为对user和进程的过滤
+		grep $2 $UserListFile | grep $3 > .$UserListFile
+		grep $4 $RunListFile > .$RunListFile;;
+	5) ##如果5个参数，视为对user和进程的过滤
+		grep $2 $UserListFile | grep $3 > .$UserListFile
+		grep $4 $RunListFile | grep $5 > .$RunListFile;;		
+	esac
+
+	##循环每个用户，启动进程
+	cntexpr=`wc -l .$UserListFile | awk '{print $1}'`
+	cnt=`expr $cntexpr`	
+	i=0
+	while [ $i -lt $cnt ]
+	do
+		i=`expr $i + 1 `
+		read user host
+		##每个user里面启动所有的进程
+		echo $i: $user @ $host
+		cntexpr2=`wc -l .$RunListFile | awk '{print $1}'`
+		cnt2=`expr $cntexpr2`		
+		i2=0
+		while [ $i2 -lt $cnt2 ]
+		do
+			i2=`expr $i2 + 1 `
+			read srv no
+			callImpl $i2 $1 $user $host $srv $no
+		done < .$RunListFile
+	done < .$UserListFile	
+}
+
+#ecall主调用入口
+ecall()
+{
+	echo "#################################################"
+	echo "##    begin to run batch                      ###"
+	echo "#################################################"
+
+	if [ $# -eq 0 ]
+	then
+		echo "Usage: $0 [clearlog|backlog|dispdisk|showtime|chktxt|chksys|chkconfig|dumptinit|chkver|looptime] [user host [module no]] [all]"
+	else
+		 if [ "$1" = "other" -o "$1" = "other2" ]
+		 then
+				callall $*
+		 else
+			if [ "$1" = "clearlog" -o "$1" = "backlog" -o "$1" = "dispdisk" -o "$1" = "showtime" -o "$1" = "chktxt" -o "$1" = "chksys" -o "$1" = "chkconfig" -o "$1" =  "dumptinit" -o "$1" = "chkver" -o "$1" = "looptime" ]
+			then
+				callhost $*
+			else
+				if [ "$1" = "chkbase"  ]
+				then
+					$1
+				else
+					echo "输入参数错误!!!"
+				fi
+			fi
+		 fi
+	fi
+}
+ecall $*

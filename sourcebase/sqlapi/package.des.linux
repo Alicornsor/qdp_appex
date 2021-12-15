@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="gb2312"?>
+<packageDefine name="sqlapi" version="1" type="cpp" includedir="." platform="all">
+	<parameter/>
+	<depend/>
+	<cppfile/>
+	<headfile>
+		<file name="SQLAPI.h"/>
+	</headfile>
+	<libfile>
+		<file name="sqlapi"/>
+		<file name="dl"/>		
+	</libfile>
+	<command/>
+</packageDefine>

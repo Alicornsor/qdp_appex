@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="gb2312"?>
+<packageDefine name="qtradefront" version="1" type="cpp" includedir="." platform="all">
+	<parameter/>
+	<depend>
+	</depend>
+	<cppfile>
+		<file name="KernelFront.cpp"/>
+		<file name="FrontForwarder.cpp"/>
+		<file name="GatewayFront.cpp"/>	
+		<file name="KernelRFront.cpp"/>	
+		<file name="KernelWriteThread.cpp"/>		
+	</cppfile>
+	<headfile>
+		<file name="KernelFront.h"/>	
+		<file name="FrontForwarder.h"/>
+		<file name="GatewayFront.h"/>
+		<file name="KernelRFront.h"/>	
+		<file name="KernelWriteThread.h"/>		
+	</headfile>
+	<command/>
+</packageDefine>

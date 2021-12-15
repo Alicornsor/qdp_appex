@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="gb2312"?>
+
+<packageDefine name="error" version="1" type="cpp" includedir="." platform="all">
+	<parameter>
+		<useParameter name="errorEnv"/>
+	</parameter>
+	<depend>
+		<package name="platform" version="1"/>
+		<package name="base" version="1"/>
+		<package name="probelogger" version="1"/>
+		<package name="utility" version="1"/>
+		<package name="datastruct" version="1"/>
+	</depend>
+	<cppfile>
+		<file name="errorDefine.cpp"/>
+	</cppfile>
+	<headfile>
+		<file name="errorDefine.h"/>
+	</headfile>
+	<command>
+		<pump>
+			<target type="file" value="errorDefine.cpp"/>
+			<template type="file" value="errorDefine.cpp.tpl"/>
+			<env type="parameter" value="errorEnv"/>
+		</pump>
+		<pump>
+			<target type="file" value="errorDefine.h"/>
+			<template type="file" value="errorDefine.h.tpl"/>
+			<env type="parameter" value="errorEnv"/>
+		</pump>
+	</command>
+</packageDefine>

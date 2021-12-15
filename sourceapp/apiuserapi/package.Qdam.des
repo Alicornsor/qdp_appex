@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="gb2312"?>
+<packageDefine name="apiuserapi" version="1" type="cpp" includedir="." platform="all">
+	<parameter>
+		<useParameter name="APIFTDEnv"/>
+	</parameter>
+	<depend>
+		<package name="platform" version="1"/>
+		<package name="base" version="1"/>
+		<package name="probelogger" version="1"/>
+		<package name="utility" version="1"/>
+		<package name="datastruct" version="1"/>
+		<package name="customDataType" version="1"/>
+		<package name="ftdfield" version="1"/>
+		<package name="UFCopy" version="1"/>
+		<package name="udpnetwork" version="1"/>
+	</depend>
+	<cppfile>
+		<file name="FtdcUserApiImpl.cpp"/>
+		<file name="FtdcUserApiImplBase.cpp"/>
+	</cppfile>
+	<headfile>
+		<file name="QdamFtdcUserApiDataType.h"/>
+		<file name="QdamFtdcUserApiStruct.h"/>
+		<file name="QdamFtdcUserApi.h"/>
+		<file name="FtdcUserApiImpl.h"/>
+		<file name="FtdcUserApiImplBase.h"/>
+		<file name="FtdcUserApiMacro.h"/>
+	</headfile>
+	<libfile>
+		<file name="IPHLPAPI">
+	</libfile>
+	<command>
+		<pump>
+			<target type="file" value="QdamFtdcUserApiDataType.h"/>
+			<template type="file" value="FtdcUserApiDataType.h.tpl"/>
+			<env type="parameter" value="APIFTDEnv"/>
+		</pump>
+		<pump>
+			<target type="file" value="QdamFtdcUserApiStruct.h"/>
+			<template type="file" value="FtdcUserApiStruct.h.tpl"/>
+			<env type="parameter" value="APIFTDEnv"/>
+		</pump>
+		<pump>
+			<target type="file" value="QdamFtdcUserApi.h"/>
+			<template type="file" value="FtdcUserApi.h.tpl"/>
+			<env type="parameter" value="APIFTDEnv"/>
+		</pump>
+		<pump>
+			<target type="file" value="FtdcUserApiImpl.h"/>
+			<template type="file" value="FtdcUserApiImpl.h.tpl"/>
+			<env type="parameter" value="APIFTDEnv"/>
+		</pump>
+		<pump>
+			<target type="file" value="FtdcUserApiImpl.cpp"/>
+			<template type="file" value="FtdcUserApiImpl.cpp.tpl"/>
+			<env type="parameter" value="APIFTDEnv"/>
+		</pump>
+		<pump>
+			<target type="file" value="FtdcUserApiMacro.h"/>
+			<template type="file" value="FtdcUserApiMacro.h.tpl"/>
+			<env type="parameter" value="APIFTDEnv"/>
+		</pump>
+	</command>
+</packageDefine>

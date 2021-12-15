@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="gb2312"?>
+<packageDefine name="tload" version="1" type="cpp" includedir="." platform="all">
+	<parameter/>
+	<depend/>
+	<cppfile>
+		<file name="Processor.cpp"/>
+		<file name="tload.cpp"/>
+		<file name="TypeDefine.cpp"/>
+		<file name="ProcessCmd.cpp"/>
+	</cppfile>
+	<headfile>
+		<file name="Processor.h"/>
+		<file name="TypeDefine.h"/>
+		<file name="ProcessCmd.h"/>
+	</headfile>
+	<command/>
+</packageDefine>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="gb2312"?>
+<packageDefine name="qtrade" version="1" type="cpp" includedir="." platform="all">
+	<parameter/>
+	<depend>
+		<package name="platform" version="1"/>
+		<package name="base" version="1"/>
+		<package name="probelogger" version="1"/>
+		<package name="utility" version="1"/>
+		<package name="datastruct" version="1"/>
+		<package name="event" version="1"/>
+		<package name="network" version="1"/>
+		<package name="tcpnetwork" version="1"/>
+		<package name="udpnetwork" version="1"/>
+		<package name="protocol" version="1"/>
+		<package name="channelprotocol" version="1"/>
+		<package name="xtpprotocol" version="1"/>
+		<package name="xmpprotocol" version="1"/>
+		<package name="fibprotocol" version="1"/>		
+		<package name="fib" version="1"/>
+		<package name="fibproxyfield" version="1"/>
+		<package name="xml" version="1"/>
+		<package name="version" version="1"/>
+		<package name="scpprotocol" version="1"/>
+		<package name="ftdprotocol" version="1"/>
+		<package name="nsprotocol" version="1"/>
+		<package name="compressprotocol" version="1"/>
+		<package name="xtpfield" version="1"/>
+		<package name="customDataType" version="1"/>
+		<package name="ftdfield" version="1"/>
+		<package name="UFCopy" version="1"/>		
+		<package name="error" version="1"/>					
+		<package name="memorydatabase" version="1"/>	
+	</depend>
+	<cppfile>
+		<file name="qtrade.cpp"/>		
+		<file name="MdUdpSvr.cpp"/>			
+		<file name="KernelTradeEngine.cpp"/>	
+		<file name="UsScheduler.cpp"/>
+	</cppfile>
+	<headfile>
+		<file name="MdUdpSvr.h"/>		
+		<file name="KernelTradeEngine.h"/>	
+		<file name="TinitFlowSubscriber.h"/>	
+		<file name="UsTrigger.h"/>
+		<file name="UsScheduler.h"/>
+		<file name="ExchangeLinkTimer.h"/>
+	</headfile>
+	<command/>
+</packageDefine>

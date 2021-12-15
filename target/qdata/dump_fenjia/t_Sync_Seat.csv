@@ -1,0 +1,3 @@
+"BrokerID","APIID","ExchangeID","ParticipantID","SeatID","SeatPassword","ApiLinkType","RecvRtn","MainSeat","QueryBase","QueryPosition","ResumeType","Heartbeat","IsActive","RiskCheck","FrontAddr","SeatStatus","OrderLocalID","LinkBrokerID","TradingDay","CheckTradingDay","Custom"
+"guofu","4","SHFE","0385","0385c5c","385385","2","1","0","1","1","1","60","1","1","f=tcp://192.168.11.131:32005","1","","","2011111","0",""
+guofu,3,QDPMd,md_link,md_link,md_link,g,0,0,0,0,0,60,1,0,tcp://127.0.0.1:30007,1,000000000000,"","2011111","0",""

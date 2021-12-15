@@ -1,0 +1,26 @@
+ID=`cat apiname`
+cp ../datamodel/commonEnv/exinfo.${ID}.xml ../datamodel/commonEnv/exinfo.xml
+cp ../sourceapp/apitraderapi/package.${ID}.des ../sourceapp/apitraderapi/package.des
+cp apiuserapi/apiuserapi.${ID}.prj apiuserapi/apiuserapi.prj
+cp apitraderapi/apitraderapi.${ID}.prj apitraderapi/apitraderapi.prj
+
+
+os=`uname`
+if [ "$os" = "Linux" ];then
+	cp apiuserapi/apiuserapi.${ID}.shm.prj apiuserapi/apiuserapi.prj
+	cp apitraderapi/apitraderapi.${ID}.shm.prj apitraderapi/apitraderapi.prj
+	cp ../sourceapp/apiuserapi/package.${ID}.des_linux ../sourceapp/apiuserapi/package.des
+else
+	cp ../sourceapp/apiuserapi/package.${ID}.des ../sourceapp/apiuserapi/package.des
+fi
+
+for project in apiuserapi apitraderapi
+do 
+    echo make $project
+    cd $project 
+    amake $project.prj
+	make clean
+    make
+	SONAME=`ls *.so`
+    cd ..
+done

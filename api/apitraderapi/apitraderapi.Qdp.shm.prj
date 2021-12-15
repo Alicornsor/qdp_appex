@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="gb2312"?>
+<project target="qdptraderapi" targettype="dll" hasdebug="yes" hasmap="no" hasprofile="no" multithread="yes" warninglevel="2" libs="" cppflags="-DTRADERAPI -DLIB_TRADER_API_EXPORT -DDEBUG_NOT_LOG -DNGES_TRADEAPILIMIT" ldflags="" arflags="">
+	<package name="platform" dir="../../sourcebase/platform"/>
+	<package name="base" dir="../../sourcebase/base"/>
+	<package name="version" dir="../../sourcebase/version"/>
+	<package name="utility" dir="../../sourcebase/utility"/>
+	<package name="probelogger" dir="../../sourcebase/probelogger"/>
+	<package name="datastruct" dir="../../sourcebase/datastruct"/>
+	<package name="event" dir="../../sourcebase/event"/>
+	<package name="network" dir="../../sourcebase/network"/>
+	<package name="tcpnetwork" dir="../../sourcebase/tcpnetwork"/>
+	<package name="udpnetwork" dir="../../sourcebase/udpnetwork"/>
+	<package name="protocol" dir="../../sourcebase/protocol"/>
+	<package name="channelprotocol" dir="../../sourcebase/channelprotocol"/>
+	<package name="xmpprotocol" dir="../../sourcebase/xmpprotocol"/>
+	<package name="compressprotocol" dir="../../sourcebase/compressprotocol"/>
+	<package name="ftdprotocol" dir="../../sourcebase/ftdprotocol"/>
+	<package name="nsprotocol" dir="../../sourcebase/nsprotocol"/>
+	<package name="multiprotocol" dir="../../sourcebase/multiprotocol"/>
+	<package name="customDataType" dir="../../sourcebase/customDataType">
+		<parameter name="UFDatatypeEnv" value="../../datamodel/commonEnv/UFDataType.xml"/>
+	</package>
+	<package name="ftdfield" dir="../../sourcebase/ftdfield">
+		<parameter name="FTDEnv" value="../../datamodel/envGenerated/FTD.xml"/>
+	</package>
+	<package name="shmnetwork" dir="../../sourcebase/shmnetwork"/>
+	<package name="UFCopy" dir="../../sourcebase/UFCopy">
+		<parameter name="UFEntityEnv" value="../../datamodel/commonEnv/UFEntity.xml"/>
+		<parameter name="MDBEnv" value="../../datamodel/envGenerated/MDB.xml"/>
+		<parameter name="XTPEnv" value="../../datamodel/envGenerated/XTP.xml"/>
+		<parameter name="FTDEnv" value="../../datamodel/envGenerated/FTD.xml"/>
+	</package>
+	<package name="apiuserapi" dir="../../sourceapp/apiuserapi">
+		<parameter name="APIFTDEnv" value="../../datamodel/envGenerated/FTD.xml ../../datamodel/commonEnv/exinfo.xml"/>
+	</package>
+	<package name="apitraderapi" dir="../../sourceapp/apitraderapi">
+		<parameter name="APIFTDEnv" value="../../datamodel/envGenerated/FTD.xml ../../datamodel/commonEnv/exinfo.xml ../../datamodel/env/traderapi.xml"/>
+	</package>
+</project>

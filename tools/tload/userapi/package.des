@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="gb2312"?>
+<packageDefine name="userapi" version="1" type="cpp" includedir="." platform="all">
+	<parameter/>
+	<depend/>
+	<cppfile>
+	</cppfile>
+	<headfile>
+		<file name="QdpFtdcUserApi.h"/>
+		<file name="QdpFtdcUserApiDataType.h"/>
+		<file name="QdpFtdcUserApiStruct.h"/>
+	</headfile>
+	<libfile>
+		<file name="qdpuserapi">
+	</libfile>
+	<command/>
+</packageDefine>

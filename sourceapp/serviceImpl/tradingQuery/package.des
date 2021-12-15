@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="gb2312"?>
+
+<packageDefine name="tradingQueryServiceImpl" version="1" type="cpp" includedir="." platform="all">
+	<parameter>
+		<useParameter name="XTPEnv"/>
+		<useParameter name="MDBEnv"/>
+	</parameter>
+	<depend>
+		<package name="platform" version="1"/>
+		<package name="base" version="1"/>
+		<package name="probelogger" version="1"/>
+		<package name="utility" version="1"/>
+		<package name="datastruct" version="1"/>
+		<package name="customDataType" version="1"/>
+		<package name="memorydatabase" version="1"/>
+		<package name="serviceInterface" version="1"/>
+		<package name="error" version="1"/>
+	</depend>
+	<cppfile>
+		<file name="TradingQueryServiceImpl.cpp"/>
+		<file name="TradingQueryPredicts.cpp"/>
+		<file name="TradingResultImpl.cpp"/>
+	</cppfile>
+	<headfile>
+		<file name="TradingQueryServiceImpl.h"/>
+		<file name="TradingQueryPredicts.h"/>
+		<file name="TradingResultImpl.h"/>
+	</headfile>
+	<command>
+		<pump>
+			<target type="file" value="TradingQueryPredicts.cpp"/>
+			<template type="file" value="TradingQueryPredicts.cpp.tpl"/>
+			<env type="parameter" value="MDBEnv"/>
+		</pump>
+		<pump>
+			<target type="file" value="TradingQueryPredicts.h"/>
+			<template type="file" value="TradingQueryPredicts.h.tpl"/>
+			<env type="parameter" value="MDBEnv"/>
+		</pump>
+	</command>
+</packageDefine>

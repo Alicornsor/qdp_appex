@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="gb2312"?>
+<packageDefine name="fixheader" version="1" type="cpp" includedir="." platform="all">
+	<parameter/>
+	<depend>
+	    <package name="fix42" version="1"/>
+	</depend>
+	<headfile>
+	    <file name="FixIncludes.h"/>
+		<file name="UpFixValues.h"/>
+		<file name="Acceptor.h"/>
+		<file name="Allocator.h"/>
+		<file name="Application.h"/>
+		<file name="CallStack.h"/>
+		<file name="config.h"/>
+		<file name="config_windows.h"/>
+		<file name="DatabaseConnectionID.h"/>
+		<file name="DatabaseConnectionPool.h"/>
+		<file name="DataDictionary.h"/>
+		<file name="DataDictionaryProvider.h"/>
+		<file name="Dictionary.h"/>
+		<file name="DOMDocument.h"/>
+		<file name="Event.h"/>
+		<file name="Exceptions.h"/>
+		<file name="Field.h"/>
+		<file name="FieldConvertors.h"/>
+		<file name="FieldMap.h"/>
+		<file name="FieldNumbers.h"/>
+		<file name="Fields.h"/>
+		<file name="FieldTypes.h"/>
+		<file name="FileLog.h"/>
+		<file name="FileStore.h"/>
+		<file name="FixFieldNumbers.h"/>
+		<file name="FixFields.h"/>
+		<file name="FixValues.h"/>
+		<file name="FlexLexer.h"/>
+		<file name="Group.h"/>
+		<file name="HtmlBuilder.h"/>
+		<file name="HttpConnection.h"/>
+		<file name="HttpMessage.h"/>
+		<file name="HttpParser.h"/>
+		<file name="HttpServer.h"/>
+		<file name="index.h"/>
+		<file name="Initiator.h"/>
+		<file name="LIBXML_DOMDocument.h"/>
+		<file name="Log.h"/>
+		<file name="Message.h"/>
+		<file name="MessageCracker.h"/>
+		<file name="MessageSorters.h"/>
+		<file name="MessageStore.h"/>
+		<file name="MSXML_DOMDocument.h"/>
+		<file name="Mutex.h"/>
+		<file name="MySQLConnection.h"/>
+		<file name="MySQLLog.h"/>
+		<file name="MySQLStore.h"/>
+		<file name="NullStore.h"/>
+		<file name="OdbcConnection.h"/>
+		<file name="OdbcLog.h"/>
+		<file name="OdbcStore.h"/>
+		<file name="Parser.h"/>
+		<file name="PostgreSQLConnection.h"/>
+		<file name="PostgreSQLLog.h"/>
+		<file name="PostgreSQLStore.h"/>
+		<file name="Queue.h"/>
+		<file name="Responder.h"/>
+		<file name="Session.h"/>
+		<file name="SessionFactory.h"/>
+		<file name="SessionID.h"/>
+		<file name="SessionSettings.h"/>
+		<file name="SessionState.h"/>
+		<file name="Settings.h"/>
+		<file name="SocketAcceptor.h"/>
+		<file name="SocketConnection.h"/>
+		<file name="SocketConnector.h"/>
+		<file name="SocketInitiator.h"/>
+		<file name="SocketMonitor.h"/>
+		<file name="SocketServer.h"/>
+		<file name="stdafx.h"/>
+		<file name="strptime.h"/>
+		<file name="ThreadedSocketAcceptor.h"/>
+		<file name="ThreadedSocketConnection.h"/>
+		<file name="ThreadedSocketInitiator.h"/>
+		<file name="TimeRange.h"/>
+		<file name="Utility.h"/>
+		<file name="Values.h"/>
+		<file name="ThreadQueue.h"/>
+	</headfile>
+	<cppfile/>
+	<command/>
+</packageDefine>

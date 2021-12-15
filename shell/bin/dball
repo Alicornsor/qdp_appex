@@ -1,0 +1,7 @@
+if [ $# -eq 0 ]
+then
+	echo "Usage: $0 esins|ctpins|chkorder|chktrade|chksessioni|clear|chksystemstatus [dbnumber]"
+	exit
+else
+	./callone dbaction.sh $1 ../list/list.db $2
+fi

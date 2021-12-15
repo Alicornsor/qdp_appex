@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="gb2312"?>
+<!DOCTYPE project SYSTEM "C:\wsh\project.dtd">
+<project target="flowviewer" targettype="exe" hasdebug="yes" hasmap="no" hasprofile="no" multithread="yes" warninglevel="2" libs="" cppflags="" ldflags="" arflags="">
+	<package name="platform" dir="../../sourcebase/platform"/>
+	<package name="base" dir="../../sourcebase/base"/>
+	<package name="utility" dir="../../sourcebase/utility"/>
+	<package name="probelogger" dir="../../sourcebase/probelogger"/>
+	<package name="datastruct" dir="../../sourcebase/datastruct"/>
+	<package name="event" dir="../../sourcebase/event"/>
+	<package name="network" dir="../../sourcebase/network"/>
+	<package name="tcpnetwork" dir="../../sourcebase/tcpnetwork"/>
+	<package name="udpnetwork" dir="../../sourcebase/udpnetwork"/>
+	<package name="protocol" dir="../../sourcebase/protocol"/>
+	<package name="channelprotocol" dir="../../sourcebase/channelprotocol"/>
+	<package name="xtpprotocol" dir="../../sourcebase/xtpprotocol"/>
+	<package name="xmpprotocol" dir="../../sourcebase/xmpprotocol"/>
+	<package name="scpprotocol" dir="../../sourcebase/scpprotocol"/>
+	<package name="customDataType" dir="../../sourcebase/customDataType">
+		<parameter name="UFDatatypeEnv" value="../../datamodel/commonEnv/UFDataType.xml"/>
+	</package>
+	<package name="xtpfield" dir="../../sourcebase/xtpfield">
+		<parameter name="XTPEnv" value="../../datamodel/envGenerated/XTP.xml"/>
+	</package>
+	<package name="flowviewer" dir="."/>
+</project>

@@ -1,0 +1,24 @@
+echo "please enter : user (example:fmsys01)  "
+read user
+if [ "$user" = "" ]
+then
+	echo error in user: $user!
+	exit
+fi
+
+echo "please enter : host (example:sqfm-knl1)  "
+read host
+if [ "$host" = "" ]
+then
+	echo error in host: $host!
+	exit
+fi
+
+echo "are you sure to start $user @ $host ? (yes or no)  "
+read sure
+if [ "$sure" = "yes" ]
+then
+	./run_batch startservice $user $host
+else
+        echo you give up start !
+fi

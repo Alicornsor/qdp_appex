@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="gb2312"?>
+
+<packageDefine name="xml" version="1" type="cpp" includedir="." platform="all">
+	<parameter/>
+	<depend>
+		<package name="platform" version="1"/>
+		<package name="base" version="1"/>
+		<package name="probelogger" version="1"/>
+		<package name="datastruct" version="1"/>
+		<package name="utility" version="1"/>
+	</depend>
+	<cppfile>
+		<file name="CXML.cpp"/>
+		<file name="XMLAction.cpp"/>
+	</cppfile>
+	<headfile>
+		<file name="CXML.h"/>
+		<file name="XMLAction.h"/>
+	</headfile>
+	<command/>
+</packageDefine>

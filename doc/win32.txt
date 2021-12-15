@@ -1,0 +1,7 @@
+qdata qdp localhost qdata
+
+qquery qdp localhost qquery
+
+qtrade qdp localhost qtrade
+
+qgwsgeV3 qdp localhost qgwsgeV3

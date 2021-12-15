@@ -1,0 +1,567 @@
+<?xml version="1.0" encoding="GB2312"?>
+<!DOCTYPE XTP SYSTEM "../commonEnv/XTP.dtd">
+<XTP author="LXB(CFFEXIT)" version="1.0" head="XTP" comment="XTP协议中用到的各种包和域">
+	<packages>
+		<!-- api 用户操作-->
+		<package name="Nop" tid="0x00009000" comment="空操作" usage="request">
+			<field name="RspInfo" minOccur="1" maxOccur="1"/>
+		</package>	
+		<package name="RspError" tid="0x00009001" comment="错误应答" usage="response">
+			<field name="RspInfo" minOccur="1" maxOccur="1"/>
+		</package>
+		<package name="ReqUserLogin" tid="0x00009002" comment="用户登录请求" usage="request">
+			<field name="UserLogin" minOccur="1" maxOccur="1"/>
+		</package>
+		<package name="RspUserLogin" tid="0x00009003" comment="用户登录应答" usage="response">
+			<field name="UserLogin" minOccur="1" maxOccur="*"/>
+			<field name="RspInfo" minOccur="1" maxOccur="1"/>
+		</package>
+		<package name="ReqUserLogout" tid="0x00009004" comment="用户退出请求" usage="request">
+			<field name="UserLogout" minOccur="1" maxOccur="1"/>
+		</package>
+		<package name="RspUserLogout" tid="0x00009005" comment="用户退出应答" usage="response">
+			<field name="UserLogout" minOccur="1" maxOccur="1"/>
+			<field name="RspInfo" minOccur="1" maxOccur="1"/>
+		</package>
+		<package name="ReqOrderInsert" tid="0x00009006" comment="报单录入请求" usage="request">
+			<field name="InputOrder" minOccur="1" maxOccur="1"/>
+		</package>
+		<package name="RspOrderInsert" tid="0x00009007" comment="报单录入应答" usage="response">
+			<field name="InputOrder" minOccur="1" maxOccur="1"/>
+			<field name="RspInfo" minOccur="1" maxOccur="1"/>
+		</package>
+		<package name="ReqOrderAction" tid="0x00009008" comment="报单操作请求" usage="request">
+			<field name="OrderAction" minOccur="1" maxOccur="*"/>
+		</package>
+		<package name="RspOrderAction" tid="0x00009009" comment="报单操作应答" usage="response">
+			<field name="OrderAction" minOccur="1" maxOccur="*"/>
+			<field name="RspInfo" minOccur="1" maxOccur="*"/>
+		</package>
+		<package name="ReqUserPasswordUpdate" tid="0x0000900A" comment="用户密码修改请求" usage="request">
+			<field name="UserPasswordUpdate" minOccur="1" maxOccur="1"/>
+		</package>
+		<package name="RspUserPasswordUpdate" tid="0x0000900B" comment="用户密码修改应答" usage="response">
+			<field name="UserPasswordUpdate" minOccur="1" maxOccur="1"/>
+			<field name="RspInfo" minOccur="1" maxOccur="1"/>
+		</package>
+		<package name="ReqForceUserExit" tid="0x0000900C" comment="强制用户退出请求" usage="request">
+			<field name="ForceUserExit" minOccur="1" maxOccur="1"/>
+		</package>
+		<package name="RspForceUserExit" tid="0x0000900D" comment="强制用户退出应答" usage="response">
+			<field name="ForceUserExit" minOccur="1" maxOccur="1"/>
+			<field name="RspInfo" minOccur="1" maxOccur="1"/>
+		</package>
+		<package name="ReqForceUserLogout" tid="0x0000900E" comment="用户会话删除请求" usage="request">
+			<field name="ForceUserExit" minOccur="1" maxOccur="1"/>
+		</package>
+		<package name="RspForceUserLogout" tid="0x0000900F" comment="用户会话删除应答" usage="response">
+			<field name="ForceUserExit" minOccur="1" maxOccur="1"/>
+			<field name="RspInfo" minOccur="1" maxOccur="1"/>
+		</package>
+		<package name="ReqDumpMemDb" tid="0x00009010" comment="请求导出内存数据库" usage="request">		
+			<field name="MemDb" minOccur="1" maxOccur="1"/>
+		</package>
+		<package name="UpdateSystemStatus" tid="0x00009011" comment="更新系统状态" usage="request">		
+			<field name="SystemStatus" minOccur="1" maxOccur="1"/>
+		</package>
+		<package name="ReqAccountDeposit" tid="0x00009012" comment="投资者资金帐户出入金请求" usage="request">
+			<field name="AccountDeposit" minOccur="1" maxOccur="1"/>
+		</package>
+		<package name="RspAccountDeposit" tid="0x00009013" comment="投资者资金帐户出入金应答" usage="response">
+			<field name="AccountDepositRes" minOccur="1" maxOccur="1"/>
+			<field name="RspInfo" minOccur="1" maxOccur="1"/>
+		</package>
+		
+		<!-- api 用户操作-->		
+		<!-- api 用户查询-->		
+		<package name="ReqQryInvestorAccount" tid="0x00009020" comment="投资者资金查询请求" usage="request">
+			<field name="QryInvestorAccount" minOccur="1" maxOccur="1"/>
+		</package>
+		<package name="RspQryInvestorAccount" tid="0x00009021" comment="投资者资金查询应答" usage="response">
+			<field name="InvestorAccount" minOccur="1" maxOccur="*"/>
+			<field name="RspInfo" minOccur="1" maxOccur="*"/>
+		</package>		
+		<package name="ReqQryOrder" tid="0x00009022" comment="报单查询请求" usage="request">
+			<field name="QryOrder" minOccur="1" maxOccur="1"/>
+		</package>
+		<package name="RspQryOrder" tid="0x00009023" comment="报单查询应答" usage="response">
+			<field name="Order" minOccur="1" maxOccur="*"/>
+			<field name="RspInfo" minOccur="1" maxOccur="*"/>
+		</package>
+		<package name="ReqQryTrade" tid="0x00009024" comment="成交单查询请求" usage="request">
+			<field name="QryTrade" minOccur="1" maxOccur="1"/>
+		</package>
+		<package name="RspQryTrade" tid="0x00009025" comment="成交单查询应答" usage="response">
+			<field name="Trade" minOccur="1" maxOccur="*"/>
+			<field name="RspInfo" minOccur="1" maxOccur="*"/>
+		</package>
+		<package name="ReqQryInvestor" tid="0x00009026" comment="投资者查询请求" usage="request">
+			<field name="QryInvestor" minOccur="1" maxOccur="1"/>
+		</package>
+	 	<package name="RspQryInvestor" tid="0x00009027" comment="投资者查询应答" usage="response">
+			<field name="Investor" minOccur="1" maxOccur="*"/>
+			<field name="RspInfo" minOccur="1" maxOccur="*"/>
+		</package>
+		<package name="ReqQryOrderInsertFailed" tid="0x0000902A" comment="报单查询请求" usage="request">
+			<field name="QryOrderInsertFailed" minOccur="1" maxOccur="1"/>
+		</package>	
+		<package name="ReqQryInstrument" tid="0x0000902B" comment="合约查询请求" usage="request">
+			<field name="QryInstrument" minOccur="1" maxOccur="1"/>
+		</package>
+		<package name="RspQryInstrument" tid="0x0000902C" comment="合约查询应答" usage="response">
+			<field name="Instrument" minOccur="1" maxOccur="*"/>
+			<field name="RspInfo" minOccur="1" maxOccur="*"/>
+		</package>
+		<package name="ReqQryUser" tid="0x0000902D" comment="用户查询请求" usage="request">
+			<field name="QryUser" minOccur="1" maxOccur="1"/>
+		</package>
+		<package name="RspQryUser" tid="0x0000902E" comment="用户查询应答" usage="response">
+			<field name="User" minOccur="1" maxOccur="*"/>
+			<field name="RspInfo" minOccur="1" maxOccur="1"/>
+		</package>	
+		<package name="ReqQryExchange" tid="0x00009031" comment="交易所查询请求" usage="request">
+			<field name="QryExchange" minOccur="1" maxOccur="1"/>
+		</package>
+		<package name="RspQryExchange" tid="0x00009032" comment="交易所查询应答" usage="response">
+			<field name="RspExchange" minOccur="1" maxOccur="*"/>
+			<field name="RspInfo" minOccur="1" maxOccur="*"/>
+		</package>	
+		<package name="ReqQryUserInvestor" tid="0x00009033" comment="可用投资者账户查询请求" usage="request">
+			<field name="QryUserInvestor" minOccur="1" maxOccur="1"/>
+		</package>
+		<package name="RspQryUserInvestor" tid="0x00009034" comment="可用投资者账户查询应答" usage="response">
+			<field name="UserInvestor" minOccur="1" maxOccur="*"/>
+			<field name="RspInfo" minOccur="1" maxOccur="*"/>
+		</package>
+		<package name="ReqQryInvestorPosition" tid="0x00009035" comment="投资者持仓查询请求" usage="request">
+			<field name="QryInvestorPosition" minOccur="1" maxOccur="1"/>
+		</package>
+		<package name="RspQryInvestorPosition" tid="0x00009036" comment="投资者持仓查询应答" usage="response">
+			<field name="InvestorPosition" minOccur="1" maxOccur="*"/>
+			<field name="RspInfo" minOccur="1" maxOccur="*"/>
+		</package>
+		<package name="ReqQryMarketData" tid="0x0000903D" comment="普通行情查询请求" usage="request">
+			<field name="QryMarketData" minOccur="1" maxOccur="1"/>
+		</package>
+		<package name="RspQryMarketData" tid="0x0000903E" comment="普通行情查询应答" usage="response">
+			<field name="MarketData" minOccur="1" maxOccur="*"/>
+			<field name="RspInfo" minOccur="1" maxOccur="*"/>
+		</package>
+		<package name="ReqQryInvestorFee" tid="0x0000903F" comment="投资者手续费率查询请求" usage="request">
+			<field name="QryInvestorFee" minOccur="1" maxOccur="1"/>
+		</package>
+		<package name="RspQryInvestorFee" tid="0x00009040" comment="投资者手续费率查询应答" usage="response">
+			<field name="InvestorFee" minOccur="1" maxOccur="*"/>
+			<field name="RspInfo" minOccur="1" maxOccur="*"/>
+		</package>
+		<package name="ReqQryInvestorMargin" tid="0x00009041" comment="投资者保证金率查询请求" usage="request">
+			<field name="QryInvestorMargin" minOccur="1" maxOccur="1"/>
+		</package>
+		<package name="RspQryInvestorMargin" tid="0x00009042" comment="投资者保证金率查询应答" usage="response">
+			<field name="InvestorMargin" minOccur="1" maxOccur="*"/>
+			<field name="RspInfo" minOccur="1" maxOccur="*"/>
+		</package>		
+		<package name="ReqQryDepthMarketData" tid="0x00009045" comment="行情查询请求" usage="request">
+			<field name="QryMarketData" minOccur="1" maxOccur="1"/>
+		</package>
+		<package name="RspQryDepthMarketData" tid="0x00009046" comment="行情查询应答" usage="response">
+			<field name="RspMarketData" minOccur="1" maxOccur="*"/>
+			<field name="RspInfo" minOccur="1" maxOccur="*"/>
+		</package>
+		<!-- added by chengm 20160816-->
+		<package name="ReqQrySGEDeferRate" tid="0x00009049" comment="金交所递延费率查询请求" usage="request">
+			<field name="QrySGEDeferRate" minOccur="1" maxOccur="1"/>
+		</package>
+		<package name="RspQrySGEDeferRate" tid="0x0000904A" comment="金交所递延费率查询应答" usage="response">
+			<field name="SGEDeferRate" minOccur="1" maxOccur="*"/>
+			<field name="RspInfo" minOccur="1" maxOccur="*"/>
+		</package>
+		<!-- add by chengm 20170220  -->
+		<package name="ReqQryInvestorPositionDetail" tid="0x0000904B" comment="持仓明细查询请求" usage="request">
+			<field name="QryInvestorPositionDetail" minOccur="1" maxOccur="*"/>
+		</package>
+		<package name="RspQryInvestorPositionDetail" tid="0x0000904C" comment="持仓明细查询应答" usage="response">
+			<field name="RspInvestorPositionDetail" minOccur="1" maxOccur="1"/>
+		</package>
+		<!--持仓明细-->
+		<package name="ExInvestorPositionDetail" tid="0x0000904D" comment="持仓明细表" usage="response">
+			<field name="InvestorPositionDetail" minOccur="1" maxOccur="*"/>
+		</package>
+		<!--<package name="ReqQryQuote" tid="0x00009202" comment="报价查询请求" usage="request">
+			<field name="QryQuote" minOccur="1" maxOccur="1"/>
+		</package>
+		<package name="RspQryQuote" tid="0x00009203" comment="报价查询应答" usage="response">
+			<field name="Quote" minOccur="1" maxOccur="1"/>
+			<field name="RspInfo" minOccur="1" maxOccur="1"/>
+		</package>-->
+		<package name="ReqQryInvestorOptionFee" tid="0x00009204" comment="投资者期权手续费率查询请求" usage="request">
+			<field name="QryInvestorOptionFee" minOccur="1" maxOccur="1"/>
+		</package>
+		<package name="RspQryInvestorOptionFee" tid="0x00009205" comment="投资者期权手续费率查询应答" usage="response">
+			<field name="InvestorOptionFee" minOccur="1" maxOccur="*"/>
+			<field name="RspInfo" minOccur="1" maxOccur="*"/>
+		</package>
+		<package name="ReqQryInvestorPositionLimit" tid="0x00009206" comment="投资者持仓限额查询请求" usage="request">
+			<field name="QryInvestorPositionLimit" minOccur="1" maxOccur="1"/>
+		</package>
+		<package name="RspQryInvestorPositionLimit" tid="0x00009207" comment="投资者期权手续费率查询应答" usage="response">
+			<field name="InvestorPositionLimit" minOccur="1" maxOccur="*"/>
+			<field name="RspInfo" minOccur="1" maxOccur="*"/>
+		</package>	
+		<package name="ReqQrySeatInfo" tid="0x00009208" comment="会员席位信息查询请求" usage="request">
+			<field name="QrySeatInfo" minOccur="1" maxOccur="1"/>
+		</package>
+		<package name="RspQrySeatInfo" tid="0x00009209" comment="会员席位信息查询应答" usage="response">
+			<field name="SeatInfo" minOccur="1" maxOccur="1"/>
+			<field name="RspInfo" minOccur="1" maxOccur="*"/>
+		</package>
+		<package name="ReqQryExchangeDiffTime" tid="0x00009210" comment="交易时间偏差查询请求" usage="request">
+			<field name="QryExchangeDiffTime" minOccur="1" maxOccur="1"/>
+		</package>
+		<package name="RspQryExchangeDiffTime" tid="0x00009211" comment="交易时间偏差查询应答" usage="response">
+			<field name="RspExchangeDiffTime" minOccur="1" maxOccur="*"/>
+			<field name="RspInfo" minOccur="1" maxOccur="*"/>
+		</package>		
+		<!-- api 用户查询-->
+	
+		<!-- 上场 -->
+		<package name="DataSyncStart" tid="0x00009050" comment="数据同步开始" usage="tinit">
+			<field name="TradingDay" minOccur="1" maxOccur="1"/>
+		</package>
+		<package name="DataSyncEnd" tid="0x00009051" comment="数据同步结束" usage="tinit">
+			<field name="TradingDay" minOccur="1" maxOccur="1"/>
+		</package>				
+		<package name="InitExchange" tid="0x00009052" comment="交易所" usage="exchangeInit">
+			<field name="Exchange" minOccur="1" maxOccur="*"/>
+		</package>	
+		<package name="InitSeat" tid="0x00009054" comment="席位" usage="exchangeInit">
+			<field name="Seat" minOccur="1" maxOccur="*"/>
+		</package>		
+		<package name="InitUser" tid="0x00009055" comment="用户" usage="exchangeInit">
+			<field name="User" minOccur="1" maxOccur="*"/>
+		</package>
+		<package name="InitInvestor" tid="0x00009056" comment="投资者" usage="exchangeInit">
+			<field name="Investor" minOccur="1" maxOccur="*"/>
+		</package>
+		<package name="InitClientTradingID" tid="0x00009057" comment="交易编码" usage="exchangeInit">
+			<field name="ClientTradingID" minOccur="1" maxOccur="*"/>
+		</package>
+		<package name="InitUserInvestor" tid="0x00009058" comment="用户投资者关系" usage="exchangeInit">
+			<field name="UserInvestor" minOccur="1" maxOccur="*"/>
+		</package>
+		<package name="InitUserTradingRight" tid="0x00009059" comment="用户交易权限" usage="exchangeInit">
+			<field name="UserTradingRight" minOccur="1" maxOccur="*"/>
+		</package>		
+		<package name="InitInvestorAccount" tid="0x0000905A" comment="投资者资金账户" usage="exchangeInit">
+			<field name="InvestorAccount" minOccur="1" maxOccur="*"/>
+		</package>				
+		<package name="InitInstrument" tid="0x0000905B" comment="合约" usage="exchangeInit">
+			<field name="Instrument" minOccur="1" maxOccur="*"/>
+		</package>			
+		<package name="InitInvestorMargin" tid="0x0000905D" comment="投资者保证金率" usage="exchangeInit">
+			<field name="InvestorMargin" minOccur="1" maxOccur="*"/>
+		</package>
+		<package name="InitInvestorFee" tid="0x0000905E" comment="投资者手续费" usage="exchangeInit">
+			<field name="InvestorFee" minOccur="1" maxOccur="*"/>
+		</package>
+		<package name="InitInvestorPosition" tid="0x0000905F" comment="投资者持仓" usage="exchangeInit">
+			<field name="InvestorPosition" minOccur="1" maxOccur="*"/>
+		</package>
+		<package name="DbInvestorAccountDeposit" tid="0x00009061" comment="客户资金帐户出入金" usage="dbmt">
+			<field name="DbmtInvestorAccountDeposit" minOccur="1" maxOccur="*"/>
+		</package>
+		<package name="DbInsUser" tid="0x00009062" comment="增加交易用户" usage="dbmt">
+			<field name="DbmtUser" minOccur="1" maxOccur="*"/>
+		</package>
+		<package name="DbUpdUser" tid="0x00009063" comment="修改交易用户" usage="dbmt">
+			<field name="DbmtUser" minOccur="1" maxOccur="*"/>
+		</package>	
+		<!--add by lihh 20130522-->
+		<package name="InitSystemStatus" tid="0x00009064" comment="系统状态" usage="exchangeInit">
+			<field name="SystemStatus" minOccur="1" maxOccur="*"/>
+		</package>
+		<!--end add-->
+		<!--add by lidp 20140101 为了实现大边保证金，增加-->
+		<package name="InitInstrumentGroup" tid="0x00009065" comment="合约和合约组关系" usage="exchangeInit">
+			<field name="InstrumentGroup" minOccur="1" maxOccur="*"/>
+		</package>	
+		<package name="InitClientMarginCombType" tid="0x00009066" comment="交易编码组合保证金类型" usage="exchangeInit">
+			<field name="ClientMarginCombType" minOccur="1" maxOccur="*"/>
+		</package>
+		<package name="InitSGEDeferRate" tid="0x00009102" comment="金交所递延费率信息表" usage="exchangeInit">
+			<field name="SGEDeferRate" minOccur="1" maxOccur="*"/>
+		</package>		
+		
+		<!--add by chengm 20160427 客户交易编码交易权限实时上场-->
+		<package name="DbClientTradingID" tid="0x00009100" comment="客户资金帐户出入金" usage="dbmt">
+			<field name="DbmtClientTradingID" minOccur="1" maxOccur="*"/>
+		</package>		
+		<!--end add-->
+		<package name="InitCmbInstrumentDetail" tid="0x00009098" comment="组合合约明细应答"  usage="exchangeInit">
+			<field name="CmbInstrumentDetail" minOccur="1" maxOccur="*"/>
+		</package>
+		<!--add by jinpc 20160907-->
+		<package name="InitInvestorTradingRight" tid="0x00009101" comment="投资者交易权限" usage="exchangeInit">
+			<field name="InvestorTradingRight" minOccur="1" maxOccur="*"/>
+		</package>
+		<package name="DbUpdInvestorTradingRight" tid="0x00009103" comment="修改投资者权限" usage="dbmt">
+			<field name="DbmtInvestorTradingRight" minOccur="1" maxOccur="*"/>
+		</package>	
+		<package name="DbInsInvestorTradingRight" tid="0x00009104" comment="增加投资者权限" usage="dbmt">
+			<field name="DbmtInvestorTradingRight" minOccur="1" maxOccur="*"/>
+		</package>
+		<package name="DbDelInvestorTradingRight" tid="0x00009105" comment="删除投资者权限" usage="dbmt">
+			<field name="DbmtInvestorTradingRight" minOccur="1" maxOccur="*"/>
+		</package>
+		<!--add by jinpc 20161009-->
+		<package name="DbUpdUserIP" tid="0x00009106" comment="交易员IP" usage="dbmt">
+			<field name="DbmtUserIP" minOccur="1" maxOccur="*"/>
+		</package>
+		<package name="DbInsUserIP" tid="0x00009107" comment="交易员IP" usage="dbmt">
+			<field name="DbmtUserIP" minOccur="1" maxOccur="*"/>
+		</package>
+		<package name="DbDelUserIP" tid="0x00009108" comment="交易员IP" usage="dbmt">
+			<field name="DbmtUserIP" minOccur="1" maxOccur="*"/>
+		</package>
+		<package name="InitUserIP" tid="0x00009109" comment="交易员IP" usage="exchangeInit">
+			<field name="UserIP" minOccur="1" maxOccur="*"/>
+		</package>
+		<package name="InitInvestorOptionFee" tid="0x00009112" comment="投资者期权手续费" usage="exchangeInit">
+			<field name="InvestorOptionFee" minOccur="1" maxOccur="*"/>
+		</package>	
+		<package name="InitSystemInfo" tid="0x00009113" comment="QDP系统信息表" usage="exchangeInit">
+			<field name="SystemInfo" minOccur="1" maxOccur="1"/>
+		</package>
+		<package name="InitInvestorPositionLimit" tid="0x00009114" comment="客户持仓限额" usage="exchangeInit">
+			<field name="InvestorPositionLimit" minOccur="1" maxOccur="1"/>
+		</package>
+		<package name="InitExchTimeDiff" tid="0x00009115" comment="交易所时间偏差表" usage="exchangeInit">
+			<field name="ExchTimeDiff" minOccur="1" maxOccur="*"/>
+		</package>
+		
+		<!-- 上场 -->
+		<!-- 内部通知 -->
+		<package name="NtfTimeSync" tid="0x00009070" comment="时间同步" usage="notifyIn">
+			<field name="CurrentTime" minOccur="1" maxOccur="1"/>
+		</package>
+		<package name="NtfCommPhaseChange" tid="0x00009071" comment="通讯阶段切换通知" usage="notifyIn">
+			<field name="CommPhase" minOccur="1" maxOccur="1"/>
+		</package>		
+		<package name="NtfOrder" tid="0x00009072" comment="报单通知" usage="notifyOut">
+			<field name="Order" minOccur="1" maxOccur="*"/>
+		</package>
+		<package name="NtfTrade" tid="0x00009073" comment="成交通知" usage="notifyOut">
+			<field name="Trade" minOccur="1" maxOccur="*"/>
+		</package>
+		<package name="NtfInstrumentStatusUpdate" tid="0x00009074" comment="合约交易状态改变通知" usage="notifyOut">
+			<field name="InstrumentStatus" minOccur="1" maxOccur="*"/>
+		</package>
+		<package name="NtfDelUserSession" tid="0x00009075" comment="会话删除通知" usage="notifyOut">
+			<field name="UserSession" minOccur="1" maxOccur="*"/>
+		</package>
+		<package name="NtfMarketData" tid="0x00009076" comment="普通行情通知" usage="notifyOut">
+			<field name="MarketData" minOccur="1" maxOccur="*"/>
+		</package>
+		<package name="NtfLifeCycle" tid="0x00009079" comment="通知生命周期号" usage="notifyOut">			
+			<field name="LifeCycleID" minOccur="1" maxOccur="1"/>
+		</package>
+		<package name="NtfErrorOrderInsert" tid="0x0000907A" comment="报单录入错误通知" usage="notifyOut">			
+			<field name="InputOrder" minOccur="1" maxOccur="1"/>
+			<field name="RspInfo" minOccur="1" maxOccur="1"/>
+		</package>
+		<package name="NtfErrorOrderAction" tid="0x0000907B" comment="报单操作错误通知" usage="notifyOut">			
+			<field name="OrderAction" minOccur="1" maxOccur="1"/>
+			<field name="RspInfo" minOccur="1" maxOccur="1"/>
+		</package>
+		<package name="NtfMemtableChange" tid="0x0000907E" comment="内存表变化通知" usage="notifyOut">			
+			<field name="MemtableChange" minOccur="1" maxOccur="1"/>
+		</package>
+		<package name="ReqQueryExInstrument" tid="0x00009081" comment="通知报盘机查询合约请求" usage="request">
+			<field name="Exchange" minOccur="1" maxOccur="1"/>
+		</package>
+		<package name="RspQueryExInstrument" tid="0x00009082" comment="报盘机查询合约应答" usage="response">
+			<field name="Instrument" minOccur="1" maxOccur="*"/>
+			<field name="RspInfo" minOccur="1" maxOccur="*"/>
+		</package>
+		<package name="RspQueryExTradingDay" tid="0x00009083" comment="报盘机查询交易日应答" usage="response">
+			<field name="ExchangeTradingDay" minOccur="1" maxOccur="*"/>
+			<field name="RspInfo" minOccur="1" maxOccur="*"/>			
+		</package>	
+		<package name="RspQueryExInvestorPosition" tid="0x00009084" comment="报盘机查询客户持仓应答" usage="response">
+			<field name="InvestorPosition" minOccur="1" maxOccur="*"/>
+			<field name="RspInfo" minOccur="1" maxOccur="*"/>			
+		</package>	
+		<package name="RspQueryExMarketData" tid="0x00009085" comment="报盘机查询行情应答" usage="response">
+			<field name="MarketData" minOccur="1" maxOccur="*"/>
+			<field name="RspInfo" minOccur="1" maxOccur="*"/>			
+		</package>	
+		<package name="ReqRollbakPreOrder" tid="0x0000909D" comment="解冻InnerLink未报入交易的报单" usage="request">
+			<field name="QueryFinishNotify" minOccur="1" maxOccur="*"/>
+		</package>
+
+		
+		<!-- longqy 20130903 出入金回报通知 -->	
+		<package name="NtfInvestorAccountDeposit" tid="0x00009086" comment="出入金回报通知" usage="notifyOut">
+			<field name="InvestorAccountDepositNtf" minOccur="1" maxOccur="*"/>
+		</package>
+		<!-- chengm 20151230 报盘机查询结束消息通知(innerLink使用) -->
+		<package name="QueryBaseFinish" tid="0x00009087" comment="报盘机查询结束" usage="response">
+			<field name="QueryFinishNotify" minOccur="1" maxOccur="*"/>
+		</package>
+		<package name="RspQueryExCapitalData" tid="0x00009088" comment="报盘机查询资金应答" usage="response">
+			<field name="ExCapitalData" minOccur="1" maxOccur="*"/>
+			<field name="RspInfo" minOccur="1" maxOccur="*"/>			
+		</package>	
+		<package name="RspQueryExCmbInstrumentDetail" tid="0x00009090" comment="报盘机查询组合合约明细应答" usage="response">
+			<field name="CmbInstrumentDetail" minOccur="1" maxOccur="*"/>
+			<field name="RspInfo" minOccur="1" maxOccur="*"/>
+		</package>
+		<!-- chengm 20160817 金交所递延费率通知 -->
+		<package name="NtfSGEDeferRate" tid="0x0000909E" comment="金交所递延费率通知" usage="notifyOut">			
+			<field name="SGEDeferRate" minOccur="1" maxOccur="1"/>	
+		</package>	
+
+		<!-- 内部通知 -->	
+		<package name="InterLoginInfo" tid="0x00009095" comment="成功登陆通知" usage="notifyOut">
+			<field name="InterLoginInfo" minOccur="1" maxOccur="1"/>
+		</package>	
+		<!-- chengm 20150819 频繁撤单通知 -->
+		<package name="NtfMessageNotify" tid="0x00009096" comment="QDP警告消息通知"  usage="notifyOut">
+			<field name="MessageNotifyInfo" minOccur="1" maxOccur="1"/>
+		</package>	
+		<package name="InnerLogin" tid="0x00009415" comment="内部登录请求" usage="notifyIn">
+			<field name="InnerLogin" minOccur="1" maxOccur="1"/>
+		</package>		
+		<!-- add by jinpc 20170112 -->
+		<package name="ExQryMBLMarketData" tid="0x00009416" comment="内部分价表查询应答" usage="request">
+			<field name="MBLMarketData" minOccur="1" maxOccur="1"/>
+		</package>
+		<package name="ReqQryMBLMarketData" tid="0x00009417" comment="分价表查询请求" usage="request">
+			<field name="QryMBLMarketData" minOccur="1" maxOccur="1"/>
+		</package>
+		<package name="RspQryMBLMarketData" tid="0x00009418" comment="分价表查询应答" usage="response">
+			<field name="MBLMarketData" minOccur="1" maxOccur="1"/>
+			<field name="RspInfo" minOccur="1" maxOccur="*"/>
+		</package>
+		<package name="NtfPositionProfit" tid="0x00009419" comment="内存表变化通知" usage="notifyOut">			
+			<field name="PositionProfit" minOccur="1" maxOccur="*"/>
+		</package>
+		<package name="RspQueryExchDiffTime" tid="0x00009420" comment="报盘机查询交易时间偏差应答" usage="response">
+			<field name="ExchTimeDiff" minOccur="1" maxOccur="*"/>
+			<field name="RspInfo" minOccur="1" maxOccur="*"/>			
+		</package>
+	</packages>
+	
+	<fields>
+		<!-- 交易所相关业务 -->		
+		<fieldDefine name="Instrument" fid="0x3002" comment="合约" ref="Instrument"/>		
+		<fieldDefine name="InstrumentStatus" fid="0x3003" comment="合约状态" ref="InstrumentStatus"/>		
+		<fieldDefine name="Exchange" fid="0x3004" comment="交易所" ref="Exchange"/>
+		<fieldDefine name="ClientTradingID" fid="0x3006" comment="客户交易编码" ref="ClientTradingID"/>
+		<fieldDefine name="InvestorMargin" fid="0x3007" comment="投资者保证金率" ref="InvestorMargin"/>
+		<fieldDefine name="InvestorPosition" fid="0x3008" comment="投资者合约持仓" ref="InvestorPosition"/>		
+		<fieldDefine name="InvestorFee" fid="0x3009" comment="投资者手续费" ref="InvestorFee"/>
+		<fieldDefine name="UserInvestor" fid="0x300B" comment="用户投资者关系" ref="UserInvestor"/>
+		<fieldDefine name="Investor" fid="0x300C" comment="投资者" ref="Investor"/>
+		<fieldDefine name="InvestorAccount" fid="0x300E" comment="投资者资金账户" ref="InvestorAccount"/>
+		<fieldDefine name="Money" fid="0x300F" comment="保证金手续费" ref="Money"/>	
+		<fieldDefine name="ExCapitalData" fid="0x3008" comment="客户资金信息" ref="InvestorAccount"/>		
+		<fieldDefine name="MBLMarketData" fid="0x3106" comment="分价行情应答" ref="MBLMarketData"/>	
+		<fieldDefine name="QryMBLMarketData" fid="0x3107" comment="分价行情请求" ref="EXMBLMarketData"/>
+		<fieldDefine name="ExchTimeDiff" fid="0x3108" comment="交易所时间偏差" ref="ExchTimeDiff"/>
+		
+		<!-- 系统用户 -->			
+		<fieldDefine name="User" fid="0x3020" comment="用户" ref="User"/>
+		<fieldDefine name="UserLogin" fid="0x3021" comment="用户登录" ref="LoginFull"/>				
+		<fieldDefine name="UserSession" fid="0x3022" comment="用户会话" ref="UserSession"/>
+		<fieldDefine name="UserLogout" fid="0x3023" comment="用户登录退出" ref="UserLogout"/>		
+		<fieldDefine name="Seat" fid="0x3024" comment="席位" ref="Seat"/>		
+		<fieldDefine name="UserTradingRight" fid="0x3025" comment="用户交易权限" ref="UserTradingRight"/>		
+		<fieldDefine name="UserPasswordUpdate" fid="0x3027" comment="用户口令修改" ref="UserPasswordUpdate"/>
+		<fieldDefine name="ForceUserExit" fid="0x3028" comment="强制用户退出" ref="ForceUserExit"/>	
+		<fieldDefine name="LoginInfo" fid="0x3029" comment="登陆通知" ref="LoginInfo"/>			
+		<!-- 实时报单、行情 -->			
+		<fieldDefine name="InputOrder" fid="0x3030" comment="输入报单" ref="InputOrder"/>
+		<fieldDefine name="OrderAction" fid="0x3031" comment="报单操作" ref="OrderAction"/>
+		<fieldDefine name="Trade" fid="0x3032" comment="成交" ref="Trade"/>	
+		<fieldDefine name="Order" fid="0x3033" comment="报单" ref="Order"/>	
+		<fieldDefine name="MarketData" fid="0x3034" comment="市场行情" ref="MarketData"/>
+		<fieldDefine name="MarketDataLastMatch" fid="0x3035" comment="行情最新成交属性" ref="MarketDataLastMatchUSKernel"/>
+		<fieldDefine name="DepthMarketData" fid="0x3036" comment="市场深度行情" ref="DepthMarketData"/>
+		<fieldDefine name="RspMarketData" fid="0x3037" comment="行情查询应答" ref="RspMarketData"/>		
+		<!-- 查询相关 -->			
+		<fieldDefine name="QryOrder" fid="0x3040" comment="报单查询" ref="QryOrder"/>
+		<fieldDefine name="QryOrderInsertFailed" fid="0x3041" comment="错单查询" ref="QryOrder"/>
+		<fieldDefine name="QryTrade" fid="0x3042" comment="成交查询" ref="QryTrade"/>	
+		<fieldDefine name="QryInvestor" fid="0x3043" comment="投资者查询" ref="QryInvestor"/>		
+		<fieldDefine name="QryInvestorAccount" fid="0x3044" comment="投资者资金查询" ref="QryInvestorAccount"/>
+		<fieldDefine name="QryInstrument" fid="0x3045" comment="合约查询" ref="APIQryInstrument"/>
+		<fieldDefine name="QryUser" fid="0x3046" comment="用户查询" ref="APIQryUser"/>
+		<fieldDefine name="QryInvestorPosition" fid="0x3047" comment="投资者持仓请求" ref="QryInvestorPosition"/>		
+		<fieldDefine name="QryUserInvestor" fid="0x3049" comment="可用投资者账户查询" ref="QryUserInvestor"/>
+		<fieldDefine name="QryExchange" fid="0x304B" comment="交易所查询" ref="APIQryExchange"/>
+		<fieldDefine name="RspInfo" fid="0x304D" comment="响应信息" ref="ErrorType"/>
+		<fieldDefine name="RspExchange" fid="0x304E" comment="交易所应答" ref="APIExchange"/>
+		<fieldDefine name="QryMarketData" fid="0x304F" comment="行情查询" ref="QryMarketData"/>	
+		<fieldDefine name="QryInvestorFee" fid="0x3050" comment="投资者手续费率查询" ref="QryInvestorFee"/>	
+		<fieldDefine name="QryInvestorMargin" fid="0x3051" comment="投资者保证金率查询" ref="QryInvestorMargin"/>
+		<fieldDefine name="QrySGEDeferRate" fid="0x3066" comment="金交所递延费率查询请求" ref="QrySGEDeferRate"/>
+		<fieldDefine name="SGEDeferRate" fid="0x3067" comment="金交所递延费率查询应答" ref="SGEDeferRate"/>
+
+		<!-- 控制 -->
+		<fieldDefine name="CommPhase" fid="0x3060" comment="通讯阶段" ref="CommPhase"/>
+		<fieldDefine name="TradingDay" fid="0x3061" comment="交易日" ref="TradingDay"/>
+		<fieldDefine name="CurrentTime" fid="0x3062" comment="当前时间" ref="CurrentTime"/>		
+		<fieldDefine name="LifeCycleID" fid="0x3063" comment="生命周期号">
+				<item name="LifeCycleID" type="SequenceNo" description="生命周期号"/>
+		</fieldDefine>
+		<fieldDefine name="MemDb" fid="0x3064" comment="内存表导出" ref="MemDb"/>			
+		<fieldDefine name="SystemStatus" fid="0x3065" comment="系统状态" ref="SystemStatus"/>
+		<!-- 上下场-->			
+		<fieldDefine name="DataSyncStatus" fid="0x3070" comment="系统数据同步状态" ref="DataSyncStatus"/>		
+		<fieldDefine name="DbmtInvestorAccountDeposit" fid="0x3071" comment="Dbmt投资者资金帐户入金" ref="DbmtInvestorAccountDeposit"/>
+		<fieldDefine name="DbmtUser" fid="0x3072" comment="Dbmt用户" ref="DbmtUser"/>			
+		<fieldDefine name="MemtableChange" fid="0x3073" comment="内存表变化" ref="MemtableChange"/>
+		<fieldDefine name="ExchangeTradingDay" fid="0x3081" comment="交易所交易日" ref="ExchangeTradingDay"/>
+		<!-- longqy 20130903 出入金回报通知 -->	
+		<fieldDefine name="InvestorAccountDepositNtf" fid="0x3085" comment="出入金回报通知" ref="InvestorAccountDepositNtf"/>
+		<!-- liumeng 20140817 错单表下场 -->
+		<fieldDefine name="OrderInsertFailed" fid="0x3086" comment="错单表" ref="OrderInsertFailed"/>
+		<!-- longqy 20141022 大边保证金功能2个表 -->
+		<fieldDefine name="InstrumentGroup" fid="0x3088" comment="合约和合约组关系" ref="InstrumentGroup"/>
+		<fieldDefine name="ClientMarginCombType" fid="0x3089" comment="交易编码组合保证金类型" ref="ClientMarginCombType"/>
+		<fieldDefine name="InterLoginInfo" fid="0x3096" comment="登录信息" ref="InterLoginInfo"/>
+		<!-- chengm 20150819 频繁撤单通知 -->
+		<fieldDefine name="MessageNotifyInfo" fid="0x3097" comment="QDP警告消息通知" ref="APIMessageNotifyInfo"/>
+		<fieldDefine name="AccountDeposit" fid="0x3098" comment="出入金请求" ref="InvestorAccountDeposit"/>
+		<fieldDefine name="AccountDepositRes" fid="0x3099" comment="出入金应答" ref="APIInvestorAccountDepositRes"/>
+		<!-- chengm 20151230 报盘机查询结束消息通知 -->
+		<fieldDefine name="QueryFinishNotify" fid="0x3100" comment="报盘机查询结束消息通知" ref="QueryFinishNotify"/>
+		<fieldDefine name="DbmtClientTradingID" fid="0x3109" comment="Dbmt客户交易编码交易权限" ref="DbmtClientTradingID"/>
+		<!-- chengm 20160301 组合合约明细表 -->
+		<fieldDefine name="CmbInstrumentDetail" fid="0x3102" comment="组合合约明细" ref="CmbInstrumentDetail"/>
+		<!-- chengm 2016523 GatewayClient内部登陆 -->
+		<fieldDefine name="InnerLogin" fid="0x3111" comment="内部登陆信息" ref="InnerLogin"/>
+		<!--add by jinpc 20160907-->
+		<fieldDefine name="InvestorTradingRight" fid="0x3112" comment="投资者交易权限" ref="InvestorTradingRight"/>	
+		<fieldDefine name="DbmtInvestorTradingRight" fid="0x3113" comment="Dbmt投资者权限" ref="DbmtInvestorTradingRight"/>
+		<!--add by jinpc 20161009-->
+		<fieldDefine name="UserIP" fid="0x3114" comment="用户IP" ref="UserIP"/>	
+		<fieldDefine name="DbmtUserIP" fid="0x3115" comment="Dbmt用户IP" ref="DbmtUserIP"/>
+		<!--add by chengm 20170221-->
+		<fieldDefine name="QryInvestorPositionDetail" fid="0x3116" comment="投资者持仓明细查询请求" ref="QryInvestorPositionDetail"/>
+		<fieldDefine name="RspInvestorPositionDetail" fid="0x3117" comment="投资者持仓明细应答" ref="InvestorPositionDetail"/>
+		<fieldDefine name="InvestorPositionDetail" fid="0x3118" comment="投资者持仓明细" ref="InvestorPositionDetail"/>
+		<fieldDefine name="QryInvestorOptionFee" fid="0x3121" comment="投资者期权手续费查询请求" ref="QryInvestorOptionFee"/>
+		<fieldDefine name="InvestorOptionFee" fid="0x3122" comment="投资者期权手续费" ref="InvestorOptionFee"/>
+		<fieldDefine name="PositionProfit" fid="0x3123" comment="投资者持仓盈亏" ref="PositionProfit"/>	
+		<fieldDefine name="SystemInfo" fid="0x3124" comment="QDP系统信息" ref="SystemInfo"/>
+		<fieldDefine name="QryInvestorPositionLimit" fid="0x3125" comment="投资者持仓限额查询请求" ref="QryInvestorPositionLimit"/>
+		<fieldDefine name="InvestorPositionLimit" fid="0x3126" comment="投资者持仓限额" ref="InvestorPositionLimit"/>	
+		<fieldDefine name="QrySeatInfo" fid="0x3127" comment="会员席位信息查询请求" ref="QrySeatInfo"/>
+		<fieldDefine name="SeatInfo" fid="0x3128" comment="会员席位信息查询应答" ref="SeatInfo"/>
+		<fieldDefine name="QryExchangeDiffTime" fid="0x3130" comment="交易时间偏差查询" ref="QryExchangeDiffTime"/>
+		<fieldDefine name="RspExchangeDiffTime" fid="0x3131" comment="交易时间偏差应答" ref="APIExchangeDiffTime"/>		
+	</fields>
+	<entities/>
+</XTP>

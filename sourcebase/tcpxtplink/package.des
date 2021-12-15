@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="gb2312"?>
+<packageDefine name="tcpxtplink" version="1" type="cpp" includedir="." platform="all">
+	<parameter/>
+	<depend>
+		<package name="tcpxtpprotocol" version="1"/>
+	</depend>
+	<cppfile>
+		<file name="XtpServer.cpp"/>
+		<file name="XtpClient.cpp"/>
+	</cppfile>
+	<headfile>
+		<file name="XtpServer.h"/>
+		<file name="XtpClient.h"/>
+	</headfile>
+	<command/>
+</packageDefine>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="gb2312"?>
+
+<packageDefine name="ftdfield" version="1" type="cpp" includedir="." platform="all">
+	<parameter>
+		<useParameter name="FTDEnv"/>
+	</parameter>
+	<depend>
+		<package name="platform" version="1"/>
+		<package name="base" version="1"/>
+		<package name="probelogger" version="1"/>
+		<package name="utility" version="1"/>
+		<package name="datastruct" version="1"/>
+		<package name="customDataType" version="1"/>
+	</depend>
+	<cppfile>
+		<file name="FtdData.cpp"/>
+		<file name="FtdPackageDesc.cpp"/>
+	</cppfile>
+	<headfile>
+		<file name="FtdData.h"/>
+		<file name="FtdPackageDesc.h"/>
+	</headfile>
+	<command>
+		<pump>
+			<target type="file" value="FtdPackageDesc.h"/>
+			<template type="file" value="FtdPackageDesc.h.tpl"/>
+			<env type="parameter" value="FTDEnv"/>
+		</pump>
+		<pump>
+			<target type="file" value="FtdPackageDesc.cpp"/>
+			<template type="file" value="FtdPackageDesc.cpp.tpl"/>
+			<env type="parameter" value="FTDEnv"/>
+		</pump>
+		<pump>
+			<target type="file" value="FtdData.h"/>
+			<template type="file" value="FtdData.h.tpl"/>
+			<env type="parameter" value="FTDEnv"/>
+		</pump>
+		<pump>
+			<target type="file" value="FtdData.cpp"/>
+			<template type="file" value="FtdData.cpp.tpl"/>
+			<env type="parameter" value="FTDEnv"/>
+		</pump>
+	</command>
+</packageDefine>
