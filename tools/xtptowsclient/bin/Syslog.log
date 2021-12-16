@@ -1,0 +1,11 @@
+Dec 16 14:36:14 DESKTOP-O33O095 xtptowsclient 0[26628]: Version QDP_V2.1.2_20171116_1
+Dec 16 14:36:14 DESKTOP-O33O095 xtptowsclient 0[26628]: CompLogLen 0
+Dec 16 14:36:14 DESKTOP-O33O095 xtptowsclient 0[26628]: TatalCompLog 0
+Dec 16 14:36:14 DESKTOP-O33O095 xtptowsclient 0[26628]: IncreaseCompLog 0
+Dec 16 14:36:18 DESKTOP-O33O095 xtptowsclient 0[26628]: event Connect 5 Connect to 127.0.0.1:30003 Error
+Dec 16 14:36:20 DESKTOP-O33O095 xtptowsclient 0[26628]: CompLogLen 0
+Dec 16 14:36:20 DESKTOP-O33O095 xtptowsclient 0[26628]: TatalCompLog 0
+Dec 16 14:36:20 DESKTOP-O33O095 xtptowsclient 0[26628]: IncreaseCompLog 0
+Dec 16 14:36:28 DESKTOP-O33O095 xtptowsclient 0[26628]: event Connect 5 Connect to 127.0.0.1:30003 Error
+Dec 16 14:36:30 DESKTOP-O33O095 xtptowsclient 0[26628]: TatalCompLog 0
+Dec 16 14:36:30 DESKTOP-O33O095 xtptowsclient 0[26628]: IncreaseCompLog 0

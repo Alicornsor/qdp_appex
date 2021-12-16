@@ -1,0 +1,674 @@
+/////////////// 用户操作应答 ////////////
+//用户登录应答
+FIELD [CUserLoginField] START
+    [TradingDay][0][20211213]
+    [UserID][0][CN002AM02]
+    [BrokerID][0][ltgj]
+    [Password][0][8200fefa63a61bdf5f57c8e52b14379c]
+    [UserProductInfo][0][InfiniV8_1]
+    [InterfaceProductInfo][0][QdpTraderAPI Win32 QDP_V2.1.9_clean L300]
+    [ProtocolInfo][0][FTD 1]
+    [IPAddress][0][192.168.201.296]
+    [MacAddress][0][A4:BB:6D:DE:6A:08]
+    [DataCenterID][2][0]
+    [OneTimePassword][0][]
+    [ClientIPAddress][0][]
+    [LoginTime][0][11:24:26]
+    [MaxOrderLocalID][0][]
+    [TradingSystemName][0][qtrade]
+    [UserType][0][49]
+    [MaxCommFlux][2][2147483647]
+    [SessionID][2][-1125515179]
+    [FrontID][2][1]
+    [SockID][2][0]
+    [ClientTradingDay][0][]
+    [Heartbeat][2][0]
+    [DialogSeqno][2][0]
+    [PrivateSeqno][2][0]
+    [PublicSeqno][2][0]
+    [LifeCycleID][2][0]
+FIELD [CUserLoginField] END
+FIELD [CRspInfoField] START
+    [ErrorID][2][0]
+    [ErrorMsg][0][登录成功]
+FIELD [CRspInfoField] END
+
+//用户退出应答
+FIELD [CUserLogoutField] START
+    [UserID][0][CN002AM02]
+    [BrokerID][0][ltgj]
+    [LogoutReason][2][0]
+    [SessionID][2][-1125515179]
+    [FrontID][2][1]
+FIELD [CUserLogoutField] END
+FIELD [CRspInfoField] START
+    [ErrorID][2][0]
+    [ErrorMsg][0][登出成功]
+FIELD [CRspInfoField] END
+
+//报单录入应答
+FIELD [CInputOrderField] START
+    [BrokerID][0][ltgj]
+    [ExchangeID][0][APEX]
+    [OrderSysID][0][        5313]
+    [InvestorID][0][ltgjQDPCN002]
+    [UserID][0][CN002AM02]
+    [InstrumentID][0][AUP]
+    [UserOrderLocalID][0][000000000008]
+    [OrderPriceType][0][50]
+    [Direction][0][48]
+    [OffsetFlag][0][255]
+    [HedgeFlag][0][49]
+    [LimitPrice][4][7.430010]
+    [Volume][2][1]
+    [TimeCondition][0][51]
+    [GTDDate][0][]
+    [VolumeCondition][0][49]
+    [MinVolume][2][2106588610]
+    [StopPrice][4][0.000000]
+    [ForceCloseReason][0][48]
+    [IsAutoSuspend][2][0]
+    [BusinessUnit][0][QDPCN002]
+    [UserCustom][0][]
+    [BranchID][0][]
+    [RecNum][2][0]
+    [BusinessType][0][49]
+    [TradingDay][0][]
+    [ParticipantID][0][A0011]
+    [ClientID][0][QDPCN002]
+    [SeatID][0][AS001110]
+    [InsertTime][0][]
+    [OrderLocalID][0][C00000000001]
+    [OrderSource][0][0]
+    [OrderStatus][0][0]
+    [CancelTime][0][]
+    [CancelUserID][0][]
+    [VolumeTraded][2][0]
+    [VolumeRemain][2][1]
+    [FrontID][2][1]
+    [SessionID][2][-1125515179]
+    [FrozenFee][4][0.000000]
+    [FrozenMargin][4][0.000000]
+    [FrozenPremium][4][0.000000]
+    [AccountID][0][]
+    [OrderUserID][0][]
+    [TradeType][0][0]
+    [DealFlag][0][0]
+    [TradeCommision][4][0.000000]
+    [TradeAmnt][4][0.000000]
+    [CancleVolume][2][0]
+    [RequestID][2][-1]
+    [APIID][2][2]
+    [IPAddress][0][192.168.201.296]
+    [MacAddress][0][A4:BB:6D:DE:6A:08]
+    [FTdRecvDown][2][-1980753841]
+    [CoreRecvDown][2][2106587220]
+    [CoreSendUp][2][-1980753718]
+    [CoreRecvUp][2][-1980752450]
+    [CoreSendDown][2][0]
+    [FTdSendDown][2][0]
+    [MarginCombType][0][0]
+    [InstrumentGroupID][0][]
+FIELD [CInputOrderField] END
+FIELD [CRspInfoField] START
+    [ErrorID][2][0]
+    [ErrorMsg][0][NONE]
+FIELD [CRspInfoField] END
+
+//报单操作(撤单)应答
+FIELD [COrderActionField] START
+    [ExchangeID][0][APEX]
+    [OrderSysID][0][        5313]
+    [BrokerID][0][ltgj]
+    [InvestorID][0][ltgjQDPCN002]
+    [UserID][0][CN002AM02]
+    [InstrumentID][0][]
+    [UserOrderActionLocalID][0][000000000016]
+    [UserOrderLocalID][0][000000000008]
+    [ActionFlag][0][48]
+    [LimitPrice][4][0.000000]
+    [VolumeChange][2][0]
+    [RecNum][2][0]
+    [FrontID][2][0]
+    [SessionID][2][0]
+    [UserCustom][0][]
+    [SeatID][0][AS001110]
+    [ActionLocalID][0][C00000000002]
+    [ClientID][0][QDPCN002]
+    [ParticipantID][0][A0011]
+    [CancelTime][0][]
+    [ActionSource][0][0]
+    [Tradable][2][0]
+    [OrderLocalID][0][]
+    [IsForgeRtn][2][0]
+    [APIID][2][2]
+    [IPAddress][0][]
+    [MacAddress][0][]
+    [OrderActionType][0][0]
+    [OrderBatchNo][0][]
+FIELD [COrderActionField] END
+FIELD [CRspInfoField] START
+    [ErrorID][2][0]
+    [ErrorMsg][0][撤单成功]
+FIELD [CRspInfoField] END
+
+//用户密码修改应答
+FIELD [CUserPasswordUpdateField] START
+    [BrokerID][0][ltgj]
+    [UserID][0][CN002AM02]
+    [OldPassword][0][8200fefa63a61bdf5f57c8e52b14379c]
+    [NewPassword][0][e9782e344866f342c913db7b3b15626e]
+FIELD [CUserPasswordUpdateField] END
+FIELD [CRspInfoField] START
+    [ErrorID][2][0]
+    [ErrorMsg][0][密码修改成功]
+FIELD [CRspInfoField] END
+
+//更新系统状态
+FIELD [CSystemStatusField] START
+    [TradingDay][0][]
+    [SystemStatus][0][53]
+FIELD [CSystemStatusField] END
+
+////////////////// 初始化状态 //////////////////
+//数据同步开始
+FIELD [CTradingDayField] START
+    [TradingDay][0][20211213]
+FIELD [CTradingDayField] END
+
+//数据同步结束
+FIELD [CTradingDayField] START
+    [TradingDay][0][20211213]
+FIELD [CTradingDayField] END
+
+//席位
+FIELD [CSeatField] START
+    [BrokerID][0][ltgj]
+    [APIID][2][2]
+    [ExchangeID][0][APEX]
+    [ParticipantID][0][A0011]
+    [SeatID][0][AS001110]
+    [SeatPassword][0][UWRwMjAyMSE=]
+    [ApiLinkType][0][112]
+    [RecvRtn][2][1]
+    [MainSeat][2][0]
+    [QueryBase][2][1]
+    [QueryPosition][2][0]
+    [ResumeType][2][0]
+    [Heartbeat][2][60]
+    [IsActive][2][1]
+    [RiskCheck][2][0]
+    [FrontAddr][0][e=tcp://119.28.102.55:4901]
+    [SeatStatus][0][48]
+    [OrderLocalID][0][]
+    [LinkBrokerID][0][0]
+    [TradingDay][0][20211213]
+    [CheckTradingDay][2][1]
+    [Custom][0][]
+FIELD [CSeatField] END
+
+//用户
+FIELD [CUserField] START
+    [BrokerID][0][ltgj]
+    [UserID][0][CN001AM01]
+    [Password][0][5a5109558619f6cfdc3b5d096a9612e3]
+    [IsActive][0][49]
+    [UserName][0][CN001AM01]
+    [UserType][0][49]
+    [Department][0][1]
+    [GrantFuncSet][0][1]
+    [CheckIpMacAddr][2][0]
+FIELD [CUserField] END
+FIELD [CUserField] START
+    [BrokerID][0][ltgj]
+    [UserID][0][CN001AM02]
+    [Password][0][e9782e344866f342c913db7b3b15626e]
+    [IsActive][0][49]
+    [UserName][0][CN001AM02]
+    [UserType][0][49]
+    [Department][0][1]
+    [GrantFuncSet][0][1]
+    [CheckIpMacAddr][2][0]
+FIELD [CUserField] END
+
+//投资者
+FIELD [CInvestorField] START
+    [BrokerID][0][ltgj]
+    [InvestorID][0][ltgjQDPCN001]
+    [InvestorName][0][QDPCN001]
+FIELD [CInvestorField] END
+FIELD [CInvestorField] START
+    [BrokerID][0][ltgj]
+    [InvestorID][0][ltgjQDPCN002]
+    [InvestorName][0][QDPCN002]
+FIELD [CInvestorField] END
+FIELD [CInvestorField] START
+    [BrokerID][0][ltgj]
+    [InvestorID][0][ltgjQDPCN101]
+    [InvestorName][0][QDPCN101]
+FIELD [CInvestorField] END
+
+//交易编码
+FIELD [CClientTradingIDField] START
+    [BrokerID][0][ltgj]
+    [InvestorID][0][ltgjQDPCN001]
+    [AccountID][0][QDPCN001]
+    [ExchangeID][0][APEX]
+    [ParticipantID][0][A0011]
+    [ClientID][0][QDPCN001]
+    [ClientRight][0][48]
+    [ClientType][0][1]
+    [ClientHedgeFlag][0][49]
+    [IsActive][0][49]
+    [APIID][2][0]
+    [PositionType][0][49]
+    [CheckAccount][2][1]
+FIELD [CClientTradingIDField] END
+
+//用户投资者关系
+FIELD [CUserInvestorField] START
+    [BrokerID][0][ltgj]
+    [UserID][0][CN001AM01]
+    [InvestorID][0][ltgjQDPCN001]
+    [GrantFuncSet][0][]
+FIELD [CUserInvestorField] END
+
+//投资者资金账户
+FIELD [CInvestorAccountField] START
+    [BrokerID][0][ltgj]
+    [InvestorID][0][ltgjQDPCN001]
+    [AccountID][0][QDPCN001]
+    [PreBalance][4][-3084143911.000000]
+    [PreAvailable][4][0.000000]
+    [Deposit][4][0.000000]
+    [Withdraw][4][0.000000]
+    [Margin][4][0.000000]
+    [Premium][4][0.000000]
+    [Fee][4][0.000000]
+    [FrozenMargin][4][0.000000]
+    [FrozenPremium][4][0.000000]
+    [FrozenFee][4][0.000000]
+    [CloseProfit][4][0.000000]
+    [PositionProfit][4][0.000000]
+    [Available][4][0.000000]
+    [Balance][4][-3084143911.000000]
+    [LongMargin][4][0.000000]
+    [ShortMargin][4][0.000000]
+    [LongFrozenMargin][4][0.000000]
+    [ShortFrozenMargin][4][0.000000]
+    [DynamicRights][4][0.000000]
+    [Risk][4][0.000000]
+    [OtherFee][4][0.000000]
+    [Mortgage][4][0.000000]
+    [Currency][0][2]
+    [TotalFrozenPos][2][0]
+    [TodayInOut][4][0.000000]
+    [ReleaseMargin][4][0.000000]
+    [IsProfitCanUse][2][0]
+    [ManualFrozen][4][0.000000]
+FIELD [CInvestorAccountField] END
+
+//投资者保证金率
+FIELD [CInvestorMarginField] START
+    [BrokerID][0][ltgj]
+    [ExchangeID][0][APEX]
+    [InvestorID][0][00000000]
+    [InstrumentID][0][PF]
+    [HedgeFlag][0][49]
+    [LongMarginRate][4][0.000000]
+    [LongMarginAmt][4][450.000000]
+    [ShortMarginRate][4][0.000000]
+    [ShortMarginAmt][4][450.000000]
+FIELD [CInvestorMarginField] END
+
+//投资者手续费
+FIELD [CInvestorFeeField] START
+    [BrokerID][0][ltgj]
+    [ExchangeID][0][APEX]
+    [InvestorID][0][00000000]
+    [InstrumentID][0][PF]
+    [HedgeFlag][0][49]
+    [OpenFeeRate][4][0.000000]
+    [OpenFeeAmt][4][0.350000]
+    [OffsetFeeRate][4][0.000000]
+    [OffsetFeeAmt][4][0.350000]
+    [OTFeeRate][4][0.000000]
+    [OTFeeAmt][4][0.000000]
+FIELD [CInvestorFeeField] END
+
+//投资者持仓
+FIELD [CInvestorPositionField] START
+    [BrokerID][0][ltgj]
+    [ExchangeID][0][APEX]
+    [InvestorID][0][ltgjQDPCN001]
+    [ParticipantID][0][A0011]
+    [ClientID][0][QDPCN001]
+    [InstrumentID][0][AUP]
+    [Direction][0][50]
+    [HedgeFlag][0][49]
+    [UsedMargin][4][0.000000]
+    [Position][2][-295]
+    [PositionCost][4][0.000000]
+    [YdPosition][2][-295]
+    [YdPositionCost][4][0.000000]
+    [FrozenMargin][4][0.000000]
+    [FrozenPosition][2][0]
+    [FrozenClosing][2][0]
+    [FrozenPremium][4][0.000000]
+    [LastTradeID][0][0]
+    [LastOrderLocalID][0][0]
+    [Currency][0][2]
+    [PositionProfit][4][0.000000]
+    [TodayPosition][2][0]
+    [FrozenTodayClosing][2][0]
+    [TradeType][0][49]
+    [AccountID][0][QDPCN001]
+    [LastPrice][4][0.000000]
+    [PositionClose][2][0]
+    [YdPositionClose][2][0]
+    [YdFrozenClosing][2][0]
+    [CacalProfitPosition][2][0]
+    [OptionType][0][48]
+    [StrikePrice][4][0.000000]
+    [OptionInstrumentID][0][0]
+    [TodayPositionCost][4][0.000000]
+    [ShortPosition][2][0]
+FIELD [CInvestorPositionField] END
+
+//系统状态
+FIELD [CSystemStatusField] START
+    [TradingDay][0][20211213]
+    [SystemStatus][0][50]
+FIELD [CSystemStatusField] END
+
+//合约和合约组关系
+FIELD [CInstrumentGroupField] START
+    [ExchangeID][0][APEX]
+    [BrokerID][0][ltgj]
+    [InstrumentID][0][PF1809]
+    [InstrumentGroupID][0][PF-PF]
+FIELD [CInstrumentGroupField] END
+FIELD [CInstrumentGroupField] START
+    [ExchangeID][0][APEX]
+    [BrokerID][0][ltgj]
+    [InstrumentID][0][PF1810]
+    [InstrumentGroupID][0][PF-PF]
+FIELD [CInstrumentGroupField] END
+
+//交易编码组合保证金类型
+FIELD [CClientMarginCombTypeField] START
+    [BrokerID][0][ltgj]
+    [ParticipantID][0][A0011]
+    [ClientID][0][QDPCN001]
+    [InstrumentGroupID][0][CPFN]
+    [MarginCombType][0][49]
+FIELD [CClientMarginCombTypeField] END
+FIELD [CClientMarginCombTypeField] START
+    [BrokerID][0][ltgj]
+    [ParticipantID][0][A0011]
+    [ClientID][0][QDPCN002]
+    [InstrumentGroupID][0][CPFN]
+    [MarginCombType][0][49]
+FIELD [CClientMarginCombTypeField] END
+
+//交易员IP
+FIELD [CUserIPField] START
+    [BrokerID][0][ltgj]
+    [UserID][0][CN001AM01]
+    [IPAddress][0][0.0.0.0]
+    [IPMask][0][0.0.0.0]
+    [MacAddress][0][]
+FIELD [CUserIPField] END
+
+//投资者期权手续费
+FIELD [CInvestorOptionFeeField] START
+    [BrokerID][0][ltgj]
+    [ExchangeID][0][default]
+    [InvestorID][0][00000000]
+    [InstrumentID][0][default]
+    [OpenFeeRate][4][0.000000]
+    [OpenFeeAmt][4][0.000000]
+    [OffsetFeeRate][4][0.000000]
+    [OffsetFeeAmt][4][0.000000]
+    [OTFeeRate][4][0.000000]
+    [OTFeeAmt][4][0.000000]
+    [StrikeFeeRate][4][0.000000]
+    [StrikeFeeAmt][4][0.000000]
+FIELD [CInvestorOptionFeeField] END
+
+//QDP系统信息表
+FIELD [CSystemInfoField] START
+    [SystemID][0][0001]
+    [SystemName][0][ltgjQDP1]
+    [SystemIP][0][10.45.32.12]
+FIELD [CSystemInfoField] END
+
+////////////////////// 推送消息 //////////////////////
+//报单通知
+FIELD [COrderField] START
+    [BrokerID][0][ltgj]
+    [ExchangeID][0][APEX]
+    [OrderSysID][0][        5313]
+    [InvestorID][0][ltgjQDPCN002]
+    [UserID][0][CN002AM02]
+    [InstrumentID][0][AUP]
+    [UserOrderLocalID][0][000000000008]
+    [OrderPriceType][0][50]
+    [Direction][0][48]
+    [OffsetFlag][0][255]
+    [HedgeFlag][0][49]
+    [LimitPrice][4][7.430010]
+    [Volume][2][1]
+    [TimeCondition][0][51]
+    [GTDDate][0][]
+    [VolumeCondition][0][49]
+    [MinVolume][2][0]
+    [StopPrice][4][0.000000]
+    [ForceCloseReason][0][48]
+    [IsAutoSuspend][2][0]
+    [BusinessUnit][0][QDPCN002]
+    [UserCustom][0][]
+    [BranchID][0][]
+    [RecNum][2][0]
+    [BusinessType][0][49]
+    [TradingDay][0][20211213]
+    [ParticipantID][0][A0011]
+    [ClientID][0][QDPCN002]
+    [SeatID][0][AS001110]
+    [InsertTime][0][13:42:32]
+    [OrderLocalID][0][C00000000001]
+    [OrderSource][0][48]
+    [OrderStatus][0][51]
+    [CancelTime][0][]
+    [CancelUserID][0][]
+    [VolumeTraded][2][0]
+    [VolumeRemain][2][1]
+    [FrontID][2][1]
+    [SessionID][2][-1125515179]
+    [FrozenFee][4][0.000000]
+    [FrozenMargin][4][0.000000]
+    [FrozenPremium][4][0.000000]
+    [AccountID][0][]
+    [OrderUserID][0][]
+    [TradeType][0][0]
+    [DealFlag][0][0]
+    [TradeCommision][4][0.000000]
+    [TradeAmnt][4][0.000000]
+    [CancleVolume][2][0]
+    [RequestID][2][0]
+    [APIID][2][2]
+    [IPAddress][0][192.168.201.246]
+    [MacAddress][0][A4:BB:6D:DE:6A:08]
+    [FTdRecvDown][2][0]
+    [CoreRecvDown][2][0]
+    [CoreSendUp][2][0]
+    [CoreRecvUp][2][0]
+    [CoreSendDown][2][0]
+    [FTdSendDown][2][0]
+    [MarginCombType][0][0]
+    [InstrumentGroupID][0][]
+FIELD [COrderField] END
+
+//成交通知
+FIELD [CTradeField] START
+    [TradingDay][0][20211213]
+    [BrokerID][0][ltgj]
+    [ExchangeID][0][APEX]
+    [ParticipantID][0][A0011]
+    [SeatID][0][AS001110]
+    [InvestorID][0][ltgjQDPCN002]
+    [ClientID][0][QDPCN002]
+    [UserID][0][CN002AM02]
+    [TradeID][0][        2919]
+    [OrderSysID][0][        5519]
+    [UserOrderLocalID][0][000000000024]
+    [InstrumentID][0][AUP]
+    [Direction][0][48]
+    [OffsetFlag][0][255]
+    [HedgeFlag][0][49]
+    [TradePrice][4][7.430010]
+    [TradeVolume][2][1]
+    [TradeTime][0][14:04:24]
+    [ClearingPartID][0][A0011]
+    [TradeAmnt][4][0.000000]
+    [RecNum][2][0]
+    [TradeType][0][49]
+    [Commision][4][0.000000]
+    [StampTax][4][0.000000]
+    [TransferFee][4][0.000000]
+    [UsedFee][4][0.000000]
+    [UsedMargin][4][0.000000]
+    [Premium][4][0.000000]
+    [AccountID][0][]
+    [OrderUserID][0][]
+    [OrderLocalID][0][C00000000003]
+    [IsForgeRtn][2][0]
+    [BusinessType][0][0]
+FIELD [CTradeField] END
+
+//合约交易状态改变通知
+FIELD [CInstrumentStatusField] START
+    [ExchangeID][0][APEX]
+    [ProductID][0][]
+    [ProductName][0][]
+    [InstrumentID][0][AGP]
+    [InstrumentName][0][]
+    [DeliveryYear][2][1900]
+    [DeliveryMonth][2][1]
+    [MaxLimitOrderVolume][2][0]
+    [MinLimitOrderVolume][2][0]
+    [MaxMarketOrderVolume][2][0]
+    [MinMarketOrderVolume][2][0]
+    [VolumeMultiple][2][0]
+    [PriceTick][4][0.000000]
+    [Currency][0][0]
+    [LongPosLimit][2][0]
+    [ShortPosLimit][2][0]
+    [LowerLimitPrice][4][0.000000]
+    [UpperLimitPrice][4][0.000000]
+    [PreSettlementPrice][4][0.000000]
+    [InstrumentStatus][0][48]
+    [CreateDate][0][]
+    [OpenDate][0][]
+    [ExpireDate][0][]
+    [StartDelivDate][0][]
+    [EndDelivDate][0][]
+    [BasisPrice][4][0.000000]
+    [IsTrading][2][0]
+    [UnderlyingInstrID][0][]
+    [UnderlyingMultiple][2][0]
+    [PositionType][0][0]
+    [StrikePrice][4][0.000000]
+    [OptionsType][0][0]
+    [ProductClass][0][0]
+    [OptionsMode][0][0]
+    [ProductGroupID][0][]
+    [APIID][2][0]
+    [LegQty][2][0]
+FIELD [CInstrumentStatusField] END
+
+//出入金回报通知
+FIELD [CInvestorAccountDepositNtfField] START
+    [BrokerID][0][ltgj]
+    [InvestorID][0][ltgjQDPCN002]
+    [AccountID][0][]
+    [AccountSeqNo][0][] ///资金流水号
+    [AccountInsideSeqNo][0][]  ///连续递增的总资金流水号
+    [Amount][4][]  ///金额
+    [AmountDirection][0][]  ///出入金方向
+    [Available][4][]  ///可用资金
+    [Balance][4][]  ///结算准备金
+    [UserID][0][CN002AM02]
+FIELD [CInvestorAccountDepositNtfField] END
+
+
+/////////////// 相关查询应答 ///////////
+//报盘机查询合约应答
+FIELD [CInstrumentField] START
+    [ExchangeID][0][APEX]
+    [ProductID][0][AUP]
+    [ProductName][0][]
+    [InstrumentID][0][AUP]
+    [InstrumentName][0][AUD/USD Perpetual]
+    [DeliveryYear][2][2099]
+    [DeliveryMonth][2][12]
+    [MaxLimitOrderVolume][2][50]
+    [MinLimitOrderVolume][2][1]
+    [MaxMarketOrderVolume][2][50]
+    [MinMarketOrderVolume][2][1]
+    [VolumeMultiple][2][100000]
+    [PriceTick][4][0.000010]
+    [Currency][0][50]
+    [LongPosLimit][2][0]
+    [ShortPosLimit][2][0]
+    [LowerLimitPrice][4][0.000000]
+    [UpperLimitPrice][4][0.000000]
+    [PreSettlementPrice][4][0.000000]
+    [InstrumentStatus][0][0]
+    [CreateDate][0][20190429]
+    [OpenDate][0][20190501]
+    [ExpireDate][0][20991231]
+    [StartDelivDate][0][20991231]
+    [EndDelivDate][0][20991231]
+    [BasisPrice][4][0.705540]
+    [IsTrading][2][1]
+    [UnderlyingInstrID][0][AUP]
+    [UnderlyingMultiple][2][1]
+    [PositionType][0][50]
+    [StrikePrice][4][]
+    [OptionsType][0][48]
+    [ProductClass][0][49]
+    [OptionsMode][0][0]
+    [ProductGroupID][0][ANUP]
+    [APIID][2][2]
+    [LegQty][2][0]
+FIELD [CInstrumentField] END
+
+//报盘机查询交易日应答
+FIELD [CExchangeTradingDayField] START
+    [TradingDay][0][20211213]
+    [ExchangeID][0][APEX]
+FIELD [CExchangeTradingDayField] END
+
+//报盘机查询行情应答
+FIELD [CMarketDataField] START
+    [TradingDay][0][20211213]
+    [ExchangeID][0][APEX]
+    [InstrumentID][0][AGP]
+    [OpenPrice][4][]
+    [HighestPrice][4][]
+    [LowestPrice][4][]
+    [LastPrice][4][879.000000]
+    [Volume][2][0]
+    [Turnover][4][0.000000]
+    [LowerLimitPrice][4][731.400000]
+    [UpperLimitPrice][4][989.400000]
+    [OpenInterest][2][0]
+    [PreClosePrice][4][879.000000]
+    [PreOpenInterest][2][0]
+    [PreSettlementPrice][4][860.400000]
+    [SettlementPrice][4][]
+    [UpdateMillisec][2][38]
+    [UpdateTime][0][19:06:36]
+FIELD [CMarketDataField] END
+
