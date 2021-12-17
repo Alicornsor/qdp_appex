@@ -23,10 +23,12 @@
 #include "monitorIndex.h"
 #include "CFilelogService.h"
 #include "XtpPackageDesc.h"
+#include "cryptAll.h"
 #include "WsServer.h"
 
 const char *INI_FILE_NAME = "xtpclient.ini";
 const char* APP_NAME = "xtpclient";
+//const DWORD TID_RspUserLogin = 0x00009003;
 
 char g_szFlowPath[300];
 
@@ -230,6 +232,49 @@ public:
 
 	int HandlePackage(CXTPPackage *pXTPPackage, CTcpXtpSession *pSession)
 	{
+		//判断是否为登录Rsp的消息，需要对登录密码加密
+		if (TID_RspUserLogin == pXTPPackage->GetTid())
+		{
+			CUserLoginField userLoginField;
+			CRspInfoField   rspInfoField;
+			memset(&userLoginField, 0x00, sizeof(CUserLoginField));
+			memset(&rspInfoField, 0x00, sizeof(CRspInfoField));
+			if (XTP_GET_SINGLE_FIELD(pXTPPackage, &userLoginField) <= 0)
+			{
+				REPORT_EVENT(LOG_CRITICAL, "HandlePackage", "Get CUserLoginField from package error.");
+				return 0;
+			}
+			if (XTP_GET_SINGLE_FIELD(pXTPPackage, &rspInfoField) <= 0)
+			{
+				REPORT_EVENT(LOG_CRITICAL, "HandlePackage", "Get CRspInfoField from package error.");
+				return 0;
+			}
+			//对密码进行加密
+			printf("OldPasswd:%s\n", userLoginField.Password.getValue());
+			char md5Password[33];
+			MD5Hex(md5Password, userLoginField.UserID.getValue(), userLoginField.Password.getValue());
+			userLoginField.Password = md5Password;
+			printf("Md5Passwd:%s\n", userLoginField.Password.getValue());
+
+			//重新初始化package
+			CXTPPackage *pTempPackage = CXTPPackage::CreatePackage(1000);
+			pTempPackage->PrepareResponse(pXTPPackage, TID_RspUserLogin);
+			XTP_ADD_FIELD(pTempPackage, &userLoginField);
+			XTP_ADD_FIELD(pTempPackage, &rspInfoField);
+			pTempPackage->MakePackage();
+			m_pSerialFlow->Append(pTempPackage->Address(), pTempPackage->Length());
+			pTempPackage->Pop(XTPHLEN);
+
+			//发送RspLogin
+			if (NULL != m_pWsServer)
+			{
+				string strMsg = ConvertXtpToStr(pTempPackage);
+				m_pWsServer->send_messages_to_all(strMsg); //新消息发送所有的连接
+			}
+			m_nsubcount++;
+			return 0;
+		}
+		//否则直接写流水文件
 		//这里直接写流水文件
 		pXTPPackage->MakePackage();
 		m_pSerialFlow->Append(pXTPPackage->Address(), pXTPPackage->Length());

@@ -16,6 +16,7 @@
 	<package name="xtpprotocol" dir="../../sourcebase/xtpprotocol"/>
 	<package name="ftdprotocol" dir="../../sourcebase/ftdprotocol"/>
 	<package name="fib" dir="../../sourcebase/fib"/>
+	<package name="crypt" dir="../../sourcebase/crypt"/>
 	<package name="customDataType" dir="../../sourcebase/customDataType">
 		<parameter name="UFDatatypeEnv" value="../../datamodel/commonEnv/UFDataType.xml"/>
 	</package>

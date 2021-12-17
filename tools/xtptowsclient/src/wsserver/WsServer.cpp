@@ -4,6 +4,9 @@ std::mutex conMutex;
 
 CWsServer::CWsServer(CFlow *pSerailFlow)
 {
+	m_pSerialFlow = pSerailFlow;
+	m_ReadPackage.ConstructAllocate(XTP_PACKAGE_MAX_SIZE, 1000);
+
 	// Initialize Asio Transport
 	m_webSocketServer.init_asio();
 
@@ -53,7 +56,8 @@ void CWsServer::on_open(connection_hdl hdl)
 	m_connections.insert(hdl);
 
 	//有连接，发送读取流文件的处理消息
-	m_pReadFlowHandler->PostEvent(ON_READFLOW_GET_ALL_MESSAGE_EVENT, 0, (void *)&hdl);
+	//m_pReadFlowHandler->PostEvent(ON_READFLOW_GET_ALL_MESSAGE_EVENT, 0, (void *)&hdl);
+	send_message_to_hdl(hdl, "hello client");
 }
 
 void CWsServer::on_close(connection_hdl hdl)
@@ -86,6 +90,31 @@ void CWsServer::send_messages_to_all(string strMessage)
 	}
 }
 
+//void CWsServer::OnReadFlowProcess(connection_hdl hdl)
+//{
+//	m_reader.AttachFlow(m_pSerialFlow, 0);
+//	for (int i = 1;; ++i)
+//	{
+//		m_ReadPackage.Allocate(XTP_PACKAGE_MAX_SIZE + XTPHLEN);
+//		if (!m_reader.GetNext(&m_ReadPackage))
+//		{
+//			REPORT_EVENT(LOG_CRITICAL, "CReadFlowHandler::OnReadFlowProcess", "no message in flow file");
+//			break;
+//		}
+//
+//		//将package转成特定格式并发送
+//		string strMsg = ConvertXtpToStr(&m_ReadPackage);
+//		if (strMsg.empty())
+//		{
+//			REPORT_EVENT(LOG_CRITICAL, "CReadFlowHandler::OnReadFlowProcess", "no message in package");
+//			continue; //如果字符串为空则无需发送
+//		}
+//
+//		//重新读流水，只会发送给当前连接的连接
+//		send_message_to_hdl(hdl, strMsg);
+//	}
+//}
+
 
 CReadFlowHandler::CReadFlowHandler(CSelectReactor *pReactor, CWsServer *pWsServer, CFlow *pSerailFlow)
 	: CEventHandler(pReactor)
@@ -93,6 +122,7 @@ CReadFlowHandler::CReadFlowHandler(CSelectReactor *pReactor, CWsServer *pWsServe
 	m_pConnReactor = pReactor;
 	m_pWsServer = pWsServer;
 	m_pSerialFlow = pSerailFlow;
+	m_ReadPackage.ConstructAllocate(XTP_PACKAGE_MAX_SIZE, 1000);
 }
 
 CReadFlowHandler::~CReadFlowHandler()
@@ -178,7 +208,7 @@ string ConvertXtpToStr(CXTPPackage *pPackage)
 	{
 		return "";
 	}
-	strMsg = strMsg + "Tid=[" + MyIntToHex(pHeader->Tid) + "],ContentLength=[" + MyIntToString(pHeader->ContentLength & 0xFFFF) + "]";
+	strMsg = strMsg + "{\"Tid\":\"" + MyIntToHex(pHeader->Tid) + "\",\"SequenceNo\":\"" + MyIntToString(pHeader->SequenceNo) + "\",";
 
 	int nTid = pPackage->GetTid();
 	TPackageDefine **pFind = g_XTPPackageDefineMap.Find(nTid);
@@ -190,44 +220,63 @@ string ConvertXtpToStr(CXTPPackage *pPackage)
 	char buf[10000];
 	TPackageDefine *pPackageDefine = *pFind;
 	CFieldTypeIterator itor = pPackage->GetFieldTypeIterator();
-	while (!itor.IsEnd())
+	string strStructs = ""; //结构体消息
+	string strTempFieldName = "";
+	while (!itor.IsEnd()) //循环所有的消息（消息中可能包含多个结构体）
 	{
 		TFieldHeader fieldHeader;
 		itor.RetrieveHeader(fieldHeader);
 		TFieldUse *pFieldUse = pPackageDefine->fieldUse;
-		for (int i = 0; i < pPackageDefine->fieldUseCount; i++)
+		
+		for (int i = 0; i < pPackageDefine->fieldUseCount; i++) //循环不同的结构体
 		{
 			if (pFieldUse->fid == fieldHeader.FieldID)
 			{
 				itor.Retrieve(pFieldUse->pFieldDescribe, buf);
 				CFieldDescribe *pFieldDescribe = pFieldUse->pFieldDescribe;
-				strMsg = strMsg + "Field=[" + string(pFieldDescribe->GetFieldName()) + "],";
-				for (int i = 0; i < pFieldDescribe->GetMemberCount(); i++)
+				string strFieldName = string(pFieldDescribe->GetFieldName());
+				if (strTempFieldName != strFieldName)
+				{
+					if (strTempFieldName.empty()) //首次无需添加"],"
+					{
+						strStructs = strStructs + "\"" + strFieldName + "\":[{";
+					}
+					else
+					{
+						strStructs = strStructs + "]," + "\"" + strFieldName + "\":[{";
+					}
+					strTempFieldName = strFieldName;
+				}
+				else
+				{
+					strStructs += ",{";
+				}
+				for (int i = 0; i < pFieldDescribe->GetMemberCount(); i++) //循环Field的所有字段
 				{
 					TMemberDesc *pMemberDesc = pFieldDescribe->GetMemberDesc(i);
-					strMsg = strMsg + string(pMemberDesc->szName) + "=[";
+					strStructs = strStructs + "\"" + string(pMemberDesc->szName) + "\":";
 					char *pMember = buf + pMemberDesc->nStructOffset;
 					switch (pMemberDesc->nType)
 					{
 					case FT_WORD:
 					{
-						strMsg = strMsg + MyIntToString(*((WORD *)pMember) & 0xFFFF) + "],";
+						strStructs = strStructs + "\"" + MyIntToString(*((WORD *)pMember) & 0xFFFF) + "\"";
 						break;
 					}
 					case FT_DWORD:
 					{
-						strMsg = strMsg + MyIntToString(*((DWORD *)pMember)) + "],";
+						strStructs = strStructs + "\"" + MyIntToString(*((DWORD *)pMember)) + "\"";
 						break;
 					}
 					case FT_BYTE:
 					{
 						if (pMemberDesc->nSize == 1)
 						{
-							strMsg = strMsg + MyIntToString(*pMember & 0xFF) + "],"; //这里将char型数据
+							strStructs = strStructs + "\"" + MyIntToString(*pMember & 0xFF) + "\""; //这里将char型数据
 						}
 						else
 						{
-							strMsg = strMsg + string(pMember) + "],";
+							strStructs = strStructs + "\"" + string(pMember) + "\"";
 						}
 						break;
 					}
@@ -236,7 +285,7 @@ string ConvertXtpToStr(CXTPPackage *pPackage)
 						char strTemp[1024];
 						memset(&strTemp, 0, sizeof(strTemp));
 						sprintf(strTemp, "%f", *((REAL4 *)pMember));
-						strMsg = strMsg + strTemp + "],";
+						strStructs = strStructs + "\"" + strTemp + "\"";
 						break;
 					}
 					case FT_REAL8:
@@ -245,27 +294,40 @@ string ConvertXtpToStr(CXTPPackage *pPackage)
 						memcpy(&d, pMember, sizeof(REAL8));
 						if (d == DOUBLE_NaN)
 						{
-							strMsg += "],";
+							strStructs += "\"\"";
 						}
 						else
 						{
 							char strTemp[1024];
 							memset(&strTemp, 0, sizeof(strTemp));
 							sprintf(strTemp, "%lf", d);
-							strMsg = strMsg + strTemp + "],";
+							strStructs = strStructs + "\"" + strTemp + "\"";
 						}
 						break;
 					}
 					default:
 						break;
 					}
+					//判断是否为最后一个字段，如果不是需要加逗号
+					if (i != (pFieldDescribe->GetMemberCount() - 1))
+					{
+						strStructs += ",";
+					}
 				}
+				strStructs += "}";
 				break;
 			}
 			pFieldUse++;
 		}
 		itor.Next();
+		//判断是否为最后一条字段消息, 如果不是需要加'],' 否则加']'
+		if (itor.IsEnd())
+		{
+			strStructs += "]";
+		}
 	}
+	strMsg = strMsg + strStructs + "}";
 	//REPORT_EVENT(LOG_CRITICAL, "CReadFlowHandler::ConvertXtpToStr", "Msg: %s", strMsg.c_str());
+	printf("Msg:%s\n", strMsg.c_str());
 	return strMsg;
 }

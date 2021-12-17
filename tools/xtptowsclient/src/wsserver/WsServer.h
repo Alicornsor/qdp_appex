@@ -46,11 +46,16 @@ public:
 
 	void send_messages_to_all(string strMessage);
 
+	//void OnReadFlowProcess(connection_hdl hdl); //读取流文件
+
 private:
 	server m_webSocketServer;
 	Connections m_connections; //当前所有的连接
 	
 	CReadFlowHandler *m_pReadFlowHandler; //每次新连接都需要重新读取流文件
+	CFlowReader m_reader;
+	CFlow *m_pSerialFlow; //结果流
+	CXTPPackage m_ReadPackage;
 };
 
 const int ON_READFLOW_GET_ALL_MESSAGE_EVENT = 12001;
